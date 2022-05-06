@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import '../assets/styles/landing.css'
+// import '../assets/styles/landing.css'
 import bgHome from '../assets/images/home_bg.jpg';
 import object from '../assets/images/object.svg';
 import iTransfer from '../assets/icons/transfer.svg'
 import logo from '../assets/images/logo.svg'
 import btnBack from '../assets/icons/btnBack.svg'
 
-export default function Landing() {
+export default function Test() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
 
@@ -16,7 +16,7 @@ export default function Landing() {
   }, [dispatch]);
 
   return (
-    <div class="container-fluid landing">
+    <div class="container-fluid">
         <div class="row">
           <div class="col-sm-8">
             <div class="titleBox">

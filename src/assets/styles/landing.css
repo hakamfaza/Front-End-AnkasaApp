@@ -1,0 +1,212 @@
+.landing .boxOfTitle {
+  display: flex;
+}
+
+.landing .titleBox {
+  margin: 80px 0px 0px 50px;
+}
+
+.landing .homeTitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #414141;
+}
+
+.landing .flightTitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #2395ff;
+  margin-left: 10px;
+}
+
+.landing .homeText {
+  color: #6b6b6b;
+  font-weight: 200;
+}
+
+.landing .bgImg {
+  width: 850px;
+  height: 450px;
+  object-fit: cover;
+  border-end-end-radius: 50px;
+  margin-top: 90px;
+  margin-left: -12px;
+}
+
+.landing .boxOfMediumImg {
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing .bgMediumImg {
+  width: 350px;
+  height: 400px;
+  object-fit: cover;
+  border-top-left-radius: 50px;
+}
+
+.landing .object {
+  margin-top: 200px;
+  width: 200px;
+  height: 200px;
+  margin-left: 50px;
+}
+
+.landing .boxOfCard {
+  position: absolute;
+  top: 100px;
+  right: 200px;
+  width: 350px;
+  height: 650px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 1px 1px 25px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 1px 25px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 25px -5px rgba(0, 0, 0, 0.75);
+}
+
+.landing .mediumText {
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.largeText {
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.landing .smMarginTop {
+  margin-top: 10px;
+}
+
+.landing .mMarginTop {
+  margin-top: 20px;
+}
+
+.landing .boxOfDestionation {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  height: 100px;
+  border-radius: 10px;
+  margin-top: 30px;
+  box-shadow: 1px 1px 13px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 1px 13px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 13px -5px rgba(0, 0, 0, 0.75);
+}
+
+.landing .textFrom {
+  color: rgba(151, 151, 151, 1);
+  font-size: 15px;
+  font-family: 'Lato', sans-serif;
+}
+
+.landing .minMarginTop {
+  margin-top: -10px;
+}
+
+.landing .titleDestionation {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: -5px;
+  color: rgba(0, 0, 0, 1);
+  font-family: 'Poppins', sans-serif;
+}
+
+.landing .textDestionation {
+  font-size: 15px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  margin-top: -8px;
+}
+
+.landing .recently {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.landing .textRecently {
+  margin-top: 10px;
+  color: #2395ff;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.landing .transfer {
+  width: 20px;
+  height: 20px;
+  margin-top: -8px;
+}
+
+.landing .boxOfIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing .boxFinalExam {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.landing .btnSend {
+  background-color: #2395ff;
+  border: none;
+  width: 150px;
+  padding: 10px;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-top: 25px;
+}
+
+.landing .actionTitle {
+  color: rgba(107, 107, 107, 1);
+  font-family: 'Poppins', sans-serif;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.landing .date {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+}
+
+.landing .person {
+  width: 140px;
+}
+
+.landing .boxOfAdult {
+  display: flex;
+  justify-content: space-between;
+}
+
+.landing .boxOfRadio {
+  display: flex;
+  justify-content: space-between;
+}
+
+.landing .btnSearch {
+  width: 100%;
+  margin-top: 20px;
+  height: 45px;
+  border-radius: 5px;
+  border: none;
+  background-color: #2395ff;
+  color: #ffffff;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
