@@ -1,26 +1,30 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Landing from "../pages/Landing";
-import Test from "../pages/Test";
-import NotFound from "../pages/NotFound";
+/* eslint-disable linebreak-style */
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react';
+import {
+  BrowserRouter, Routes, Route, // Navigate,
+} from 'react-router-dom';
+import Landing from '../pages/Landing';
+import Test from '../pages/Test';
+import NotFound from '../pages/NotFound';
 
-function PrivateRoute({ children }) {
-  const token = localStorage.getItem("token");
+// function PrivateRoute({ children }) {
+//   const token = localStorage.getItem('token');
 
-  if (token) {
-    return children;
-  }
-  return <Navigate to="/auth" />;
-}
+//   if (token) {
+//     return children;
+//   }
+//   return <Navigate to="/auth" />;
+// }
 
-function PublicRoute({ children }) {
-  const token = localStorage.getItem("token");
+// function PublicRoute({ children }) {
+//   const token = localStorage.getItem('token');
 
-  if (!token) {
-    return children;
-  }
-  return <Navigate to="/" />;
-}
+//   if (!token) {
+//     return children;
+//   }
+//   return <Navigate to="/" />;
+// }
 
 export default function router() {
   return (
@@ -30,7 +34,7 @@ export default function router() {
           <Route index element={<Landing />} />
         </Route>
         <Route path="/test">
-        <Route index element={<Test />} />
+          <Route index element={<Test />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

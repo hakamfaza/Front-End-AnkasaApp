@@ -1,5 +1,6 @@
-import { combineReducers } from "redux";
-import userReducer from "./user";
+/* eslint-disable linebreak-style */
+import { combineReducers } from 'redux';
+import userReducer from './user';
 
 const rootReducers = combineReducers({
   user: userReducer,

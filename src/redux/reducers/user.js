@@ -1,3 +1,5 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable default-param-last */
 import {
   GET_USER_FAILED,
   GET_USER_PENDING,
