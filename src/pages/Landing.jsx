@@ -11,6 +11,7 @@ import iTransfer from '../assets/icons/transfer.svg';
 import logo from '../assets/images/logo.svg';
 import btnBack from '../assets/icons/btnBack.svg';
 import Card from '../components/Card';
+import CircleCard from '../components/CircleCard';
 
 export default function Landing() {
   const dispatch = useDispatch();
@@ -141,6 +142,9 @@ export default function Landing() {
           <Card src={bgHome} totalAirlines="22 Airlines" destination="Tokyo" country="Japan" />
         </div>
 
+      </div>
+      <div>
+        <CircleCard />
       </div>
     </div>
   );
