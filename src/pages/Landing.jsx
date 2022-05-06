@@ -69,7 +69,7 @@ export default function Landing() {
               One way
             </button>
             <h5 class="actionTitle">Departure</h5>
-            <input type="date" class="date" value="Monday, 20 July 2020" />
+            <input type="date" class="date" />
             <h5 class="actionTitle">How many person?</h5>
             <div class="boxOfAdult">
               <input type="text" class="person" />
@@ -77,24 +77,27 @@ export default function Landing() {
             </div>
             <h5 class="actionTitle">Which class do you want?</h5>
             <div class="boxOfRadio">
-              <div class="form-check">
+            <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="economy"
+                  name="actionRadio"
                   id="economy"
+                  checked
                 />
-                <label class="form-check-label" for="economy"> Economy </label>
+                <label class="form-check-label textRadio" for="economy">
+                  Economy
+                </label>
               </div>
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault2"
+                  name="actionRadio"
+                  id="bussiness"
                   checked
                 />
-                <label class="form-check-label" for="flexRadioDefault2">
+                <label class="form-check-label textRadio" for="bussiness">
                   Bussiness
                 </label>
               </div>
@@ -102,11 +105,10 @@ export default function Landing() {
                 <input
                   class="form-check-input"
                   type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault3"
-                  
+                  name="actionRadio"
+                  id="firstClass"
                 />
-                <label class="form-check-label" for="flexRadioDefault3">
+                <label class="form-check-label textRadio" for="firstClass">
                   First class
                 </label>
               </div>
