@@ -6,6 +6,8 @@ import object from '../assets/images/object.svg';
 import iTransfer from '../assets/icons/transfer.svg'
 import logo from '../assets/images/logo.svg'
 import btnBack from '../assets/icons/btnBack.svg'
+import { Link } from "react-router-dom";
+import Card from "../components/Card";
 
 export default function Landing() {
   const dispatch = useDispatch();
@@ -120,7 +122,90 @@ export default function Landing() {
               </button>
             </div>
           </div>
+      </div>
+      <div class="containerItems">
+        <p class="textTrendings">TRENDING</p>
+        <div className="tableTrendings" >
+        <h4 class='titleTrendings'>Trending destinations</h4>
+        <Link to='/' className="viewLink" >View All</Link>
         </div>
+        <Card src={bgHome} totalAirlines='22 Airlines' destination='Tokyo' country='Japan' />
+        {/* <Card /> */}
+        {/* <div class="container">
+          <div class="cardContainer">
+            <div class="items ml">
+              <div class="boxOfAirline">
+                <p class="textAirline">15 Airlines</p>
+              </div>
+              <div class="boxOfItems">
+                <div class="box">
+                  <p class="itemsText">Tokyo,</p>
+                  <p class="itemsTitle">Japan</p>
+                </div>
+                <div class="btnItems">
+                  <img src="./img/btnBackWhite.svg" alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="items">
+              <div class="boxOfAirline">
+                <p class="textAirline">22 Airlines</p>
+              </div>
+              <div class="boxOfItems">
+                <div class="box">
+                  <p class="itemsText">Barcelona,</p>
+                  <p class="itemsTitle">Spain</p>
+                </div>
+                <div class="btnItems">
+                  <img src="./img/btnBackWhite.svg" alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="items">
+              <div class="boxOfAirline">
+                <p class="textAirline">15 Airlines</p>
+              </div>
+              <div class="boxOfItems">
+                <div class="box">
+                  <p class="itemsText">Tokyo,</p>
+                  <p class="itemsTitle">Japan</p>
+                </div>
+                <div class="btnItems">
+                  <img src="./img/btnBackWhite.svg" alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="items">
+              <div class="boxOfAirline">
+                <p class="textAirline">15 Airlines</p>
+              </div>
+              <div class="boxOfItems">
+                <div class="box">
+                  <p class="itemsText">Tokyo,</p>
+                  <p class="itemsTitle">Japan</p>
+                </div>
+                <div class="btnItems">
+                  <img src="./img/btnBackWhite.svg" alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="items">
+              <div class="boxOfAirline">
+                <p class="textAirline">15 Airlines</p>
+              </div>
+              <div class="boxOfItems">
+                <div class="box">
+                  <p class="itemsText">Tokyo,</p>
+                  <p class="itemsTitle">Japan</p>
+                </div>
+                <div class="btnItems">
+                  <img src="./img/btnBackWhite.svg" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> */}
+      </div>
       </div>
   );
 }

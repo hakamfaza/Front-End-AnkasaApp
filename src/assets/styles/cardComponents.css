@@ -1,0 +1,51 @@
+.Card {
+  position: relative;
+}
+
+.Card .cardImage {
+  position: relative;
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.Card .objectGradient {
+  position: absolute;
+  top: 0;
+  padding: 20px 25px;
+  width: 200px;
+  height: 250px;
+  background: rgb(0,0,0);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+  border-radius: 15px;
+}
+
+.Card .textAirlines {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.41);
+  height: 25px;
+  width: 80px;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.Card .textAirlines p {
+  color: #FFF;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.Card .textDestination {
+  margin-top: 135px;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.Card .titleCountry {
+  margin-top: -15px;
+  color: #FFF;
+  font-weight: 600;
+  font-size: 24px;
+}

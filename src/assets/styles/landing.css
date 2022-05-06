@@ -214,3 +214,31 @@
 .landing .textRadio {
   font-size: 14px;
 }
+
+.landing .containerItems {
+  margin-top: 150px;
+  padding: 0 50px 0 50px;
+}
+
+.landing .textTrendings {
+  color: #2395ff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 5px;
+}
+
+.landing .titleTrendings {
+  font-family: 'Poppins', sans-serif;
+}
+
+.landing .tableTrendings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.landing .viewLink {
+  text-decoration: none;
+  color: rgba(35, 149, 255, 1);
+}
