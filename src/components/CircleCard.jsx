@@ -9,6 +9,7 @@ export default function CircleCard() {
       <div className="outline">
         <img src={tokyo} alt="" className="img" />
       </div>
+      <h4 className="titleDestination">Tokyo</h4>
     </div>
   );
 }

@@ -10,8 +10,10 @@ import object from '../assets/images/object.svg';
 import iTransfer from '../assets/icons/transfer.svg';
 import logo from '../assets/images/logo.svg';
 import btnBack from '../assets/icons/btnBack.svg';
+import btnPrev from '../assets/icons/previous.svg';
 import Card from '../components/Card';
 import CircleCard from '../components/CircleCard';
+import vector from '../assets/images/vector.svg';
 
 export default function Landing() {
   const dispatch = useDispatch();
@@ -143,8 +145,33 @@ export default function Landing() {
         </div>
 
       </div>
-      <div>
-        <CircleCard />
+      <div className="topContainer">
+        <div className="boxTop">
+          <img src={vector} alt="" className="vector" />
+          <div className="row boxTopCard">
+            <div className="col-sm-12 boxOfTop">
+              <h5 className="titleOfTop">TOP 10</h5>
+              <h3 className="textOfTop">Top 10 destinations</h3>
+            </div>
+            <div className="col-sm-12 containerCard">
+              <CircleCard />
+              <CircleCard />
+              <CircleCard />
+              <CircleCard />
+              <CircleCard />
+            </div>
+            <div className="col-sm-12 containerBtn">
+              <div className="boxOfBtn">
+                <button className="btnPrevious">
+                  <img src={btnPrev} alt="" />
+                </button>
+                <button className="btnNextBlue">
+                  <img src={btnBack} alt="" className="btnImg" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
