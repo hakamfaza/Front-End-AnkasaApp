@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../assets/styles/landing.css';
 import { Link } from 'react-router-dom';
+import { Zoom, Slide } from 'react-reveal';
 import bgHome from '../assets/images/home_bg.jpg';
 import object from '../assets/images/object.svg';
 import iTransfer from '../assets/icons/transfer.svg';
@@ -30,99 +31,105 @@ export default function Landing() {
       <div className="row">
         <div className="col-md-8 col-sm-8">
           <div className="titleBox">
-            <div className="boxOfTitle">
-              <h1 className="homeTitle">Find your</h1>
-              <h1 className="flightTitle">Flight</h1>
-            </div>
-            <p className="homeText">and explore the world with us</p>
+            <Slide left>
+              <div className="boxOfTitle">
+                <h1 className="homeTitle">Find your</h1>
+                <h1 className="flightTitle">Flight</h1>
+              </div>
+              <p className="homeText">and explore the world with us</p>
+            </Slide>
           </div>
           <img src={bgHome} className="bgImg" alt="Tokyo" />
         </div>
         <div className="col-md-4 col-sm-4">
           <div className="boxOfMediumImg">
             <img src={bgHome} className="bgMediumImg" alt="Tokyo" />
-            <img src={object} alt="object" className="object" />
+            <Zoom bottom>
+              <img src={object} alt="object" className="object" />
+            </Zoom>
           </div>
         </div>
       </div>
-      <div className="boxOfCard">
-        <div>
-          <h5 className="mediumText">Hey,</h5>
-          <h4 className="largeText smMarginTop">Where you want to go?</h4>
-          <div className="recently mMarginTop">
-            <h5 className="textRecently">Recently Searched</h5>
-            <img src={btnBack} alt="" className="btnNext" />
-          </div>
-          <div className="boxOfDestination">
-            <p className="textFrom">From</p>
-            <div className="row boxDetailDestination minMarginTop">
-              <h4 className="titleDestionation">Medan</h4>
-              {/* <p className="textDestionation">Indonesia</p> */}
-              {/* <div className="boxOfIcon"> */}
-              <img
-                src={iTransfer}
-                alt="transfer"
-                className="transfer"
-              />
-              {/* </div> */}
-              <h4 className="titleDestionation">Tokyo</h4>
-              {/* <p className="textDestionation">Japan</p> */}
-            </div>
-          </div>
-
-          <button className="btnSend">
-            <img src={logo} alt="logo" />
-            One way
-          </button>
-          <h5 className="actionTitle">How many person?</h5>
-          <div className="boxOfAdult">
-            <input type="text" className="person" placeholder="Child" />
-            <input type="text" className="person" placeholder="Adult" />
-          </div>
-          <h5 className="actionTitle">Which class do you want?</h5>
-          <div className="boxOfRadio">
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="actionRadio"
-                id="economy"
-              />
-              <label className="form-check-label textRadio" htmlFor="economy">
-                Economy
-              </label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="actionRadio"
-                id="bussiness"
-              />
-              <label className="form-check-label textRadio" htmlFor="bussiness">
-                Bussiness
-              </label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="actionRadio"
-                id="firstClass"
-              />
-              <label className="form-check-label textRadio" htmlFor="firstClass">
-                First class
-              </label>
-            </div>
-          </div>
+      <Slide top>
+        <div className="boxOfCard">
           <div>
-            <button className="btnSearch">
-              SEARCH FLIGHT
-              <img src={arrow} alt="" />
+            <h5 className="mediumText">Hey,</h5>
+            <h4 className="largeText smMarginTop">Where you want to go?</h4>
+            <div className="recently mMarginTop">
+              <h5 className="textRecently">Recently Searched</h5>
+              <img src={btnBack} alt="" className="btnNext" />
+            </div>
+            <div className="boxOfDestination">
+              <p className="textFrom">From</p>
+              <div className="row boxDetailDestination minMarginTop">
+                <h4 className="titleDestionation">Medan</h4>
+                {/* <p className="textDestionation">Indonesia</p> */}
+                {/* <div className="boxOfIcon"> */}
+                <img
+                  src={iTransfer}
+                  alt="transfer"
+                  className="transfer"
+                />
+                {/* </div> */}
+                <h4 className="titleDestionation">Tokyo</h4>
+                {/* <p className="textDestionation">Japan</p> */}
+              </div>
+            </div>
+
+            <button className="btnSend">
+              <img src={logo} alt="logo" />
+              One way
             </button>
+            <h5 className="actionTitle">How many person?</h5>
+            <div className="boxOfAdult">
+              <input type="text" className="person" placeholder="Child" />
+              <input type="text" className="person" placeholder="Adult" />
+            </div>
+            <h5 className="actionTitle">Which class do you want?</h5>
+            <div className="boxOfRadio">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="actionRadio"
+                  id="economy"
+                />
+                <label className="form-check-label textRadio" htmlFor="economy">
+                  Economy
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="actionRadio"
+                  id="bussiness"
+                />
+                <label className="form-check-label textRadio" htmlFor="bussiness">
+                  Bussiness
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="actionRadio"
+                  id="firstClass"
+                />
+                <label className="form-check-label textRadio" htmlFor="firstClass">
+                  First class
+                </label>
+              </div>
+            </div>
+            <div>
+              <button className="btnSearch">
+                SEARCH FLIGHT
+                <img src={arrow} alt="" />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </Slide>
       <div className="containerItems">
         <p className="textTrendings">TRENDING</p>
         <div className="tableTrendings">
