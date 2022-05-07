@@ -397,7 +397,7 @@
   }
   
   .landing .object {
-    margin-top: 150px;
+    margin-top: 450px;
     width: 100px;
     height: 100px;
   }
@@ -416,16 +416,29 @@
 
   .landing .containerItems {
     position: relative;
-    margin-top: 150px;
+    margin-top: 450px;
     padding: 0 0px 0 20px;
+  }
+
+  .landing .topContainer {
+    margin-top: 100px;
   }
 
   .landing .boxTop {
     position: relative;
     background-color: rgba(35, 149, 255, 1);
     width: 100%;
-    height: 450px;
+    height: 380px;
     border-radius: 20px;
+  }
+
+  .landing .titleOfTop {
+    margin-top: -20px;
+  }
+
+  .landing .textOfTop {
+    font-size: 22px;
+    font-weight: 400;
   }
 
   .landing .trendingsBox {
@@ -445,6 +458,7 @@
   .landing .containerCard {
     max-width: 480px;
     overflow-y: scroll;
+    margin-top: -20px;
   }
 
   .landing .boxOfDestination {
