@@ -3,7 +3,7 @@
 }
 
 .landing .titleBox {
-  margin: 80px 0px 0px 50px;
+  padding: 100px 0px 0px 80px;
 }
 
 .landing .homeTitle {
@@ -217,7 +217,7 @@
 
 .landing .containerItems {
   margin-top: 150px;
-  padding: 0 50px 0 50px;
+  padding: 0 80px 0 80px;
 }
 
 .landing .textTrendings {
@@ -258,10 +258,11 @@
 
 .landing .boxTop {
   background-color: rgba(35, 149, 255, 1);
-  width: 1140px;
+  width: 1170px;
   height: 550px;
   border-radius: 50px;
 }
+
 .landing .vector {
   position: absolute;
   background-repeat: no-repeat;
@@ -303,7 +304,7 @@
 .landing .containerCard {
   position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 80%;
 }
 
@@ -338,4 +339,86 @@
 .landing .btnImg {
   width: 25px;
   height: 25px;
+}
+
+@media screen and (max-width: 576px) {
+  .landing .titleBox {
+    padding: 0px 0px 0px 0px;
+  }
+  .landing .boxOfCard {
+    display: none;
+  }
+  .landing .homeTitle {
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+  .landing .flightTitle {
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+  .landing .titleBox {
+    margin: 40px 0px 0px 25px;
+  }
+  .landing .bgImg {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    border-end-end-radius: 50px;
+    margin-top: 50px;
+    margin-left: -12px;
+  }
+  .landing .boxOfMediumImg {
+    position: absolute;
+    right: -50px;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .landing .bgMediumImg {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 50px;
+  }
+  
+  .landing .object {
+    margin-top: 200px;
+    width: 100px;
+    height: 100px;
+    margin-left: 50px;
+  }
+
+  .landing .containerItems {
+    position: relative;
+    margin-top: 150px;
+    padding: 0 0px 0 20px;
+  }
+
+  .landing .boxTop {
+    position: relative;
+    background-color: rgba(35, 149, 255, 1);
+    width: 100%;
+    height: 450px;
+    border-radius: 20px;
+  }
+
+  .landing .trendingsBox {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    max-width: 480px;
+    margin-top: 50px;
+    overflow-y: scroll;
+  }
+
+  .landing .vector {
+    width: 320px;
+    bottom: 0;
+  }
+
+  .landing .containerCard {
+    max-width: 480px;
+    overflow-y: scroll;
+  }
 }
