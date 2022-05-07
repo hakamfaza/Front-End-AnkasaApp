@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import bgHome from '../assets/images/home_bg.jpg';
 import object from '../assets/images/object.svg';
 import iTransfer from '../assets/icons/transfer.svg';
+import arrow from '../assets/icons/arrow.svg';
 import logo from '../assets/images/logo.svg';
 import btnBack from '../assets/icons/btnBack.svg';
 import btnPrev from '../assets/icons/previous.svg';
@@ -27,7 +28,7 @@ export default function Landing() {
   return (
     <div className="container-fluid landing">
       <div className="row">
-        <div className="col-sm-8">
+        <div className="col-md-8 col-sm-8">
           <div className="titleBox">
             <div className="boxOfTitle">
               <h1 className="homeTitle">Find your</h1>
@@ -37,7 +38,7 @@ export default function Landing() {
           </div>
           <img src={bgHome} className="bgImg" alt="Tokyo" />
         </div>
-        <div className="col-sm-4">
+        <div className="col-md-4 col-sm-4">
           <div className="boxOfMediumImg">
             <img src={bgHome} className="bgMediumImg" alt="Tokyo" />
             <img src={object} alt="object" className="object" />
@@ -52,24 +53,20 @@ export default function Landing() {
             <h5 className="textRecently">Recently Searched</h5>
             <img src={btnBack} alt="" className="btnNext" />
           </div>
-          <div className="boxOfDestionation">
+          <div className="boxOfDestination">
             <p className="textFrom">From</p>
-            <div className="row minMarginTop">
-              <div className="col-sm-4">
-                <h4 className="titleDestionation">Medan</h4>
-                <p className="textDestionation">Indonesia</p>
-              </div>
-              <div className="col-sm-4 boxOfIcon">
-                <img
-                  src={iTransfer}
-                  alt="transfer"
-                  className="transfer"
-                />
-              </div>
-              <div className="col-sm-4 boxFinalExam">
-                <h4 className="titleDestionation">Tokyo</h4>
-                <p className="textDestionation">Japan</p>
-              </div>
+            <div className="row boxDetailDestination minMarginTop">
+              <h4 className="titleDestionation">Medan</h4>
+              {/* <p className="textDestionation">Indonesia</p> */}
+              {/* <div className="boxOfIcon"> */}
+              <img
+                src={iTransfer}
+                alt="transfer"
+                className="transfer"
+              />
+              {/* </div> */}
+              <h4 className="titleDestionation">Tokyo</h4>
+              {/* <p className="textDestionation">Japan</p> */}
             </div>
           </div>
 
@@ -77,12 +74,10 @@ export default function Landing() {
             <img src={logo} alt="logo" />
             One way
           </button>
-          <h5 className="actionTitle">Departure</h5>
-          <input type="date" className="date" />
           <h5 className="actionTitle">How many person?</h5>
           <div className="boxOfAdult">
-            <input type="text" className="person" />
-            <input type="text" className="person" />
+            <input type="text" className="person" placeholder="Child" />
+            <input type="text" className="person" placeholder="Adult" />
           </div>
           <h5 className="actionTitle">Which class do you want?</h5>
           <div className="boxOfRadio">
@@ -92,7 +87,6 @@ export default function Landing() {
                 type="radio"
                 name="actionRadio"
                 id="economy"
-                checked
               />
               <label className="form-check-label textRadio" htmlFor="economy">
                 Economy
@@ -104,7 +98,6 @@ export default function Landing() {
                 type="radio"
                 name="actionRadio"
                 id="bussiness"
-                checked
               />
               <label className="form-check-label textRadio" htmlFor="bussiness">
                 Bussiness
@@ -125,7 +118,7 @@ export default function Landing() {
           <div>
             <button className="btnSearch">
               SEARCH FLIGHT
-              <img src="./img/arrow.svg" alt="" />
+              <img src={arrow} alt="" />
             </button>
           </div>
         </div>
