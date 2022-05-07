@@ -1,11 +1,12 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/button-has-type */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../assets/styles/landing.css';
 import { Link } from 'react-router-dom';
 import { Zoom, Slide } from 'react-reveal';
+
 import bgHome from '../assets/images/home_bg.jpg';
 import object from '../assets/images/object.svg';
 import iTransfer from '../assets/icons/transfer.svg';
@@ -17,14 +18,34 @@ import Card from '../components/Card';
 import CircleCard from '../components/CircleCard';
 import vector from '../assets/images/vector.svg';
 
+import { getUser } from '../redux/actions/user';
+
 export default function Landing() {
   const dispatch = useDispatch();
+  // const [getClass, setClass] = useState();
+  const [getForm, setForm] = useState({
+    startPlace: '',
+    destination: '',
+    child: '',
+    adult: '',
+  });
   // eslint-disable-next-line no-unused-vars
   const { user } = useSelector((state) => state);
 
   useEffect(() => {
-    // dispatch(getUser());
+    dispatch(getUser());
   }, [dispatch]);
+
+  const onChange = (e, field) => {
+    setForm({
+      ...getForm,
+      [field]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="container-fluid landing">
@@ -82,8 +103,8 @@ export default function Landing() {
             </button>
             <h5 className="actionTitle">How many person?</h5>
             <div className="boxOfAdult">
-              <input type="text" className="person" placeholder="Child" />
-              <input type="text" className="person" placeholder="Adult" />
+              <input type="text" className="person" placeholder="Child" onChange={(e) => onchange(e, 'child')} />
+              <input type="text" className="person" placeholder="Adult" onChange={(e) => onChange(e, 'adult')} />
             </div>
             <h5 className="actionTitle">Which class do you want?</h5>
             <div className="boxOfRadio">
