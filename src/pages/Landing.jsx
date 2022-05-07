@@ -130,11 +130,11 @@ export default function Landing() {
           <Link to="/" className="viewLink">View All</Link>
         </div>
         <div className="trendingsBox">
-          <Card src={bgHome} totalAirlines="22 Airlines" destination="Tokyo" country="Japan" />
-          <Card src={bgHome} totalAirlines="22 Airlines" destination="Tokyo" country="Japan" />
-          <Card src={bgHome} totalAirlines="22 Airlines" destination="Tokyo" country="Japan" />
-          <Card src={bgHome} totalAirlines="22 Airlines" destination="Tokyo" country="Japan" />
-          <Card src={bgHome} totalAirlines="22 Airlines" destination="Tokyo" country="Japan" />
+          <Card src={bgHome} totalAirlines="22" destination="Tokyo" country="Japan" price="$100" />
+          <Card src={bgHome} totalAirlines="22" destination="Tokyo" country="Japan" price="$100" />
+          <Card src={bgHome} totalAirlines="22" destination="Tokyo" country="Japan" price="$100" />
+          <Card src={bgHome} totalAirlines="22" destination="Tokyo" country="Japan" price="$100" />
+          <Card src={bgHome} totalAirlines="22" destination="Tokyo" country="Japan" price="$100" />
         </div>
 
       </div>
