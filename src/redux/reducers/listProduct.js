@@ -1,7 +1,7 @@
 import {
-  GET_USER_FAILED,
-  GET_USER_PENDING,
-  GET_USER_SUCCESS,
+  GET_PRODUCT_FAILED,
+  GET_PRODUCT_PENDING,
+  GET_PRODUCT_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -11,18 +11,18 @@ const initialState = {
   error: null,
 };
 
-const userReducer = (state = initialState, action) => {
+const lietProductReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_USER_PENDING:
+    case GET_PRODUCT_PENDING:
       return { ...state, isLoading: true };
-    case GET_USER_SUCCESS:
+    case GET_PRODUCT_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isError: false,
-        data: action.payload,
+        data: action.payload.data,
       };
-    case GET_USER_FAILED:
+    case GET_PRODUCT_FAILED:
       return {
         ...state,
         isLoading: false,
@@ -34,4 +34,4 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
+export default lietProductReducer;

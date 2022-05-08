@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import userReducer from "./user";
+import listProductReducer from "./listProduct";
+import listAirlineReducer from "./listAirline";
 
 const rootReducers = combineReducers({
-  user: userReducer,
+  listProduct: listProductReducer,
+  listAirline: listAirlineReducer,
 });
 
 export default rootReducers;
