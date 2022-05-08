@@ -1,4 +1,3 @@
-/* eslint-disable default-param-last */
 import { GET_DESTINATION_PENDING, GET_DESTINATION_SUCCESS, GET_DESTINATION_FAILED } from '../actions/types';
 
 const initialState = {

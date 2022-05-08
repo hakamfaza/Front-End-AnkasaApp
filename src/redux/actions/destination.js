@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 import { GET_DESTINATION_PENDING, GET_DESTINATION_SUCCESS, GET_DESTINATION_FAILED } from './types';
 

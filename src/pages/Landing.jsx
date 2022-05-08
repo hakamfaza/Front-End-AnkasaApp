@@ -29,7 +29,6 @@ export default function Landing() {
     child: '',
     adult: '',
   });
-  // eslint-disable-next-line no-unused-vars
   const { destination } = useSelector((state) => state);
 
 
