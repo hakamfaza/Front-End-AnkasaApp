@@ -13,7 +13,7 @@ export const getDestination = () => async (dispatch) => {
 
     dispatch({
       type: GET_USER_SUCCESS,
-      payload: res.data,
+      payload: res.data.data,
     });
   } catch (error) {
     dispatch({

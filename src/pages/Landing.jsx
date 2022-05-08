@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
@@ -31,7 +32,6 @@ export default function Landing() {
   });
   // eslint-disable-next-line no-unused-vars
   const { destination } = useSelector((state) => state);
-  console.log(destination.data.data);
 
   useEffect(() => {
     dispatch(getDestination());
@@ -47,6 +47,8 @@ export default function Landing() {
   // const onSubmit = (e) => {
   //   e.preventDefault();
   // };
+  const coba = destination.data.map((e) => e.image);
+  console.log(coba);
 
   return (
     <div className="container-fluid landing">
@@ -159,13 +161,14 @@ export default function Landing() {
           <Link to="/" className="viewLink">View All</Link>
         </div>
         <div className="trendingsBox">
-          <Card src={bgHome} totalAirlines="22" destination="Tokyo" country="Japan" price="$100" />
-          <Card src={bgHome} totalAirlines="22" destination="Tokyo" country="Japan" price="$100" />
-          <Card src={bgHome} totalAirlines="22" destination="Tokyo" country="Japan" price="$100" />
-          <Card src={bgHome} totalAirlines="22" destination="Tokyo" country="Japan" price="$100" />
-          <Card src={bgHome} totalAirlines="22" destination="Tokyo" country="Japan" price="$100" />
+          {
+            destination.data.map((item, index) => (
+              <div key={index}>
+                <Card destination={item.place} country={item.country} src={`${process.env.REACT_APP_API_URL}/${item.image}`} />
+              </div>
+            ))
+          }
         </div>
-
       </div>
       <div className="topContainer">
         <div className="boxTop">
