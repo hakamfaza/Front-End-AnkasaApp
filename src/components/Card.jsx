@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import '../assets/styles/cardComponents.css';
 import previous from '../assets/icons/previous.svg';
