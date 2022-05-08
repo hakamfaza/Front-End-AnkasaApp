@@ -1,7 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import ForgotPassword from "../pages/ForgotPassword";
 import Landing from "../pages/Landing";
+import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
+import Register from "../pages/Register";
+import Reset from "../pages/Reset";
 
 function PrivateRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -29,6 +33,10 @@ export default function router() {
           <Route index element={<Landing />} />
         </Route>
         <Route path="*" element={<NotFound />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/reset" element={<Reset />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/auth/reset/:token" element={<ForgotPassword />} />
       </Routes>
     </BrowserRouter>
   );
