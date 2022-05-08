@@ -1,15 +1,15 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import tokyo from '../assets/images/home_bg.jpg';
 import '../assets/styles/circleCard.css';
 
-export default function CircleCard() {
+export default function CircleCard(params) {
   return (
     <div className="circleCard">
       <div className="outline">
-        <img src={tokyo} alt="" className="img" />
+        <img src={params.src} alt="" className="img" />
       </div>
-      <h4 className="titleDestination">Tokyo</h4>
+      <h4 className="titleDestination">{params.title}</h4>
     </div>
   );
 }

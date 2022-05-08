@@ -47,8 +47,6 @@ export default function Landing() {
   // const onSubmit = (e) => {
   //   e.preventDefault();
   // };
-  const coba = destination.data.map((e) => e.image);
-  console.log(coba);
 
   return (
     <div className="container-fluid landing">
@@ -179,11 +177,13 @@ export default function Landing() {
               <h3 className="textOfTop">Top 10 destinations</h3>
             </div>
             <div className="col-sm-12 containerCard">
-              <CircleCard />
-              <CircleCard />
-              <CircleCard />
-              <CircleCard />
-              <CircleCard />
+              {
+                destination.data.map((item, index) => (
+                  <div key={index}>
+                    <CircleCard src={`${process.env.REACT_APP_API_URL}/${item.image}`} title={item.place.toUpperCase()} />
+                  </div>
+                ))
+              }
             </div>
             <div className="col-sm-12 containerBtn">
               <div className="boxOfBtn">
