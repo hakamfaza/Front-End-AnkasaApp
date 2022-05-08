@@ -11,7 +11,7 @@ import Product from "../components/Search/Product";
 export default function SearchFlight() {
   const dispatch = useDispatch();
   const { listProduct, listAirline } = useSelector((state) => state);
-  // localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY4ZWE3M2Y3LTIyYjEtNGNhZi04NGUwLWExZDg1Zjc2YzA2OSIsImxldmVsIjoxLCJpYXQiOjE2NTE5NjY1NzgsImV4cCI6MTY1MTk4ODE3OH0.ESv3_ntciFIvkA9dc3075xhJDkc23dq9sy8IS0JF0Fs')
+  // localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY4ZWE3M2Y3LTIyYjEtNGNhZi04NGUwLWExZDg1Zjc2YzA2OSIsImxldmVsIjoxLCJpYXQiOjE2NTE5OTc5MDIsImV4cCI6MTY1MjAxOTUwMn0.cme45jkEuKBtQmnXzFAkJe8TRKT7NEzLMubAEzajAyU')
   // localStorage.setItem('id', 'f8ea73f7-22b1-4caf-84e0-a1d85f76c069')
 
   const navigate = useNavigate();
@@ -124,7 +124,7 @@ export default function SearchFlight() {
           seatClassFiltered={seatClassFiltered}
           applyFilter={applyFilter}
         />
-        <main className="px-4 px-md-5 py-3">
+        <main className="px-4 px-md-5 py-">
           <div className="row">
             <div className="col-md-12 col-lg-3">
               <Filter
