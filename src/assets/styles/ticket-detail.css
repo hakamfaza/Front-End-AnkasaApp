@@ -1,0 +1,41 @@
+p {
+  margin: 0;
+}
+
+body {
+  background-color: #F5F6FA;
+}
+
+.andry-fd header {
+  background-color: #2395FF;
+  background-image: url(../images/a.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  padding-top: 45px;
+  padding-bottom: 45px;
+  padding-right: 30px;
+  padding-left: 30px;
+  max-height: 180px;
+}
+
+.input-hd {
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+}
+
+@media (min-width: 768px) {
+  .andry-fd header {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .andry-fd header {
+    padding-right: 120px;
+    padding-left: 120px;
+  }
+}

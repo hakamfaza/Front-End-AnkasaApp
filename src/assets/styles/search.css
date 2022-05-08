@@ -1,0 +1,40 @@
+p {
+  margin: 0;
+}
+
+body {
+  background-color: #F5F6FA;
+}
+
+.andry-sr header {
+  background-color: #2395FF;
+  background-image: url(../images/a.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  padding-top: 45px;
+  padding-bottom: 45px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.filter, .product-item {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 25px;
+}
+
+@media (min-width: 768px) {
+  .andry-sr header {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .andry-sr header {
+    padding-right: 120px;
+    padding-left: 120px;
+  }
+}

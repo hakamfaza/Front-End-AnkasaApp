@@ -1,25 +1,51 @@
 import axios from "axios";
 import {
+<<<<<<< HEAD
+  GET_DETAIL_USER_PENDING,
+  GET_DETAIL_USER_SUCCESS,
+  GET_DETAIL_USER_FAILED,
+=======
   GET_USER_PENDING, GET_USER_SUCCESS, GET_USER_FAILED,
   GET_DETAIL_USER_PENDING, GET_DETAIL_USER_SUCCESS, GET_DETAIL_USER_FAILED
+>>>>>>> master
 } from "./types";
 
-export const getUser = () => async (dispatch) => {
+export const getDetailUser = (id, navigate) => async (dispatch) => {
   try {
+    const token = localStorage.getItem("token");
+
     dispatch({
-      type: GET_USER_PENDING,
+      type: GET_DETAIL_USER_PENDING,
       payload: null,
     });
 
+<<<<<<< HEAD
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/user/${id}`,
+      {
+        headers: { token },
+      }
+    );
+=======
     const res = await axios.get('https://jsonplaceholder.typicode.com/users');
+>>>>>>> master
 
     dispatch({
-      type: GET_USER_SUCCESS,
+      type: GET_DETAIL_USER_SUCCESS,
       payload: res.data,
     });
   } catch (error) {
+    if (error.response) {
+      if (parseInt(error.response.data.code, 10) === 401) {
+        localStorage.clear();
+        return navigate("/");
+      }
+
+      error.message = error.response.data.error;
+    }
+
     dispatch({
-      type: GET_USER_FAILED,
+      type: GET_DETAIL_USER_FAILED,
       payload: error.message,
     });
   }
