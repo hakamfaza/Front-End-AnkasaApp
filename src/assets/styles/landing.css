@@ -48,7 +48,7 @@
 }
 
 .landing .object {
-  margin-top: 200px;
+  margin-top: 150px;
   width: 200px;
   height: 200px;
   margin-left: 50px;
@@ -107,7 +107,7 @@
 }
 
 .landing .boxDetailDestination {
-  margin-top: -10px;
+  margin-top: 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

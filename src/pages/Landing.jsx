@@ -29,7 +29,6 @@ export default function Landing() {
     child: '',
     adult: '',
   });
-  // eslint-disable-next-line no-unused-vars
   const { destination } = useSelector((state) => state);
 
 
@@ -49,6 +48,8 @@ export default function Landing() {
   // };
 
   return (
+    <>
+    <Navbar/>
     <div className="container-fluid landing">
       <div className="row">
         <div className="col-md-8 col-sm-8">
@@ -162,7 +163,7 @@ export default function Landing() {
           {
             destination.data.map((item, index) => (
               <div key={index}>
-                <Card destination={item.place} country={item.country} src={`${process.env.REACT_APP_API_URL}/${item.image}`} />
+                <Card alt={item.place} destination={item.place} country={item.country} src={`${process.env.REACT_APP_API_URL}/${item.image}`} totalAirlines={item.total_airline} price={item.price} />
               </div>
             ))
           }
@@ -198,6 +199,8 @@ export default function Landing() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 }

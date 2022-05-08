@@ -1,8 +1,8 @@
-.Card {
+.mediumCard {
   position: relative;
 }
 
-.Card .cardImage {
+.mediumCard .cardImage {
   position: relative;
   width: 200px;
   height: 250px;
@@ -10,7 +10,7 @@
   border-radius: 15px;
 }
 
-.Card .objectGradient {
+.mediumCard .objectGradient {
   position: absolute;
   top: 0;
   padding: 20px 25px;
@@ -21,7 +21,7 @@
   border-radius: 15px;
 }
 
-.Card .textAirlines {
+.mediumCard .textAirlines {
   margin-top: 20px;
   position: relative;
   background-color: rgba(255, 255, 255, 0.41);
@@ -33,54 +33,56 @@
   align-items: center;
 }
 
-.Card .boxAirlines {
+.mediumCard .boxAirlines {
   margin-left: 5px;
   display: flex;
   align-items: center;
-  /* background-color: aqua; */
-  max-width: 80px;
-  justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.41);
+  border-radius: 30px;
+  max-width: 85px;
+  justify-content: center;
 }
 
-.Card .textAirlines p {
+.mediumCard .pAirline {
   color: #FFF;
   font-size: 14px;
   margin-top: 2px;
 }
 
-.Card .textAirlines h6 {
+.mediumCard .titleAirline {
   color: #FFF;
   font-weight: 500;
   font-size: 15px;
-  margin-top: -5px;
+  font-weight: 600;
+  margin-bottom: -1px;
+  margin-right: 5px;
 }
 
-.Card .textDestination {
+.mediumCard .textDestination {
   color: #FFF;
   font-size: 14px;
   font-weight: 600;
 }
 
-.Card .titleCountry {
-  margin-top: -15px;
+.mediumCard .titleCountry {
   color: #FFF;
   font-weight: 600;
   font-size: 24px;
 }
 
-.Card .from {
-  margin-top: 90px;
+.mediumCard .from {
+  margin-top: 100px;
   display: flex;
   justify-content: space-between;
   text-align: center;
 }
 
-.Card .from p {
+.mediumCard .from p {
   color: #FFF;
   font-size: 12px;
 }
 
-.Card .circle {
+.mediumCard .circle {
   height: 22px;
   width: 22px;
   border-radius: 15px;
@@ -90,14 +92,14 @@
   justify-content: center;
 }
 
-.Card .iPrevious {
+.mediumCard .iPrevious {
   width: 10px;
   height: 10px;
   transform: rotate(180deg);
 }
 
 @media screen and (max-width: 576px) {
-  .Card {
+  .mediumCard {
     margin-right: 20px;
   };
 }
