@@ -10,7 +10,6 @@ const rootReducers = combineReducers({
   listAirline: listAirlineReducer,
   detailProduct: detailProductReducer,
   detailUser: detailUserReducer,
-  detailuser: detailUserReducer,
   destination: destinationReducer,
 });
 

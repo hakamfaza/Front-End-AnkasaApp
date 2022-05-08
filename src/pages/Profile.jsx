@@ -3,20 +3,18 @@ import '../assets/styles/profile.css'
 import rightArrow from '../assets/icons/right-arrow.svg'
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailUser, updateUser } from '../redux/actions/user'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Profile() {
-    // localStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwN2VmZTNmLTNiOTktNDI5OS04YzliLTQ0ODZkMTIxMzQ3NiIsImxldmVsIjoxLCJpYXQiOjE2NTIwMTY5NDMsImV4cCI6MTY1MjAzODU0M30.3byby6yUu-kP-sm3CgHhPB2Xxvdn8REll1fLSkedaz4")
-    // localStorage.setItem("id", "907efe3f-3b99-4299-8c9b-4486d1213476")
-
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    // const { id } = useParams()
 
     const detailUser = useSelector((state) => {
-        return state.detailuser
+        return state.detailUser
     })
 
-    // console.log(detailUser)
+    console.log(detailUser)
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -26,13 +24,13 @@ export default function Profile() {
     const [postal_code, setPostalCode] = useState('')
 
     useEffect(() => {
-        dispatch(getDetailUser())
-        setName(detailUser.data.data.name)
-        setEmail(detailUser.data.data.email)
-        setPhone(detailUser.data.data.phone)
-        setCity(detailUser.data.data.city)
-        setAddress(detailUser.data.data.address)
-        setPostalCode(detailUser.data.data.postal_code)
+        dispatch(getDetailUser(localStorage.getItem("id"), navigate))
+        setName(detailUser.data.name)
+        setEmail(detailUser.data.email)
+        setPhone(detailUser.data.phone)
+        setCity(detailUser.data.city)
+        setAddress(detailUser.data.address)
+        setPostalCode(detailUser.data.postal_code)
     }, [dispatch])
 
 
@@ -46,32 +44,6 @@ export default function Profile() {
             address: address,
             postal_code: postal_code
         }
-        // console.log(body)
-
-        // updateUser(body)
-        // .then((response) => {
-        //     if (response.code == 200) {
-        //         Swal.fire({
-        //             title: response.message,
-        //             icon: "success"
-
-        //         })
-        //         return navigate('/profile')
-        //     }
-        //     else {
-        //         Swal.fire({
-        //             title: response.error,
-        //             icon: "error"
-        //         })
-        //     }
-        // })
-        // .catch((err) => {
-        //     // console.log(err)
-        //     Swal.fire({
-        //         title: err.data.message,
-        //         icon: "error"
-        //     })
-        // })
     }
 
     const logout = () => {
@@ -93,12 +65,12 @@ export default function Profile() {
                                     ) : (
                                         <div className="d-flex flex-column" >
                                             <img className="card-img-top"
-                                                src={`http://localhost:5001/${detailUser.data.data.photo}`}
+                                                src={`https://ankasa-flight.herokuapp.com/${detailUser.data.photo}`}
                                                 alt="Card image cap" />
                                             <button className="button">Select Photo</button>
                                             <div className="detail-profile">
-                                                {<h4>{detailUser.data.data.name}</h4>}
-                                                {<p>{detailUser.data.data.address}</p>}
+                                                {<h4>{detailUser.data.name}</h4>}
+                                                {<p>{detailUser.data.address}</p>}
                                             </div>
                                         </div>
                                     )

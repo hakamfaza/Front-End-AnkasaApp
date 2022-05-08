@@ -26,7 +26,7 @@ export default function MyBooking() {
                     <div class="col-4 side-content">
                         <div class="card d-flex flex-column w-100">
                             <img class="card-img-top"
-                                src={`http://localhost:5001/${detailUser.data.data.photo}`}
+                                src={`https://ankasa-flight.herokuapp.com/${detailUser.data.data.photo}`}
                                 alt="Card image cap" />
                             <button class="button">Select Photo</button>
                             <div class="detail-profile">

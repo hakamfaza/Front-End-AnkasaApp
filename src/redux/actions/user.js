@@ -50,7 +50,7 @@ export const updateUser = (body) => {
   // console.log(body)
 
   return new Promise((resolve, reject) => {
-    axios.put(`http://localhost:5001/user/${id}`, body, {
+    axios.put(`${process.env.REACT_APP_API_URL}/user/${id}`, body, {
       headers: {
         token: token
       }
