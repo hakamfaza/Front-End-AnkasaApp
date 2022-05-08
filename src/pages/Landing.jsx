@@ -18,7 +18,7 @@ import Card from '../components/Card';
 import CircleCard from '../components/CircleCard';
 import vector from '../assets/images/vector.svg';
 
-import { getUser } from '../redux/actions/user';
+import { getDestination } from '../redux/actions/destination';
 
 export default function Landing() {
   const dispatch = useDispatch();
@@ -30,10 +30,11 @@ export default function Landing() {
     adult: '',
   });
   // eslint-disable-next-line no-unused-vars
-  const { user } = useSelector((state) => state);
+  const { destination } = useSelector((state) => state);
+  console.log(destination.data.data);
 
   useEffect(() => {
-    dispatch(getUser());
+    dispatch(getDestination());
   }, [dispatch]);
 
   const onChange = (e, field) => {
@@ -43,9 +44,9 @@ export default function Landing() {
     });
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-  };
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  // };
 
   return (
     <div className="container-fluid landing">
