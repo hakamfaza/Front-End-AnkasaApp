@@ -6,6 +6,7 @@ export default function Landing() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
 
+
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
