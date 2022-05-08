@@ -1,0 +1,103 @@
+.Card {
+  position: relative;
+}
+
+.Card .cardImage {
+  position: relative;
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.Card .objectGradient {
+  position: absolute;
+  top: 0;
+  padding: 20px 25px;
+  width: 200px;
+  height: 250px;
+  background: rgb(0,0,0);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+  border-radius: 15px;
+}
+
+.Card .textAirlines {
+  margin-top: 20px;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.41);
+  height: 25px;
+  width: 88px;
+  border-radius: 18px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.Card .boxAirlines {
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  /* background-color: aqua; */
+  max-width: 80px;
+  justify-content: space-around;
+}
+
+.Card .textAirlines p {
+  color: #FFF;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.Card .textAirlines h6 {
+  color: #FFF;
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: -5px;
+}
+
+.Card .textDestination {
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.Card .titleCountry {
+  margin-top: -15px;
+  color: #FFF;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.Card .from {
+  margin-top: 90px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.Card .from p {
+  color: #FFF;
+  font-size: 12px;
+}
+
+.Card .circle {
+  height: 22px;
+  width: 22px;
+  border-radius: 15px;
+  background-color:  rgba(255, 255, 255, 0.17);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Card .iPrevious {
+  width: 10px;
+  height: 10px;
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 576px) {
+  .Card {
+    margin-right: 20px;
+  };
+}

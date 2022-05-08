@@ -1,10 +1,5 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable default-param-last */
-import {
-  GET_AIRLINE_FAILED,
-  GET_AIRLINE_PENDING,
-  GET_AIRLINE_SUCCESS,
-} from '../actions/types';
+import { GET_USER_PENDING, GET_USER_SUCCESS, GET_USER_FAILED } from '../actions/types';
 
 const initialState = {
   isLoading: false,
@@ -13,18 +8,18 @@ const initialState = {
   error: null,
 };
 
-const listAirlineReducer = (state = initialState, action) => {
+const destinationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_AIRLINE_PENDING:
+    case GET_USER_PENDING:
       return { ...state, isLoading: true };
-    case GET_AIRLINE_SUCCESS:
+    case GET_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isError: false,
-        data: action.payload.data,
+        data: action.payload,
       };
-    case GET_AIRLINE_FAILED:
+    case GET_USER_FAILED:
       return {
         ...state,
         isLoading: false,
@@ -36,4 +31,4 @@ const listAirlineReducer = (state = initialState, action) => {
   }
 };
 
-export default listAirlineReducer;
+export default destinationReducer;
