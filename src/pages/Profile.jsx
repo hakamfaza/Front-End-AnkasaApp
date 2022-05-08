@@ -67,7 +67,8 @@ export default function Profile() {
                                             <img className="card-img-top"
                                                 src={`https://ankasa-flight.herokuapp.com/${detailUser.data.photo}`}
                                                 alt="Card image cap" />
-                                            <button className="button">Select Photo</button>
+                                            {/* <button className="button">Select Photo</button> */}
+                                            <input type="file" />
                                             <div className="detail-profile">
                                                 {<h4>{detailUser.data.name}</h4>}
                                                 {<p>{detailUser.data.address}</p>}
