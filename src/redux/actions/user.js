@@ -11,7 +11,7 @@ export const getUser = () => async (dispatch) => {
       payload: null,
     });
 
-    const res = await axios.get(`https://jsonplaceholder.typicode.com/users`);
+    const res = await axios.get('https://jsonplaceholder.typicode.com/users');
 
     dispatch({
       type: GET_USER_SUCCESS,

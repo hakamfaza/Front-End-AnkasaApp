@@ -1,10 +1,5 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable default-param-last */
-import {
-  GET_USER_FAILED,
-  GET_USER_PENDING,
-  GET_USER_SUCCESS,
-} from '../actions/types';
+import { GET_USER_PENDING, GET_USER_SUCCESS, GET_USER_FAILED } from '../actions/types';
 
 const initialState = {
   isLoading: false,
@@ -13,7 +8,7 @@ const initialState = {
   error: null,
 };
 
-const userReducer = (state = initialState, action) => {
+const destinationReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USER_PENDING:
       return { ...state, isLoading: true };
@@ -36,4 +31,4 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
+export default destinationReducer;

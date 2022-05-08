@@ -1,0 +1,473 @@
+.landing .boxOfTitle {
+  display: flex;
+}
+
+.landing .titleBox {
+  padding: 100px 0px 0px 80px;
+}
+
+.landing .homeTitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #414141;
+}
+
+.landing .flightTitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #2395ff;
+  margin-left: 10px;
+}
+
+.landing .homeText {
+  color: #6b6b6b;
+  font-weight: 200;
+}
+
+.landing .bgImg {
+  width: 850px;
+  height: 450px;
+  object-fit: cover;
+  border-end-end-radius: 50px;
+  margin-top: 90px;
+  margin-left: -12px;
+}
+
+.landing .boxOfMediumImg {
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing .bgMediumImg {
+  width: 350px;
+  height: 400px;
+  object-fit: cover;
+  border-top-left-radius: 50px;
+}
+
+.landing .object {
+  margin-top: 200px;
+  width: 200px;
+  height: 200px;
+  margin-left: 50px;
+}
+
+.landing .boxOfCard {
+  position: absolute;
+  top: 100px;
+  right: 200px;
+  width: 350px;
+  height: 575px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 1px 1px 25px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 1px 25px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 25px -5px rgba(0, 0, 0, 0.75);
+}
+
+.landing .mediumText {
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.largeText {
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.landing .smMarginTop {
+  margin-top: 10px;
+}
+
+.landing .mMarginTop {
+  margin-top: 20px;
+}
+
+.landing .boxOfDestination {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  height: 80px;
+  border-radius: 10px;
+  margin-top: 30px;
+  box-shadow: 1px 1px 13px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 1px 13px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 13px -5px rgba(0, 0, 0, 0.75);
+}
+
+.landing .textFrom {
+  color: rgba(151, 151, 151, 1);
+  font-size: 15px;
+  font-family: 'Lato', sans-serif;
+}
+
+.landing .boxDetailDestination {
+  margin-top: -10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.landing .titleDestionation {
+  max-width: 80px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: -5px;
+  color: rgba(0, 0, 0, 1);
+  font-family: 'Poppins', sans-serif;
+}
+
+.landing .textDestionation {
+  font-size: 15px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  margin-top: -8px;
+}
+
+.landing .recently {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.landing .textRecently {
+  margin-top: 10px;
+  color: #2395ff;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.landing .transfer {
+  margin-top: -10px;
+  width: 40px;
+  height: 40px;
+}
+
+.landing .boxFinalExam {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.landing .btnSend {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #2395ff;
+  border: none;
+  width: 150px;
+  padding: 10px;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-top: 25px;
+}
+
+.landing .actionTitle {
+  color: rgba(107, 107, 107, 1);
+  font-family: 'Poppins', sans-serif;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.landing .date {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+}
+
+.landing .person {
+  width: 140px;
+  border-radius: 5px;
+  padding: 8px 0 8px 15px;
+  color: #000;
+  font-weight: 600;
+  border: rgba(221, 221, 221, 1) solid 2px;
+}
+
+.landing .person:focus {
+  outline: #2395ff solid 2px;
+  border: none;
+}
+
+.landing .boxOfAdult {
+  display: flex;
+  justify-content: space-between;
+}
+
+.landing .boxOfRadio {
+  display: flex;
+  justify-content: space-between;
+}
+
+.landing .btnSearch {
+  width: 100%;
+  margin-top: 20px;
+  height: 45px;
+  border-radius: 5px;
+  border: none;
+  background-color: #2395ff;
+  color: #ffffff;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.landing .textRadio {
+  font-size: 14px;
+}
+
+.landing .containerItems {
+  margin-top: 150px;
+  padding: 0 80px 0 80px;
+}
+
+.landing .textTrendings {
+  color: #2395ff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 5px;
+}
+
+.landing .titleTrendings {
+  font-family: 'Poppins', sans-serif;
+}
+
+.landing .tableTrendings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.landing .viewLink {
+  text-decoration: none;
+  color: rgba(35, 149, 255, 1);
+}
+
+.landing .trendingsBox {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.landing .topContainer {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing .boxTop {
+  background-color: rgba(35, 149, 255, 1);
+  width: 1170px;
+  height: 550px;
+  border-radius: 50px;
+}
+
+.landing .vector {
+  position: absolute;
+  background-repeat: no-repeat;
+  margin-top: 205px;
+}
+
+.landing .boxTopCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing .boxOfTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 60px 0 50px 0;
+}
+
+.landing .titleOfTop {
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 6px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.landing .textOfTop {
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+.landing .containerCard {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.landing .containerBtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.landing .boxOfBtn {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.landing .btnPrevious {
+  width: 68px;
+  height: 50px;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+}
+
+.landing .btnNextBlue {
+  width: 68px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: none;
+}
+
+.landing .btnImg {
+  width: 25px;
+  height: 25px;
+}
+
+@media screen and (max-width: 576px) {
+  .landing .object {
+    margin-left: -50px !important;
+    width: 50px;
+    height: 50px;
+  }
+  .landing .titleBox {
+    padding: 0px 0px 0px 0px;
+  }
+  .landing .homeTitle {
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+  .landing .flightTitle {
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+  .landing .titleBox {
+    margin: 40px 0px 0px 25px;
+  }
+  .landing .bgImg {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    border-end-end-radius: 50px;
+    margin-top: 50px;
+    margin-left: -12px;
+  }
+  .landing .boxOfMediumImg {
+    position: absolute;
+    right: 0px;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .landing .bgMediumImg {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 50px;
+  }
+  
+  .landing .object {
+    margin-top: 450px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .landing .boxOfCard {
+    position: absolute;
+    top: 200px;
+    right: 20px;
+    width: 350px;
+    height: 575px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px;
+    z-index: 10;
+  }
+
+  .landing .containerItems {
+    position: relative;
+    margin-top: 450px;
+    padding: 0 0px 0 20px;
+  }
+
+  .landing .topContainer {
+    margin-top: 100px;
+  }
+
+  .landing .boxTop {
+    position: relative;
+    background-color: rgba(35, 149, 255, 1);
+    width: 100%;
+    height: 380px;
+    border-radius: 20px;
+  }
+
+  .landing .titleOfTop {
+    margin-top: -20px;
+  }
+
+  .landing .textOfTop {
+    font-size: 22px;
+    font-weight: 400;
+  }
+
+  .landing .trendingsBox {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    max-width: 480px;
+    margin-top: 50px;
+    overflow-y: scroll;
+  }
+
+  .landing .vector {
+    width: 320px;
+    bottom: 0;
+  }
+
+  .landing .containerCard {
+    max-width: 480px;
+    overflow-y: scroll;
+    margin-top: -20px;
+  }
+
+  .landing .boxOfDestination {
+    display: flex;
+    height: 80px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 13px -5px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 1px 1px 13px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 1px 13px -5px rgba(0, 0, 0, 0.75);
+  }
+  
+}

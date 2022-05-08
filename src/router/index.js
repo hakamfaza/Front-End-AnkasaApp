@@ -12,24 +12,23 @@ import NotFound from "../pages/NotFound";
 import Register from "../pages/Register";
 import Reset from "../pages/Reset";
 
+// function PrivateRoute({ children }) {
+//   const token = localStorage.getItem('token');
 
-function PrivateRoute({ children }) {
-  const token = localStorage.getItem("token");
+//   if (token) {
+//     return children;
+//   }
+//   return <Navigate to="/auth" />;
+// }
 
-  if (token) {
-    return children;
-  }
-  return <Navigate to="/auth" />;
-}
+// function PublicRoute({ children }) {
+//   const token = localStorage.getItem('token');
 
-function PublicRoute({ children }) {
-  const token = localStorage.getItem("token");
-
-  if (!token) {
-    return children;
-  }
-  return <Navigate to="/" />;
-}
+//   if (!token) {
+//     return children;
+//   }
+//   return <Navigate to="/" />;
+// }
 
 export default function router() {
   return (
