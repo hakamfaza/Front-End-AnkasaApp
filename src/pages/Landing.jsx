@@ -1,7 +1,3 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../assets/styles/landing.css';
@@ -20,6 +16,9 @@ import CircleCard from '../components/CircleCard';
 import vector from '../assets/images/vector.svg';
 
 import { getDestination } from '../redux/actions/destination';
+import { getUser } from "../redux/actions/user";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Landing() {
   const dispatch = useDispatch();
@@ -32,6 +31,7 @@ export default function Landing() {
   });
   // eslint-disable-next-line no-unused-vars
   const { destination } = useSelector((state) => state);
+
 
   useEffect(() => {
     dispatch(getDestination());
