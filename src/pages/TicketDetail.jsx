@@ -194,19 +194,13 @@ export default function TicketDetail() {
                   style={{ borderRadius: "10px" }}
                 >
                   <div>
-                    {detailProduct.data.photo ? (
-                      <img
-                        src={`${process.env.REACT_APP_API_URL}/${detailProduct.data.photo}`}
-                        height={"80px"}
-                        alt=""
-                      />
-                    ) : (
-                      <img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAHlBMVEXk5uzy8/bq7PDm6O3v8PTw8fXl5+zt7vPp6+/p6vCoGyXMAAADbUlEQVR4nO2c23aDIBAAVUzV///h1qQqNxMVIe4689ZzrHSnsguIVBUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABciD4f5tuxHWOoc9J9O7wjtFmV1PXj2wHu55FZyR/S+k/up0SglK6Ekrr+dph7yJteFyQl2kJKJPUe8/8XP4YmE1PfbL4d6mYmJ232FoZsLZwNTkJwErLuZHiOW7r+rBZGJ0Py3Uqw5qSf68UjsWDYTtq6/Um7WwlWnDR2FU2rGLaTLl1xAeJOHCWJUjwnAgYqUSfB2DYljMDJ5WfJUSe+kqSqFDi5vJSYk8gUKOFBCZ1cfe4TcxKZKSdklIiTi0+SY04ia0wJnSfm5NppNuYkVJKSAnCy3oJsJ/SdMOhjOdasXKPDiQmdbAjisXKRDidh59nQdcZZ9NsWhDsJHpTP93mO86JjMSVO/JHs51UPs36hFieulE3JZPWBUuPEKj7dhlWg+VViJPEoclJVfde225YereWW8HpVTjazrFPGes89nTilO5gF3NKJN5rxh7N3dBLMBLyAb+Gkd56EcFHO6z13cGKc7hGZG3nD2Ts4Ga/unZ8CnJBv4OSVUScpK/u+Yi3oddJaEQbvxmZiKw9qnSwSxrCcwZqDtYlAuxO7yJi3+77CFpQ6cZ+Lt5tIl/vpdhKru6s0/m/pdLJHyRK3aic7t6BPw1nNTnZvQW/cFhQ6WRuKvME4Lehzsj4UeYPTgjonu0rOTGf/qnwn3sL0ISWvaZEaJ727PfGgkmeaVeOkdlbgD3/1pMnJcygySzn+1ZMiJ+0SUXWoCutzMtghHavC2pxYdbc7WoW1ObGDak3Sh7ZanJz5aa0SJwkZVauTlIz62ckkXJaTU5XocHLy0QUanJx9dIECJ6fmVx1OTHs2/lqBPCd5W8BJ2AJOwhZwErYgx8k8SMt1qNJ8X0FOSp2T83yxIcRJmSOm/t9rTP+AqzspcRTZ9PZ4mmFe3slPCSmvpqT0napA95n2GAhycv5Ex2XenzPJl+Bk3BydDevlWS3KSREanATUOPGw3hTJcWLy5ZQ/7IovyEm2wuNx9YNybAodm7rhe+ULUUaJnNMwR4r0nnxLNXkoIEWakip/9xGoJHeilZVLZky2I4cbUQUHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAP7/bFScErBag4wAAAABJRU5ErkJggg=="
-                        height={"80px"}
-                        alt=""
-                      />
-                    )}
+                    <img
+                      src={`${process.env.REACT_APP_API_URL}/${
+                        detailProduct.data.photo || "ticket.jpg"
+                      }`}
+                      height={"80px"}
+                      alt=""
+                    />
                     <span className="ms-3">{detailProduct.data.name}</span>
                   </div>
                   <br />
