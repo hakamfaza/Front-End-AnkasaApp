@@ -159,10 +159,10 @@ export default function Landing() {
           <h4 className="titleTrendings">Trending destinations</h4>
           <Link to="/" className="viewLink">View All</Link>
         </div>
-        <div className="trendingsBox">
-          {
+          <div className="trendingsBox">
+            {
             destination.data.map((item, index) => (
-              <div key={index}>
+              <div key={index} >
                 <Card alt={item.place} destination={item.place} country={item.country} src={`${process.env.REACT_APP_API_URL}/${item.image}`} totalAirlines={item.total_airline} price={item.price} />
               </div>
             ))
