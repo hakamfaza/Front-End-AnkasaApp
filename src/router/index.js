@@ -74,7 +74,14 @@ export default function router() {
           />
         </Route>
         <Route path="*" element={<NotFound />} />
-        <Route path="/details" element={<BookingDetail />} />
+        <Route
+          path="/details"
+          element={
+            <PrivateRoute>
+              <BookingDetail />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/register"
           element={
