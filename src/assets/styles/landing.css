@@ -106,6 +106,20 @@
   font-family: 'Lato', sans-serif;
 }
 
+.landing .inputDestination {
+  width: 120px;
+  border: none;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  font-weight: 600;
+}
+
+.landing .inputDestination:focus {
+  outline: none;
+  color: #2395ff;
+}
+
 .landing .boxDetailDestination {
   margin-top: 5px;
   display: flex;

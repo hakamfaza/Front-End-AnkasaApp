@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../assets/styles/landing.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Zoom, Slide } from 'react-reveal';
 
 import bgHome from '../assets/images/home_bg.jpg';
@@ -16,21 +16,21 @@ import CircleCard from '../components/CircleCard';
 import vector from '../assets/images/vector.svg';
 
 import { getDestination } from '../redux/actions/destination';
-import { getUser } from "../redux/actions/user";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export default function Landing() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const [getClass, setClass] = useState();
+  const [getClass, setClass] = useState('');
   const [getForm, setForm] = useState({
-    startPlace: '',
+    origin: '',
     destination: '',
     child: '',
     adult: '',
   });
   const { destination } = useSelector((state) => state);
-
+  const person = Number(getForm.adult) + Number(getForm.child)
 
   useEffect(() => {
     dispatch(getDestination());
@@ -43,9 +43,9 @@ export default function Landing() {
     });
   };
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  // };
+  const onClick = (e) => {
+    navigate(`/search?origin=${getForm.origin}&destination=${getForm.destination}&person=${person}&class=${getClass}`)
+  };
 
   return (
     <>
@@ -81,11 +81,11 @@ export default function Landing() {
             <div className="recently mMarginTop">
               <h5 className="textRecently">Recently Searched</h5>
               <img src={btnBack} alt="" className="btnNext" />
-            </div>
+              </div>
             <div className="boxOfDestination">
               <p className="textFrom">From</p>
               <div className="row boxDetailDestination minMarginTop">
-                <h4 className="titleDestionation">Medan</h4>
+                <input placeholder='starting' className='inputDestination' onChange={(e) => onChange(e, 'origin')} />
                 {/* <p className="textDestionation">Indonesia</p> */}
                 {/* <div className="boxOfIcon"> */}
                 <img
@@ -94,7 +94,7 @@ export default function Landing() {
                   className="transfer"
                 />
                 {/* </div> */}
-                <h4 className="titleDestionation">Tokyo</h4>
+                <input placeholder='destination' className='inputDestination' onChange={(e) => onChange(e, 'destination')}/>
                 {/* <p className="textDestionation">Japan</p> */}
               </div>
             </div>
@@ -105,17 +105,19 @@ export default function Landing() {
             </button>
             <h5 className="actionTitle">How many person?</h5>
             <div className="boxOfAdult">
-              <input type="text" className="person" placeholder="Child" onChange={(e) => onchange(e, 'child')} />
-              <input type="text" className="person" placeholder="Adult" onChange={(e) => onChange(e, 'adult')} />
+              <input type="number" className="person" placeholder="Child" onChange={(e) => onChange(e, 'child')} />
+              <input type="number" className="person" placeholder="Adult" onChange={(e) => onChange(e, 'adult')} />
             </div>
             <h5 className="actionTitle">Which class do you want?</h5>
             <div className="boxOfRadio">
-              <div className="form-check">
+                <div className="form-check">
                 <input
                   className="form-check-input"
                   type="radio"
                   name="actionRadio"
-                  id="economy"
+                      id="economy"
+                      value='Economy'
+                      onChange={(e) => setClass(e.target.value)}
                 />
                 <label className="form-check-label textRadio" htmlFor="economy">
                   Economy
@@ -123,10 +125,12 @@ export default function Landing() {
               </div>
               <div className="form-check">
                 <input
-                  className="form-check-input"
-                  type="radio"
-                  name="actionRadio"
-                  id="bussiness"
+                      className="form-check-input"
+                      type="radio"
+                      name="actionRadio"
+                      id="bussiness"
+                      value='Bussiness'
+                      onChange={(e) => setClass(e.target.value)}
                 />
                 <label className="form-check-label textRadio" htmlFor="bussiness">
                   Bussiness
@@ -137,19 +141,22 @@ export default function Landing() {
                   className="form-check-input"
                   type="radio"
                   name="actionRadio"
-                  id="firstClass"
+                      id="firstClass"
+                      value='First class'
+                      onChange={(e) => setClass(e.target.value)}
                 />
                 <label className="form-check-label textRadio" htmlFor="firstClass">
                   First class
                 </label>
               </div>
-            </div>
+                </div>
             <div>
-              <button className="btnSearch">
+              <button className="btnSearch" onClick={() => onClick()}>
                 SEARCH FLIGHT
                 <img src={arrow} alt="" />
               </button>
             </div>
+            
           </div>
         </div>
       </Slide>
