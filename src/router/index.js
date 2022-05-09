@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SearchFlight from "../pages/SearchFlight";
 import TicketDetail from "../pages/TicketDetail";
+import BookingDetail from "../pages/BookingDetail";
 import ForgotPassword from "../pages/ForgotPassword";
 import Landing from "../pages/Landing";
 import Profile from "../pages/Profile";
@@ -63,6 +64,7 @@ export default function router() {
           <Route index element={<MyBooking />} />
         </Route>
         <Route path="*" element={<NotFound />} />
+        <Route path="/details" element={<BookingDetail />} />
         <Route path="/register" element={<Register />} />
         <Route path="/reset" element={<Reset />} />
         <Route path="/login" element={<Login />} />
