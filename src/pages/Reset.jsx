@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Background from "../components/Background";
 import "../assets/styles/ian.css";
-import { forgot, register } from "../redux/actions/auth";
+import { forgot } from "../redux/actions/auth";
 
 export default function Reset() {
   const navigate = useNavigate();
@@ -11,7 +11,11 @@ export default function Reset() {
   });
   const onSubmitted = (e) => {
     e.preventDefault();
-    return forgot(form)
+    forgot(form).then((res) => {
+      if (res == true) {
+        return navigate("/");
+      }
+    });
   };
   return (
     <>
