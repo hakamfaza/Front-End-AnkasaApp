@@ -12,7 +12,7 @@ import Footer from "../components/Footer";
 export default function TicketDetail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { detailProduct, detailUser } = useSelector((state) => state);
+  const { detailProduct, detailUser, passenger } = useSelector((state) => state);
   const urlParams = useParams();
 
   useEffect(() => {

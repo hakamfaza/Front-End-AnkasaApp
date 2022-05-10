@@ -12,7 +12,7 @@ import Product from "../components/Search/Product";
 
 export default function SearchFlight() {
   const dispatch = useDispatch();
-  const { listProduct, listAirline } = useSelector((state) => state);
+  const { listProduct, listAirline, passenger } = useSelector((state) => state);
 
   const navigate = useNavigate();
   const [queryParams] = useSearchParams();
@@ -22,7 +22,7 @@ export default function SearchFlight() {
   const [maxPriceFiltered, setMaxPriceFiltered] = useState("");
   const [originFiltered, setOriginFiltered] = useState("");
   const [destinationFiltered, setDestinationFiltered] = useState("");
-  const [seatClassFiltered, setSeatClassFiltered] = useState("");
+  const [typeFiltered, setTypeFiltered] = useState("");
   const [stockFiltered, setStockFiltered] = useState("");
 
   const [showMobileFilter, setShowMobileFilter] = useState(false);
@@ -71,10 +71,10 @@ export default function SearchFlight() {
       url += `&destinationFiltered=${queryParams.get("destination")}`;
     }
 
-    setSeatClassFiltered("");
-    if (queryParams.get("class")) {
-      setSeatClassFiltered(queryParams.get("class"));
-      url += `&seatClassFiltered=${queryParams.get("class")}`;
+    setTypeFiltered("");
+    if (queryParams.get("type")) {
+      setTypeFiltered(queryParams.get("type"));
+      url += `&typeFiltered=${queryParams.get("type")}`;
     }
 
     setStockFiltered("");
@@ -107,8 +107,8 @@ export default function SearchFlight() {
     if (destinationFiltered) {
       url += `&destination=${destinationFiltered}`;
     }
-    if (seatClassFiltered) {
-      url += `&class=${seatClassFiltered}`;
+    if (typeFiltered) {
+      url += `&type=${typeFiltered}`;
     }
     if (stockFiltered) {
       url += `&stock=${stockFiltered}`;
@@ -121,6 +121,7 @@ export default function SearchFlight() {
     setAirlinesFiltered("");
     setMinPriceFiltered("");
     setMaxPriceFiltered("");
+    setTypeFiltered("");
   };
 
   return (
@@ -133,10 +134,11 @@ export default function SearchFlight() {
             setOriginFiltered={setOriginFiltered}
             destinationFiltered={destinationFiltered}
             setDestinationFiltered={setDestinationFiltered}
-            seatClassFiltered={seatClassFiltered}
+            typeFiltered={typeFiltered}
             applyFilter={applyFilter}
+            passenger={passenger}
           />
-          <main className="px-4 px-md-5 py-">
+          <main className="px-4 px-md-5 py-3">
             <div className="row">
               <div className="col-md-12 col-lg-3">
                 <Filter
@@ -153,6 +155,8 @@ export default function SearchFlight() {
                   minPriceFiltered={minPriceFiltered}
                   setMaxPriceFiltered={setMaxPriceFiltered}
                   maxPriceFiltered={maxPriceFiltered}
+                  setTypeFiltered={setTypeFiltered}
+                  typeFiltered={typeFiltered}
                 />
               </div>
               <div className="col-12 col-md-12 col-lg-9">

@@ -1,7 +1,27 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 export default function Product({ listProduct }) {
+  function timeConvert(num) {
+    const sec = parseInt(num / 1000, 10);
+    let hours = Math.floor(sec / 3600); // get hours
+    let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
+    let seconds = sec - hours * 3600 - minutes * 60; //  get seconds
+
+    // add 0 if value < 10; Example: 2 => 02
+    if (hours < 10) {
+      hours = "0" + hours;
+    }
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    return hours + " Hours " + minutes + " Minutes";
+  }
+
   return (
     <>
       <div className="d-flex justify-content-between my-3 d-none d-lg-flex">
@@ -30,17 +50,24 @@ export default function Product({ listProduct }) {
         </div>
       </div>
       {/* desktop */}
-      <div className="product-item d-none d-md-block my-4">
+      <div>
         {listProduct.isLoading ? (
-          <h1>Loading...</h1>
+          <div className="product-item d-none d-md-block my-4">
+            <h1>Loading...</h1>
+          </div>
         ) : (
           <>
             {!listProduct.data.length ? (
-              <h1>No Ticket Found</h1>
+              <div className="product-item d-none d-md-block my-4">
+                <h1>No Ticket Found</h1>
+              </div>
             ) : (
               <>
                 {listProduct.data.map((product) => (
-                  <Fragment key={product.id}>
+                  <div
+                    key={product.id}
+                    className="product-item d-none d-md-block my-4"
+                  >
                     <img
                       src={`${process.env.REACT_APP_API_URL}/${
                         listProduct.data.photo || "ticket.jpg"
@@ -56,7 +83,14 @@ export default function Product({ listProduct }) {
                             <b>{product.origin}</b>
                           </h4>
                           <b></b>
-                          <p className="text-secondary">12.33</p>
+                          <p
+                            className="text-secondary"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title={moment(product.flight_date).format("LLLL")}
+                          >
+                            {moment(product.flight_date).format("LL")}
+                          </p>
                         </div>
                         <svg
                           width="20"
@@ -75,11 +109,23 @@ export default function Product({ listProduct }) {
                             <b>{product.destination}</b>
                           </h4>
                           <b></b>
-                          <p className="text-secondary">15.11</p>
+                          <p
+                            className="text-secondary"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title={moment(product.estimation).format("LLLL")}
+                          >
+                            {moment(product.estimation).format("LL")}
+                          </p>
                         </div>
                       </div>
                       <div className="ms-5 text-secondary">
-                        <p>3 hours 11 minutes</p>
+                        <p>
+                          {timeConvert(
+                            new Date(product.estimation).getTime() -
+                              new Date(product.flight_date).getTime()
+                          )}
+                        </p>
                         <p className="text-center">
                           <small>{product.transit_total} Transit</small>
                         </p>
@@ -121,7 +167,7 @@ export default function Product({ listProduct }) {
                         />
                       </svg>
                     </div>
-                  </Fragment>
+                  </div>
                 ))}
               </>
             )}
@@ -130,11 +176,15 @@ export default function Product({ listProduct }) {
       </div>
       {/* mobile */}
       {listProduct.isLoading ? (
-        <h1 className="d-md-none">Loading...</h1>
+        <div className="bg-white d-md-none my-4 p-4">
+          <h1 className="d-md-none">Loading...</h1>
+        </div>
       ) : (
         <>
           {!listProduct.data.length ? (
-            <h1 className="d-md-none">No Ticket Found</h1>
+            <div className="bg-white d-md-none my-4 p-4">
+              <h1 className="d-md-none ">No Ticket Found</h1>
+            </div>
           ) : (
             <>
               {listProduct.data.map((product) => (
@@ -151,7 +201,16 @@ export default function Product({ listProduct }) {
                               <h3>
                                 <b>{product.origin}</b>
                               </h3>
-                              <p>12.33</p>
+                              <p
+                                className="text-secondary"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title={moment(product.flight_detail).format(
+                                  "LLLL"
+                                )}
+                              >
+                                {moment(product.flight_detail).format("LL")}
+                              </p>
                             </div>
                             <div className="mt-2">
                               <svg
@@ -171,7 +230,16 @@ export default function Product({ listProduct }) {
                               <h3>
                                 <b>{product.destination}</b>
                               </h3>
-                              <div>15.21</div>
+                              <p
+                                className="text-secondary"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title={moment(product.estimation).format(
+                                  "LLLL"
+                                )}
+                              >
+                                {moment(product.estimation).format("LL")}
+                              </p>
                             </div>
                           </div>
                           <div className="text-end">
