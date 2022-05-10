@@ -56,12 +56,10 @@ export const updateUser = (body) => {
       }
     })
       .then((response) => {
-        // resolve(response.data)
-        console.log(response)
+        resolve(response.data)
       })
       .catch((err) => {
-        // reject(err)
-        console.log(err)
+        reject(err)
       })
   })
 };
