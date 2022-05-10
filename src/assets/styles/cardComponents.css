@@ -1,5 +1,7 @@
 .mediumCard {
   position: relative;
+  width: 200px;
+  height: 250px;
 }
 
 .mediumCard .cardImage {
