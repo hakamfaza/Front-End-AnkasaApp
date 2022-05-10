@@ -15,7 +15,7 @@ import Card from '../components/Card';
 import CircleCard from '../components/CircleCard';
 import vector from '../assets/images/vector.svg';
 
-import { getDestination } from '../redux/actions/destination';
+import { getDestination, getOldDestination } from '../redux/actions/destination';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -29,18 +29,18 @@ export default function Landing() {
     child: '',
     adult: '',
   });
-  // const [getOld, setOld] = useState();
 
   const { destination } = useSelector((state) => state);
+  const { oldDestination } = useSelector((state) => state);
   const stock = Number(getForm.adult) + Number(getForm.child)
 
   useEffect(() => {
     dispatch(getDestination());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   setOld(getDestination(5, 'ASC'))
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getOldDestination())
+  }, [dispatch]);
 
   const onChange = (e, field) => {
     setForm({
@@ -174,10 +174,12 @@ export default function Landing() {
         </div>
           <div className="trendingsBox">
             {
-            destination.data.map((item, index) => (
+              destination.data.map((item, index) => (
+              <Slide left>           
               <div key={index} >
                 <Card alt={item.place} destination={item.place} country={item.country} src={`${process.env.REACT_APP_API_URL}/${item.image}`} totalAirlines={item.total_airline} price={item.price} />
               </div>
+              </Slide>
             ))
           }
         </div>
@@ -192,10 +194,12 @@ export default function Landing() {
             </div>
             <div className="col-sm-12 containerCard">
               {
-                destination.data.map((item, index) => (
-                  <div key={index}>
+                  oldDestination.data.map((item, index) => (
+                  <Slide right>       
+                  <div key={index} className='margin' >
                     <CircleCard src={`${process.env.REACT_APP_API_URL}/${item.image}`} title={item.place.toUpperCase()} />
                   </div>
+                  </Slide>
                 ))
               }
             </div>
