@@ -1,4 +1,4 @@
-import { GET_DESTINATION_PENDING, GET_DESTINATION_SUCCESS, GET_DESTINATION_FAILED } from '../actions/types';
+import { GET_OLDDESTINATION_FAILED, GET_OLDDESTINATION_PENDING, GET_OLDDESTINATION_SUCCESS } from '../actions/types';
 
 const initialState = {
   isLoading: false,
@@ -7,18 +7,18 @@ const initialState = {
   error: null,
 };
 
-const destinationReducer = (state = initialState, action) => {
+const oldDestinationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_DESTINATION_PENDING:
+    case GET_OLDDESTINATION_PENDING:
       return { ...state, isLoading: true };
-    case GET_DESTINATION_SUCCESS:
+    case GET_OLDDESTINATION_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isError: false,
         data: action.payload,
       };
-    case GET_DESTINATION_FAILED:
+    case GET_OLDDESTINATION_FAILED:
       return {
         ...state,
         isLoading: false,
@@ -30,4 +30,4 @@ const destinationReducer = (state = initialState, action) => {
   }
 };
 
-export default destinationReducer;
+export default oldDestinationReducer;

@@ -4,14 +4,17 @@ import listAirlineReducer from "./listAirline";
 import detailProductReducer from "./detailProduct";
 import detailUserReducer from "./detailUser";
 import destinationReducer from './destination';
+import oldDestinationReducer from "./oldDestination";
+import passengerReducer from './passengerData';
 
 const rootReducers = combineReducers({
   listProduct: listProductReducer,
   listAirline: listAirlineReducer,
   detailProduct: detailProductReducer,
   detailUser: detailUserReducer,
-  detailuser: detailUserReducer,
   destination: destinationReducer,
+  oldDestination: oldDestinationReducer,
+  passenger: passengerReducer,
 });
 
 export default rootReducers;

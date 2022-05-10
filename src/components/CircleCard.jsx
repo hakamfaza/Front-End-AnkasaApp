@@ -1,5 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable import/no-unresolved */
 import React from 'react';
 import '../assets/styles/circleCard.css';
 

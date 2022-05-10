@@ -20,7 +20,7 @@ const detailUserReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 isError: false,
-                data: action.payload,
+                data: action.payload.data,
             };
         case GET_DETAIL_USER_FAILED:
             return {

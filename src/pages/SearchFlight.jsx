@@ -6,13 +6,13 @@ import { getListProduct } from "../redux/actions/product";
 import { getListAirline } from "../redux/actions/airline";
 import Header from "../components/Search/Header";
 import Filter from "../components/Search/Filter";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Product from "../components/Search/Product";
 
 export default function SearchFlight() {
   const dispatch = useDispatch();
-  const { listProduct, listAirline } = useSelector((state) => state);
-  // localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY4ZWE3M2Y3LTIyYjEtNGNhZi04NGUwLWExZDg1Zjc2YzA2OSIsImxldmVsIjoxLCJpYXQiOjE2NTE5OTc5MDIsImV4cCI6MTY1MjAxOTUwMn0.cme45jkEuKBtQmnXzFAkJe8TRKT7NEzLMubAEzajAyU')
-  // localStorage.setItem('id', 'f8ea73f7-22b1-4caf-84e0-a1d85f76c069')
+  const { listProduct, listAirline, passenger } = useSelector((state) => state);
 
   const navigate = useNavigate();
   const [queryParams] = useSearchParams();
@@ -22,7 +22,8 @@ export default function SearchFlight() {
   const [maxPriceFiltered, setMaxPriceFiltered] = useState("");
   const [originFiltered, setOriginFiltered] = useState("");
   const [destinationFiltered, setDestinationFiltered] = useState("");
-  const [seatClassFiltered, setSeatClassFiltered] = useState("");
+  const [typeFiltered, setTypeFiltered] = useState("");
+  const [stockFiltered, setStockFiltered] = useState("");
 
   const [showMobileFilter, setShowMobileFilter] = useState(false);
 
@@ -70,10 +71,16 @@ export default function SearchFlight() {
       url += `&destinationFiltered=${queryParams.get("destination")}`;
     }
 
-    setSeatClassFiltered("");
-    if (queryParams.get("class")) {
-      setSeatClassFiltered(queryParams.get("class"));
-      url += `&seatClassFiltered=${queryParams.get("class")}`;
+    setTypeFiltered("");
+    if (queryParams.get("type")) {
+      setTypeFiltered(queryParams.get("type"));
+      url += `&typeFiltered=${queryParams.get("type")}`;
+    }
+
+    setStockFiltered("");
+    if (queryParams.get("stock")) {
+      setStockFiltered(queryParams.get("stock"));
+      url += `&stockFiltered=${queryParams.get("stock")}`;
     }
 
     dispatch(getListProduct(url, navigate));
@@ -100,8 +107,11 @@ export default function SearchFlight() {
     if (destinationFiltered) {
       url += `&destination=${destinationFiltered}`;
     }
-    if (seatClassFiltered) {
-      url += `&class=${seatClassFiltered}`;
+    if (typeFiltered) {
+      url += `&type=${typeFiltered}`;
+    }
+    if (stockFiltered) {
+      url += `&stock=${stockFiltered}`;
     }
     return navigate(url);
   };
@@ -111,44 +121,52 @@ export default function SearchFlight() {
     setAirlinesFiltered("");
     setMinPriceFiltered("");
     setMaxPriceFiltered("");
+    setTypeFiltered("");
   };
 
   return (
-    <div className="container-fluid p-0">
-      <div className="andry-sr">
-        <Header
-          originFiltered={originFiltered}
-          setOriginFiltered={setOriginFiltered}
-          destinationFiltered={destinationFiltered}
-          setDestinationFiltered={setDestinationFiltered}
-          seatClassFiltered={seatClassFiltered}
-          applyFilter={applyFilter}
-        />
-        <main className="px-4 px-md-5 py-">
-          <div className="row">
-            <div className="col-md-12 col-lg-3">
-              <Filter
-                reset={reset}
-                listProduct={listProduct}
-                setShowMobileFilter={setShowMobileFilter}
-                showMobileFilter={showMobileFilter}
-                setTransitFiltered={setTransitFiltered}
-                transitFiltered={transitFiltered}
-                listAirline={listAirline}
-                setAirlinesFiltered={setAirlinesFiltered}
-                airlinesFiltered={airlinesFiltered}
-                setMinPriceFiltered={setMinPriceFiltered}
-                minPriceFiltered={minPriceFiltered}
-                setMaxPriceFiltered={setMaxPriceFiltered}
-                maxPriceFiltered={maxPriceFiltered}
-              />
+    <>
+      <Navbar />
+      <div className="container-fluid p-0">
+        <div className="andry-sr">
+          <Header
+            originFiltered={originFiltered}
+            setOriginFiltered={setOriginFiltered}
+            destinationFiltered={destinationFiltered}
+            setDestinationFiltered={setDestinationFiltered}
+            typeFiltered={typeFiltered}
+            applyFilter={applyFilter}
+            passenger={passenger}
+          />
+          <main className="px-4 px-md-5 py-3">
+            <div className="row">
+              <div className="col-md-12 col-lg-3">
+                <Filter
+                  reset={reset}
+                  listProduct={listProduct}
+                  setShowMobileFilter={setShowMobileFilter}
+                  showMobileFilter={showMobileFilter}
+                  setTransitFiltered={setTransitFiltered}
+                  transitFiltered={transitFiltered}
+                  listAirline={listAirline}
+                  setAirlinesFiltered={setAirlinesFiltered}
+                  airlinesFiltered={airlinesFiltered}
+                  setMinPriceFiltered={setMinPriceFiltered}
+                  minPriceFiltered={minPriceFiltered}
+                  setMaxPriceFiltered={setMaxPriceFiltered}
+                  maxPriceFiltered={maxPriceFiltered}
+                  setTypeFiltered={setTypeFiltered}
+                  typeFiltered={typeFiltered}
+                />
+              </div>
+              <div className="col-12 col-md-12 col-lg-9">
+                <Product listProduct={listProduct} />
+              </div>
             </div>
-            <div className="col-12 col-md-12 col-lg-9">
-              <Product listProduct={listProduct} />
-            </div>
-          </div>
-        </main>
+          </main>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

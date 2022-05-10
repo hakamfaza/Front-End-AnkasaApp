@@ -6,6 +6,10 @@ body {
   background-color: #F5F6FA;
 }
 
+.andry-fd {
+  height: 650px;
+}
+
 .andry-fd header {
   background-color: #2395FF;
   background-image: url(../images/a.png);
@@ -30,6 +34,12 @@ body {
   .andry-fd header {
     padding-right: 50px;
     padding-left: 50px;
+  }
+}
+
+@media (min-width: 999px) {
+  .andry-fd {
+    height: 1180px;
   }
 }
 
