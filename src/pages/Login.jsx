@@ -12,7 +12,11 @@ export default function Login() {
   });
   const onSubmitted = (e) => {
     e.preventDefault();
-    login(form);
+    login(form).then((res) => {
+      if (res == true) {
+        return navigate("/");
+      }
+    });
   };
   return (
     <>
