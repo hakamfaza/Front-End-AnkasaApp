@@ -3,12 +3,17 @@ import { GET_DESTINATION_PENDING, GET_DESTINATION_SUCCESS, GET_DESTINATION_FAILE
 
 export const getDestination = () => async (dispatch) => {
   try {
+    const token = localStorage.getItem("token")
     dispatch({
       type: GET_DESTINATION_PENDING,
       payload: null,
     });
 
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/destination`);
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/destination`, {
+      headers: {
+        token: token
+      }
+    });
 
     dispatch({
       type: GET_DESTINATION_SUCCESS,
