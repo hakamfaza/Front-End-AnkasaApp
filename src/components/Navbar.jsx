@@ -1,40 +1,98 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
-import "../assets/styles/ian.css";
+import { Navbar, NavbarToggler, Collapse, Nav, NavbarBrand } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetailUser } from "../redux/actions/user";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+function App() {
+  const dispatch = useDispatch();
+  const [photo, setPhoto] = useState("");
+  const navigate = useNavigate();
+  const detailUser = useSelector((state) => {
+    return state.detailuser;
+  });
+  const [isOpen, setIsOpen] = React.useState(false);
+  useEffect(() => {
+    dispatch(getDetailUser(localStorage.getItem("id"), navigate));
+    setPhoto(
+      detailUser.isLoading === true ? (
+        <h1>Loading</h1>
+      ) : detailUser.isError === true ? (
+        <h1>Error</h1>
+      ) : 
+        detailUser.data.data.photo
+    );
+  }, []);
   return (
-    <nav class="ian navbar navbar-light bg-light">
-      <div class="container-fluid">
-        <Link class="navbar-brand" to="/login">
-          <div className="form-title">
-            <div className="icon"></div>
-            <div className="text">Ankasa</div>
+    <nav
+      className="ian navbar navbar-light bg-light"
+      style={{
+        display: "block",
+        width: "100%",
+      }}
+    >
+      <Navbar color="light" light expand="md">
+        <Link to="/" className="navbar-brand">
+          <NavbarBrand>
+            <div className="form-title">
+              <div className="icon"></div>
+              <div className="text">Ankasa</div>
+            </div>
+          </NavbarBrand>
+        </Link>
+        <NavbarToggler
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="row mr-auto" navbar>
+            <div className="form-search col-4">
+              <div className="icon"></div>
+              <input
+                type="text"
+                className="input"
+                placeholder="Where you want to go?"
+              />
+            </div>
+            <div className="form-page col-2">
+              <Link className="navbar-brand" to="/login">
+                <div className="text">Find Ticket</div>
+              </Link>
+              <Link className="navbar-brand" to="/login">
+                <div className="text">My Booking</div>
+              </Link>
+            </div>
+          </Nav>
+          <div className="form-user">
+            {detailUser.data.data == undefined ? (
+              <Link to="/login" className="navbar-brand">
+                login
+              </Link>
+            ) : detailUser.isLoading === true ? (
+              <h1>Loading</h1>
+            ) : detailUser.isError === true ? (
+              <h1>Error</h1>
+            ) : (
+              <>
+                <div className="icon-message"></div>
+                <div className="icon-notification"></div>
+                <div>
+                  <img
+                    src={`${process.env.REACT_APP_API_URL}/${photo}`}
+                    className="profile"
+                    alt="profile"
+                  />
+                </div>
+              </>
+            )}
           </div>
-        </Link>
-        <div className="form-search">
-          <div className="icon"></div>
-          <input
-            type="text"
-            className="input"
-            placeholder="Where you want to go?"
-          />
-        </div>
-        <div className="form-page">
-        <Link class="navbar-brand" to="/login">
-        <div className="text">Find Ticket</div>
-        </Link>
-        <Link class="navbar-brand" to="/login">
-        <div className="text">My Booking</div>
-        </Link>
-        </div>
-        <div className="form-user">
-        <div className="icon-message"></div>
-        <div className="icon-notification"></div>
-        <div className="profile">user image</div>
-      </div>
-      </div>
+        </Collapse>
+      </Navbar>
     </nav>
   );
-};
-export default Navbar;
+}
+
+export default App;
