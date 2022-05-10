@@ -1,3 +1,7 @@
+.landing {
+  margin-top: 10px;
+}
+
 .landing .boxOfTitle {
   display: flex;
 }
@@ -56,7 +60,7 @@
 
 .landing .boxOfCard {
   position: absolute;
-  top: 100px;
+  top: 110px;
   right: 200px;
   width: 350px;
   height: 575px;
@@ -104,6 +108,20 @@
   color: rgba(151, 151, 151, 1);
   font-size: 15px;
   font-family: 'Lato', sans-serif;
+}
+
+.landing .inputDestination {
+  width: 120px;
+  border: none;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  font-weight: 600;
+}
+
+.landing .inputDestination:focus {
+  outline: none;
+  color: #2395ff;
 }
 
 .landing .boxDetailDestination {
