@@ -11,7 +11,7 @@ function App() {
   const [photo, setPhoto] = useState("");
   const navigate = useNavigate();
   const detailUser = useSelector((state) => {
-    return state.detailuser;
+    return state.detailUser;
   });
   const [isOpen, setIsOpen] = React.useState(false);
   useEffect(() => {
@@ -22,7 +22,7 @@ function App() {
       ) : detailUser.isError === true ? (
         <h1>Error</h1>
       ) : 
-        detailUser.data.data.photo
+        detailUser.data.photo
     );
   }, []);
   return (
@@ -67,7 +67,7 @@ function App() {
             </div>
           </Nav>
           <div className="form-user">
-            {detailUser.data.data == undefined ? (
+            {detailUser.data == undefined ? (
               <Link to="/login" className="navbar-brand">
                 login
               </Link>
