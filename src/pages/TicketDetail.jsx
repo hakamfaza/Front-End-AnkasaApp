@@ -8,11 +8,14 @@ import { getDetailUser } from "../redux/actions/user";
 import { AiFillStar } from "react-icons/ai";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { SET_PASSENGER_DATA } from "../redux/actions/types";
 
 export default function TicketDetail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { detailProduct, detailUser } = useSelector((state) => state);
+  const { detailProduct, detailUser, passenger } = useSelector(
+    (state) => state
+  );
   const urlParams = useParams();
 
   useEffect(() => {
@@ -26,14 +29,21 @@ export default function TicketDetail() {
   }, [dispatch, navigate, urlParams.id]);
 
   const buyTicket = async () => {
-    const res = await postTransactions(urlParams.id, {
-      isPaid: false,
-      seat: 1,
-    });
-    if (res === "success") {
-      navigate("/mybooking");
+    if (parseInt(passenger.adult)) {
+      const adult = parseInt(passenger.adult);
+      const child = passenger.child === "" ? 0 : parseInt(passenger.child);
+
+      const res = await postTransactions(urlParams.id, {
+        totalOrder: adult + child,
+        airline_id: detailProduct.data.airline_id,
+      });
+      if (res === "success") {
+        navigate("/mybooking");
+      } else {
+        alert(res);
+      }
     } else {
-      alert(res);
+      alert("Harus ada passenger adult");
     }
   };
 
@@ -159,6 +169,58 @@ export default function TicketDetail() {
                         value={detailUser.data.phone}
                       />
                     </div>
+                    <div className="row">
+                      <div className="col-6">
+                        <div className="mb-3 me-1">
+                          <label htmlFor="phone" className="form-label">
+                            Adult
+                          </label>
+                          <input
+                            type="number"
+                            placeholder="Adult Passenger"
+                            className="form-control input-hd"
+                            id="adult"
+                            min={1}
+                            max={detailProduct.data.stock - passenger.child}
+                            onChange={(e) =>
+                              dispatch({
+                                type: SET_PASSENGER_DATA,
+                                payload: {
+                                  child: passenger.child,
+                                  adult: e.target.value,
+                                },
+                              })
+                            }
+                            value={passenger.adult}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-6">
+                        <div className="mb-3 ms-1">
+                          <label htmlFor="phone" className="form-label">
+                            Child
+                          </label>
+                          <input
+                            type="number"
+                            placeholder="Child Passenger"
+                            className="form-control input-hd"
+                            id="child"
+                            min={0}
+                            max={detailProduct.data.stock - passenger.adult}
+                            onChange={(e) =>
+                              dispatch({
+                                type: SET_PASSENGER_DATA,
+                                payload: {
+                                  adult: passenger.adult,
+                                  child: e.target.value,
+                                },
+                              })
+                            }
+                            value={passenger.child}
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </form>
                 </div>
                 <br />
@@ -238,7 +300,11 @@ export default function TicketDetail() {
                         <h5>
                           Rp.{" "}
                           <span className="text-primary">
-                            {detailProduct.data.price}
+                            {passenger.adult
+                              ? detailProduct.data.price *
+                                (parseInt(passenger.adult) +
+                                  parseInt(passenger.child))
+                              : detailProduct.data.price}
                           </span>
                         </h5>
                       </div>
@@ -316,8 +382,12 @@ export default function TicketDetail() {
                       <p>{detailProduct.data.code}</p>
                     </div>
                     <div>
-                      <p className="text-secondary">ClassName</p>
-                      <p>{detailProduct.data.seat_class}</p>
+                      <p className="text-secondary">Type</p>
+                      <p>
+                        {detailProduct.data.type &&
+                          detailProduct.data.type[0].toUpperCase() +
+                            detailProduct.data.type.slice(1)}
+                      </p>
                     </div>
                     <div>
                       <p className="text-secondary">Terminal</p>
@@ -331,12 +401,68 @@ export default function TicketDetail() {
                   <hr />
                   <strong>{detailProduct.data.name}</strong>
                 </div>
+                <div className="row mt-3">
+                  <div className="col-6">
+                    <div className="mb-3 me-1">
+                      <label htmlFor="phone" className="form-label">
+                        Adult
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="Adult Passenger"
+                        className="form-control input-hd"
+                        id="adult"
+                        min={1}
+                        max={detailProduct.data.stock - passenger.child}
+                        onChange={(e) =>
+                          dispatch({
+                            type: SET_PASSENGER_DATA,
+                            payload: {
+                              child: passenger.child,
+                              adult: e.target.value,
+                            },
+                          })
+                        }
+                        value={passenger.adult}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-6">
+                    <div className="mb-3 ms-1">
+                      <label htmlFor="phone" className="form-label">
+                        Child
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="Child Passenger"
+                        className="form-control input-hd"
+                        id="child"
+                        min={0}
+                        max={detailProduct.data.stock - passenger.adult}
+                        onChange={(e) =>
+                          dispatch({
+                            type: SET_PASSENGER_DATA,
+                            payload: {
+                              adult: passenger.adult,
+                              child: e.target.value,
+                            },
+                          })
+                        }
+                        value={passenger.child}
+                      />
+                    </div>
+                  </div>
+                </div>
                 <div className="d-flex justify-content-between mt-4">
                   <p>Total you'll pay</p>
                   <h3>
                     Rp.{" "}
                     <span className="text-primary">
-                      {detailProduct.data.price}
+                      {passenger.adult
+                        ? detailProduct.data.price *
+                          (parseInt(passenger.adult) +
+                            parseInt(passenger.child))
+                        : detailProduct.data.price}
                     </span>
                   </h3>
                 </div>

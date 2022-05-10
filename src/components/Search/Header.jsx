@@ -5,8 +5,9 @@ export default function Header({
   setOriginFiltered,
   destinationFiltered,
   setDestinationFiltered,
-  seatClassFiltered,
+  typeFiltered,
   applyFilter,
+  passenger,
 }) {
   return (
     <header className="text-white">
@@ -71,7 +72,7 @@ export default function Header({
             </div>
             <div>
               <small className="me-1" style={{ marginLeft: "74px" }}>
-                Monday, 20 July 20
+                All Time
               </small>
               <svg
                 width="5"
@@ -82,7 +83,11 @@ export default function Header({
               >
                 <circle cx="2.5" cy="2.5" r="2.5" fill="white" />
               </svg>
-              <small className="mx-1">6 Passenger</small>
+              <small className="mx-1">
+                {typeFiltered
+                  ? typeFiltered[0].toUpperCase() + typeFiltered.slice(1)
+                  : "All Class"}
+              </small>
               <svg
                 width="5"
                 height="5"
@@ -92,7 +97,11 @@ export default function Header({
               >
                 <circle cx="2.5" cy="2.5" r="2.5" fill="white" />
               </svg>
-              <small className="mx-1">{seatClassFiltered || "All Class"}</small>
+              <small className="mx-1">
+                {passenger.adult
+                  ? `${parseInt(passenger.adult) + parseInt(passenger.child)} Passenger`
+                  : "All Stock"}
+              </small>
             </div>
           </div>
         </div>

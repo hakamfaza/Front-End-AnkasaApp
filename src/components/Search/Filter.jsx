@@ -14,7 +14,15 @@ export default function Filter({
   minPriceFiltered,
   setMaxPriceFiltered,
   maxPriceFiltered,
+  setTypeFiltered,
+  typeFiltered,
 }) {
+  const types = [
+    { id: "economy", name: "Economy" },
+    { id: "business", name: "Business" },
+    { id: "firstclass", name: "First Class" },
+  ];
+
   return (
     <>
       <div className="d-flex justify-content-between my-3 d-none d-lg-flex align-items-center">
@@ -119,6 +127,38 @@ export default function Filter({
                 name="filterAirlineMobile"
                 onChange={(e) => setAirlinesFiltered(airline.name)}
                 checked={airlinesFiltered === airline.name}
+              />
+            </div>
+          ))}
+          <hr />
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <p className="fw-bold">Type</p>
+            <svg
+              width="18"
+              height="11"
+              viewBox="0 0 18 11"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.8761 8.90344L8.3112 2.55997C8.70452 2.17226 9.33995 2.17454 9.73047 2.56506L16.1199 8.95452"
+                stroke="#2395FF"
+                strokeWidth="3"
+              />
+            </svg>
+          </div>
+          {types.map((type) => (
+            <div
+              className="d-flex justify-content-between align-items-center my-3"
+              key={type.id}
+            >
+              <p>{type.name}</p>
+              <input
+                className="form-check-input"
+                type="radio"
+                name="filterType"
+                onChange={() => setTypeFiltered(type.id)}
+                checked={typeFiltered === type.id}
               />
             </div>
           ))}
@@ -233,8 +273,40 @@ export default function Filter({
               className="form-check-input"
               type="radio"
               name="filterAirline"
-              onChange={(e) => setAirlinesFiltered(airline.name)}
+              onChange={() => setAirlinesFiltered(airline.name)}
               checked={airlinesFiltered === airline.name}
+            />
+          </div>
+        ))}
+        <hr />
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <p className="fw-bold">Type</p>
+          <svg
+            width="18"
+            height="11"
+            viewBox="0 0 18 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.8761 8.90344L8.3112 2.55997C8.70452 2.17226 9.33995 2.17454 9.73047 2.56506L16.1199 8.95452"
+              stroke="#2395FF"
+              strokeWidth="3"
+            />
+          </svg>
+        </div>
+        {types.map((type) => (
+          <div
+            className="d-flex justify-content-between align-items-center my-3"
+            key={type.id}
+          >
+            <p>{type.name}</p>
+            <input
+              className="form-check-input"
+              type="radio"
+              name="filterType"
+              onChange={() => setTypeFiltered(type.id)}
+              checked={typeFiltered === type.id}
             />
           </div>
         ))}
