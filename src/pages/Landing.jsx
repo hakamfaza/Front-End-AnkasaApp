@@ -29,12 +29,18 @@ export default function Landing() {
     child: '',
     adult: '',
   });
+  // const [getOld, setOld] = useState();
+
   const { destination } = useSelector((state) => state);
-  const person = Number(getForm.adult) + Number(getForm.child)
+  const stock = Number(getForm.adult) + Number(getForm.child)
 
   useEffect(() => {
     dispatch(getDestination());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   setOld(getDestination(5, 'ASC'))
+  // }, [dispatch]);
 
   const onChange = (e, field) => {
     setForm({
@@ -44,7 +50,7 @@ export default function Landing() {
   };
 
   const onClick = (e) => {
-    navigate(`/search?origin=${getForm.origin}&destination=${getForm.destination}&person=${person}&class=${getClass}`)
+    navigate(`/search?origin=${getForm.origin}&destination=${getForm.destination}&stock=${stock}&class=${getClass}`)
   };
 
   return (
