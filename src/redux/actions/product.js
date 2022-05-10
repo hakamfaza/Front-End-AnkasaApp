@@ -82,6 +82,7 @@ export const getDetailProduct = (id, navigate) => async (dispatch) => {
 export const postTransactions = async (id, data) => {
   try {
     const token = localStorage.getItem("token");
+    console.log(data);
 
     await axios.post(
       `${process.env.REACT_APP_API_URL}/transactions/${id}`,

@@ -7,7 +7,7 @@ body {
 }
 
 .andry-fd {
-  height: 600px;
+  height: 650px;
 }
 
 .andry-fd header {
@@ -39,7 +39,7 @@ body {
 
 @media (min-width: 999px) {
   .andry-fd {
-    height: 1100px;
+    height: 1180px;
   }
 }
 
