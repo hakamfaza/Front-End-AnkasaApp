@@ -72,11 +72,9 @@ export default function MyBooking() {
                                     <div>Loading</div>
                                 ) : (
                                     <div className="d-flex flex-column" >
-                                        <img className="card-img-top"
+                                        <img width={'200px'} height={'200px'} className="card-img-top"
                                             src={`${process.env.REACT_APP_API_URL}/${detailUser.data.photo}`}
                                             alt="Card image cap" />
-                                        <label className="select-foto" htmlFor="files">Select Photo</label>
-                                        <input className="hidden" type="file" id="files" />
                                         <div className="detail-profile">
                                             {<h4>{detailUser.data.name}</h4>}
                                             {<p>{detailUser.data.address}</p>}

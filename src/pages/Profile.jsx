@@ -105,12 +105,12 @@ export default function Profile() {
                                         <div>Loading</div>
                                     ) : (
                                         <div className="d-flex flex-column w-100" >
-                                            <img className="card-img-top"
+                                            <img width={'200px'} height={'200px'} className="card-img-top"
                                                 src={`${process.env.REACT_APP_API_URL}/${detailUser.data.photo}`}
                                                 alt="Card image cap" />
                                             <label className="select-foto" htmlFor="files">Select Photo</label>
                                             {/* <form onClick={(e) => handleChangeImage(e)} action=""> */}
-                                            <input className="hidden" type="file" id="files" onChange={(e) => {
+                                            <input className="hidden" hidden type="file" id="files" onChange={(e) => {
                                                 setPhoto(e.target.files[0])
                                                 setIsChangePhoto(true)
                                             }} />

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
   const [photo, setPhoto] = useState("");
   const navigate = useNavigate();
   const detailUser = useSelector((state) => {
@@ -21,8 +22,9 @@ function App() {
         <h1>Loading</h1>
       ) : detailUser.isError === true ? (
         <h1>Error</h1>
-      ) : 
+      ) : (
         detailUser.data.photo
+      )
     );
   }, []);
   return (
@@ -58,12 +60,14 @@ function App() {
               />
             </div>
             <div className="form-page col-2">
-              <Link className="navbar-brand" to="/login">
+              <Link className="navbar-brand" to="/search">
                 <div className="text">Find Ticket</div>
               </Link>
-              <Link className="navbar-brand" to="/login">
-                <div className="text">My Booking</div>
-              </Link>
+              {token && (
+                <Link className="navbar-brand" to="/mybooking">
+                  <div className="text">My Booking</div>
+                </Link>
+              )}
             </div>
           </Nav>
           <div className="form-user">
@@ -79,13 +83,15 @@ function App() {
               <>
                 <div className="icon-message"></div>
                 <div className="icon-notification"></div>
-                <div>
-                  <img
-                    src={`${process.env.REACT_APP_API_URL}/${photo}`}
-                    className="profile"
-                    alt="profile"
-                  />
-                </div>
+                <Link to="/profile">
+                  <div>
+                    <img
+                      src={`${process.env.REACT_APP_API_URL}/${photo}`}
+                      className="profile"
+                      alt="profile"
+                    />
+                  </div>
+                </Link>
               </>
             )}
           </div>
