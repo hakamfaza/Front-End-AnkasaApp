@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col, Card, CardTitle } from 'reactstrap';
 import style from '../../assets/styles/booking-detail';
 import '../../assets/styles/booking-detail.css';
@@ -7,7 +7,20 @@ import vector from '../../assets/images/Vector1.svg';
 import airlinesLogo from '../../assets/images/garuda-indonesia-logo-BD82882F07-seeklogo3.svg';
 import barcode from '../../assets/images/Group923.svg';
 
+import { useDispatch, useSelector } from "react-redux";
+import { getDetailUser } from '../../redux/actions/user';
+
 const ETicket = () => {
+    const dispatch = useDispatch()
+
+    const detailUser = useSelector((state) => {
+        return state.detailuser
+    })
+
+    useEffect(() => {
+        dispatch(getDetailUser())
+    }, [dispatch])
+
     return (
       <div>
         <Card body style={style.card}>
@@ -64,7 +77,7 @@ const ETicket = () => {
                     </Row>
                     <Row className="text-start">
                       <Col className="ticket-data" xs="6">
-                        Mike Kowalski
+                        {detailUser.data.data.name}
                       </Col>
                       <Col className="ticket-data" xs="6">
                         Economy
