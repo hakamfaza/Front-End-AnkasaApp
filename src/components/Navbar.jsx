@@ -71,7 +71,7 @@ function App() {
             </div>
           </Nav>
           <div className="form-user">
-            {detailUser.data == undefined ? (
+            {!token ? (
               <Link to="/login" className="navbar-brand">
                 login
               </Link>
