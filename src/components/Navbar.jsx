@@ -17,16 +17,21 @@ function App() {
   const [isOpen, setIsOpen] = React.useState(false);
   useEffect(() => {
     dispatch(getDetailUser(localStorage.getItem("id"), navigate));
+  }, [dispatch, navigate]);
+
+  useEffect(() => {
     setPhoto(
       detailUser.isLoading === true ? (
         <h1>Loading</h1>
       ) : detailUser.isError === true ? (
         <h1>Error</h1>
+      ) : !detailUser.data.photo ? (
+        "profile.jpg"
       ) : (
         detailUser.data.photo
       )
     );
-  }, []);
+  }, [detailUser.data.photo, detailUser.isError, detailUser.isLoading]);
   return (
     <nav
       className="ian navbar navbar-light bg-light"
@@ -37,12 +42,10 @@ function App() {
     >
       <Navbar color="light" light expand="md">
         <Link to="/" className="navbar-brand">
-          <NavbarBrand>
             <div className="form-title">
               <div className="icon"></div>
               <div className="text">Ankasa</div>
             </div>
-          </NavbarBrand>
         </Link>
         <NavbarToggler
           onClick={() => {
