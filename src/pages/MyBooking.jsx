@@ -27,7 +27,7 @@ export default function MyBooking() {
         return state.myBooking
     })
 
-    console.log(myBooking)
+    // console.log(myBooking)
 
     useEffect(() => {
         dispatch(getDetailUser(localStorage.getItem("id"), navigate))

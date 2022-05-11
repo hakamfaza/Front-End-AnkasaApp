@@ -1,6 +1,8 @@
 @media screen and (max-width: 700px) {
-    .hanifProfile .main-content .card {
-        display: none;
+    .hanifProfile .side-content .card .card-setting button {
+        left: -8% !important;
+        border: none;
+        border-radius: none;
     }
 }
 
@@ -9,6 +11,16 @@
     height: auto;
 }
 
+.hanifProfile section {
+    padding: 0px !important;
+    display: flex;
+    justify-content: center;
+}
+
+.hanifProfile .row {
+    display: flex !important;
+    justify-content: center !important;
+}
 
 .hanifProfile .side-content {
     padding: 20px;
