@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import '../assets/styles/profile.css'
 import rightArrow from '../assets/icons/right-arrow.svg'
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailUser, updateUser } from '../redux/actions/user'
+import { getDetailUser, updateUser, updatePhoto } from '../redux/actions/user'
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import iconProfile from '../assets/icons/icon-profile.svg'
+import iconMyReview from '../assets/icons/icon-myPriview.svg'
+import iconSetting from '../assets/icons/icon-setting.svg'
+import iconLogout from '../assets/icons/icon-logout.svg'
 
 export default function Profile() {
     const dispatch = useDispatch()
@@ -14,24 +20,26 @@ export default function Profile() {
         return state.detailUser
     })
 
-    console.log(detailUser)
+    const [name, setName] = useState(detailUser.data.name)
+    const [email, setEmail] = useState(detailUser.data.email)
+    const [phone, setPhone] = useState(detailUser.data.phone)
+    const [city, setCity] = useState(detailUser.data.city)
+    const [address, setAddress] = useState(detailUser.data.address)
+    const [postalCode, setPostalCode] = useState(detailUser.data.postal_code)
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [city, setCity] = useState('')
-    const [address, setAddress] = useState('')
-    const [postal_code, setPostalCode] = useState('')
+    // photo
+    const [photo, setPhoto] = useState("")
+    const [isChangePhoto, setIsChangePhoto] = useState(false)
 
     useEffect(() => {
         dispatch(getDetailUser(localStorage.getItem("id"), navigate))
-        setName(detailUser.data.name)
-        setEmail(detailUser.data.email)
-        setPhone(detailUser.data.phone)
-        setCity(detailUser.data.city)
-        setAddress(detailUser.data.address)
-        setPostalCode(detailUser.data.postal_code)
-    }, [dispatch])
+        // setName(detailUser.data.name)
+        // setEmail(detailUser.data.email)
+        // setPhone(detailUser.data.phone)
+        // setCity(detailUser.data.city)
+        // setAddress(detailUser.data.address)
+        // setPostalCode(detailUser.data.postal_code)
+    }, [])
 
 
     const onSubmit = (e) => {
@@ -39,22 +47,55 @@ export default function Profile() {
 
         const body = {
             name: name,
+            email: email,
             phone: phone,
             city: city,
             address: address,
-            postal_code: postal_code
+            postalCode: postalCode
         }
+
+        updateUser(body)
+            .then((result) => {
+                alert(result.message)
+                setPhoto("")
+                dispatch(getDetailUser(localStorage.getItem("id"), navigate))
+
+
+                // window.location.reload();
+            })
+            .catch((err) => {
+                alert(err.message)
+            })
+    }
+    // console.log(photo)
+
+    const handleChangeImage = () => {
+        const formData = new FormData();
+        formData.append("photo", photo)
+
+        updatePhoto(formData)
+            .then((result) => {
+                alert(result.message)
+                setIsChangePhoto(false)
+                dispatch(getDetailUser(localStorage.getItem("id"), navigate))
+
+            })
+            .catch((err) => {
+                // console.log(err)
+                alert(err)
+            })
+
     }
 
     const logout = () => {
         localStorage.clear()
-        // navigate('/login')
+        navigate('/login')
     }
 
     return (
         <>
             <div className="container-fluid hanifProfile ml-0 mr-0">
-                <nav>Ini Navbar</nav>
+                <Navbar />
                 <section className="d-flex w-100">
                     <div className="row w-100">
                         <div className="col-lg-4 col-12 side-content">
@@ -63,12 +104,21 @@ export default function Profile() {
                                     detailUser.isLoading ? (
                                         <div>Loading</div>
                                     ) : (
-                                        <div className="d-flex flex-column" >
-                                            <img className="card-img-top"
-                                                src={`https://ankasa-flight.herokuapp.com/${detailUser.data.photo}`}
+                                        <div className="d-flex flex-column w-100" >
+                                            <img width={'200px'} height={'200px'} className="card-img-top"
+                                                src={`${process.env.REACT_APP_API_URL}/${detailUser.data.photo}`}
                                                 alt="Card image cap" />
-                                            {/* <button className="button">Select Photo</button> */}
-                                            <input type="file" />
+                                            <label className="select-foto" htmlFor="files">Select Photo</label>
+                                            {/* <form onClick={(e) => handleChangeImage(e)} action=""> */}
+                                            <input className="hidden" hidden type="file" id="files" onChange={(e) => {
+                                                setPhoto(e.target.files[0])
+                                                setIsChangePhoto(true)
+                                            }} />
+                                            {
+                                                isChangePhoto && <button onClick={handleChangeImage} type="submit" >Save</button>
+                                            }
+
+                                            {/* </form> */}
                                             <div className="detail-profile">
                                                 {<h4>{detailUser.data.name}</h4>}
                                                 {<p>{detailUser.data.address}</p>}
@@ -89,12 +139,24 @@ export default function Profile() {
                                     </div>
                                 </div>
                                 <div className="card-setting d-flex flex-column justify-content-start">
-                                    <i className="fa-solid fa-user"><a href="#" className="card-link">Profile</a></i>
-                                    <i className="fa-solid fa-star"><a href="#" className="card-link">My Review</a></i>
-                                    <i className="fa-solid fa-gear"><a href="#" className="card-link">Settings</a></i>
-                                    {/* <i className="fa-solid fa-right-from-bracket"><a href="#" className="card-link">Logout</a></i> */}
-                                    {/* <i className="fa-solid fa-right-from-bracket"><button onClick={logout}>Logout</button></i> */}
-                                    <button onClick={logout} >Logout</button>
+                                    <div className="">
+                                        <img src={iconProfile} alt="" />
+                                        <label htmlFor="">Profile</label>
+                                    </div>
+                                    <div>
+                                        <img src={iconMyReview} alt="" />
+                                        <label htmlFor="">My Review</label>
+                                    </div>
+                                    <div>
+                                        <img src={iconSetting} alt="" />
+                                        <label htmlFor="">Settings</label>
+                                    </div>
+                                    <div>
+                                        <button onClick={logout}>
+                                            <img src={iconLogout} alt="" />
+                                            <label htmlFor="">Logout</label>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +196,7 @@ export default function Profile() {
                                                     <label>Address</label>
                                                     <input onChange={(e) => setAddress(e.target.value)} value={address} type="text" />
                                                     <label>Post Code</label>
-                                                    <input onChange={(e) => setPostalCode(e.target.value)} value={postal_code} type="text" />
+                                                    <input onChange={(e) => setPostalCode(e.target.value)} value={postalCode} type="text" />
 
                                                     <button type="submit">Save</button>
                                                 </div>
@@ -146,7 +208,7 @@ export default function Profile() {
                         </div>
                     </div>
                 </section>
-                <footer>Ini footer</footer>
+                <Footer />
             </div >
         </>
 

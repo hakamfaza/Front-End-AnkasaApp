@@ -1,3 +1,9 @@
+@media screen and (max-width: 700px) {
+    .hanifMyBooking .side-content .card {
+        display: none !important;
+    }
+}
+
 .container-fluid {
     background-color: #F5F6FA !important;
 }
@@ -12,6 +18,18 @@
     width: 23rem;
     text-align: center;
     height: auto;
+}
+
+.hanifMyBooking .side-content .card .select-foto {
+    border-radius: 6px;
+    background-color: white;
+    border: 3px solid #2395FF;
+    color: #2395FF;
+    width: 50%;
+    height: 50px;
+    padding-top: 3%;
+    margin-bottom: 20px;
+    margin-left: 25%;
 }
 
 /* detail profile */
@@ -119,6 +137,21 @@
     color: black;
 }
 
+.hanifMyBooking .side-content .card .card-setting img {
+    width: 30px;
+    height: 30px;
+    left: 0px;
+    border: none;
+    border-radius: none;
+    margin-right: 5px;
+}
+
+.hanifMyBooking .side-content .card .card-setting button {
+    left: -12%;
+    border: none;
+    border-radius: none;
+}
+
 .hanifMyBooking .side-content .card .fa-right-from-bracket {
     color: #F24545 !important;
 }
@@ -203,6 +236,40 @@
 .hanifMyBooking .main-content .card .status button {
     border: none;
     background-color: #FF7F23;
+    border-radius: 4px;
+    height: 35px;
+}
+
+.hanifMyBooking .main-content .card .status .ticket-iussue {
+    border: none;
+    background-color: #4FCF4D;
+    border-radius: 4px;
+    height: 35px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.hanifMyBooking .main-content .card .status .waiting-ticket {
+    border: none;
+    background-color: #FF7F23;
+    border-radius: 4px;
+    height: 35px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.hanifMyBooking .main-content .card .status .cancel-ticket {
+    border: none;
+    background-color: #F24545;
+    border-radius: 4px;
+    height: 35px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.hanifMyBooking .main-content .card .status .pay-ticket {
+    border: none;
+    background-color: #2395FF;
     border-radius: 4px;
     height: 35px;
 }
