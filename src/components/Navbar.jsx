@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
-import { Navbar, NavbarToggler, Collapse, Nav, NavbarBrand } from "reactstrap";
+import { Navbar, NavbarToggler, Collapse, Nav } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailUser } from "../redux/actions/user";
 import { useNavigate } from "react-router-dom";
@@ -54,7 +54,7 @@ function App() {
         />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="row mr-auto" navbar>
-            <div className="form-search col-4">
+            <div className="form-search col-2">
               <div className="icon"></div>
               <input
                 type="text"

@@ -54,6 +54,14 @@ export default function Login() {
             <div className="text">Did you forgot your password?</div>
             <Link to="/reset">Tap here for reset</Link>
             <div className="line"></div>
+            <div className="text">Did you don't have account?</div>
+            <input
+              type="button"
+              className="button2"
+              value="Register"
+              onClick={() => navigate("/register")}
+            />
+            <div className="line"></div>
             <div className="text">or sign in with</div>
             <div className="form-login">
               <input type="button" className="google" />
