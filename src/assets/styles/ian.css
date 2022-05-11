@@ -304,6 +304,39 @@ body{
     border: 2px solid #2395FF;
     border-radius: 30px;
 }
+@media screen and (max-width: 1200px){
+    .ian .form-user{
+        margin-left: 245px;
+    }
+}
+@media screen and (max-width: 1045px){
+    .ian .form-user{
+        margin-left: 215px;
+    }
+    .ian .jumbotron .form .form-title {
+        width: 169px;
+    }
+    .ian .bottom small {
+        margin-right: 517px;
+    }
+}
+@media screen and (max-width: 890px){
+    .ian .background .image{
+        display: none;
+    }
+    .ian .background .jumbotron{
+        width: 100%;
+    }
+    .ian .form-user{
+        margin-left: 73px;
+    }
+    .ian .jumbotron .form .form-title {
+        width: 169px;
+    }
+    .ian .bottom small {
+        margin-right: 517px;
+    }
+}
 @media screen and (max-width: 550px){
     .ian .background .image{
         display: none;

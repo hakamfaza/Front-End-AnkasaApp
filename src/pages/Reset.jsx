@@ -12,6 +12,7 @@ export default function Reset() {
   const onSubmitted = (e) => {
     e.preventDefault();
     forgot(form).then((res) => {
+      // eslint-disable-next-line eqeqeq
       if (res == true) {
         return navigate("/");
       }

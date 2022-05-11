@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState } from "react";
 import '../assets/styles/profile.css'
 import rightArrow from '../assets/icons/right-arrow.svg'
