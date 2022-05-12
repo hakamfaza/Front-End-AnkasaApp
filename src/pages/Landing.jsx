@@ -205,11 +205,11 @@ export default function Landing() {
           <div className="trendingsBox">
             {
               destination.data.map((item, index) => (
-              <Slide left>           
               <div key={index} >
+              <Slide left>           
                 <Card alt={item.place} destination={item.place} country={item.country} src={`${process.env.REACT_APP_API_URL}/${item.image}`} totalAirlines={item.total_airline} price={item.price} />
-              </div>
               </Slide>
+              </div>
             ))
           }
         </div>
@@ -225,11 +225,11 @@ export default function Landing() {
             <div className="col-sm-12 containerCard">
               {
                   oldDestination.data.map((item, index) => (
-                  <Slide right>       
                   <div key={index} className='margin' >
+                  <Slide right>       
                     <CircleCard src={`${process.env.REACT_APP_API_URL}/${item.image}`} title={item.place.toUpperCase()} />
-                  </div>
                   </Slide>
+                  </div>
                 ))
               }
             </div>
@@ -246,8 +246,8 @@ export default function Landing() {
           </div>
         </div>
         </div>
-      </div>
+        </div>
       <Footer />
-    </>
+      </>
   );
 }

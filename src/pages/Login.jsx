@@ -35,7 +35,7 @@ export default function Login() {
                 <input
                   type="email"
                   className="input"
-                  placeholder="  Username"
+                  placeholder="  Email"
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                 />
                 <input
