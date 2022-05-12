@@ -13,12 +13,12 @@ export default function Login() {
   const onSubmitted = (e) => {
     e.preventDefault();
     login(form).then((res) => {
-      // eslint-disable-next-line eqeqeq
-      if (res == true) {
+      if (res === true) {
         return navigate("/");
       }
     });
   };
+
   return (
     <>
       <div className="ian">

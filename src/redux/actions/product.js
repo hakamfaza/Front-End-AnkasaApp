@@ -8,7 +8,7 @@ import {
   GET_DETAIL_PRODUCT_FAILED,
 } from "./types";
 
-export const getListProduct = (url, navigate) => async (dispatch) => {
+export const getListProduct = (url) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
 
@@ -27,11 +27,6 @@ export const getListProduct = (url, navigate) => async (dispatch) => {
     });
   } catch (error) {
     if (error.response) {
-      if (parseInt(error.response.data.code, 10) === 401) {
-        localStorage.clear();
-        return navigate("/");
-      }
-
       error.message = error.response.data.error;
     }
 

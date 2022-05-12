@@ -5,7 +5,7 @@ import {
   GET_AIRLINE_FAILED,
 } from './types';
 
-export const getListAirline = (navigate) => async (dispatch) => {
+export const getListAirline = () => async (dispatch) => {
   try {
     const token = localStorage.getItem('token');
 
@@ -24,11 +24,6 @@ export const getListAirline = (navigate) => async (dispatch) => {
     });
   } catch (error) {
     if (error.response) {
-      if (parseInt(error.response.data.code, 10) === 401) {
-        localStorage.clear();
-        return navigate('/');
-      }
-
       error.message = error.response.data.error;
     }
 
@@ -38,4 +33,3 @@ export const getListAirline = (navigate) => async (dispatch) => {
     });
   }
 };
-
