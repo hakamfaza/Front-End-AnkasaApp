@@ -34,14 +34,11 @@ export default function router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/search"
-          element={
-            <PrivateRoute>
-              <SearchFlight />
-            </PrivateRoute>
-          }
-        />
+        <Route path="/search" element={
+          <PrivateRoute>
+            <SearchFlight />
+          </PrivateRoute>
+        } />
         <Route
           path={"/ticket-detail/:id"}
           element={

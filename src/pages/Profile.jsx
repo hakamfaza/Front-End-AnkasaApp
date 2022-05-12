@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState } from "react";
 import '../assets/styles/profile.css'
 import rightArrow from '../assets/icons/right-arrow.svg'
@@ -14,7 +15,6 @@ import iconLogout from '../assets/icons/icon-logout.svg'
 export default function Profile() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    // const { id } = useParams()
 
     const detailUser = useSelector((state) => {
         return state.detailUser
@@ -33,12 +33,6 @@ export default function Profile() {
 
     useEffect(() => {
         dispatch(getDetailUser(localStorage.getItem("id"), navigate))
-        // setName(detailUser.data.name)
-        // setEmail(detailUser.data.email)
-        // setPhone(detailUser.data.phone)
-        // setCity(detailUser.data.city)
-        // setAddress(detailUser.data.address)
-        // setPostalCode(detailUser.data.postal_code)
     }, [])
 
 
@@ -59,15 +53,11 @@ export default function Profile() {
                 alert(result.message)
                 setPhoto("")
                 dispatch(getDetailUser(localStorage.getItem("id"), navigate))
-
-
-                // window.location.reload();
             })
             .catch((err) => {
                 alert(err.message)
             })
     }
-    // console.log(photo)
 
     const handleChangeImage = () => {
         const formData = new FormData();
@@ -81,7 +71,6 @@ export default function Profile() {
 
             })
             .catch((err) => {
-                // console.log(err)
                 alert(err)
             })
 
@@ -105,20 +94,34 @@ export default function Profile() {
                                         <div>Loading</div>
                                     ) : (
                                         <div className="d-flex flex-column w-100" >
-                                            <img className="card-img-top"
-                                                src={`${process.env.REACT_APP_API_URL}/${detailUser.data.photo}`}
-                                                alt="Card image cap" />
+                                            {
+                                                !detailUser.data.photo &&
+                                                (
+                                                    <>
+                                                        <img width={'200px'} height={'200px'} className="card-img-top"
+                                                            src={`${process.env.REACT_APP_API_URL}/profile.jpg`}
+                                                            alt="Card image cap" />
+                                                    </>
+                                                )
+                                            }
+                                            {
+                                                detailUser.data.photo &&
+                                                (
+                                                    <>
+                                                        <img width={'200px'} height={'200px'} className="card-img-top"
+                                                            src={`${process.env.REACT_APP_API_URL}/${detailUser.data.photo}`}
+                                                            alt="Card image cap" />
+                                                    </>
+                                                )
+                                            }
                                             <label className="select-foto" htmlFor="files">Select Photo</label>
-                                            {/* <form onClick={(e) => handleChangeImage(e)} action=""> */}
-                                            <input className="hidden" type="file" id="files" onChange={(e) => {
+                                            <input className="hidden" hidden type="file" id="files" onChange={(e) => {
                                                 setPhoto(e.target.files[0])
                                                 setIsChangePhoto(true)
                                             }} />
                                             {
                                                 isChangePhoto && <button onClick={handleChangeImage} type="submit" >Save</button>
                                             }
-
-                                            {/* </form> */}
                                             <div className="detail-profile">
                                                 {<h4>{detailUser.data.name}</h4>}
                                                 {<p>{detailUser.data.address}</p>}

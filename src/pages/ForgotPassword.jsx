@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { Link, useNavigate,useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Background from "../components/Background";
 import "../assets/styles/ian.css";
-import { forgot, reset } from "../redux/actions/auth";
+import { reset } from "../redux/actions/auth";
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     password: "",
+    confirmPassword: "",
   });
   const { token } = useParams();
   const onSubmitted = (e) => {
     e.preventDefault();
-    reset(token,form)
-    return navigate('/login')
+    if (form.password === form.confirmPassword) {
+      reset(token, form);
+      return navigate("/login");
+    }
+    alert("password and confirm password are different");
   };
   return (
     <>
@@ -31,8 +35,18 @@ export default function ForgotPassword() {
                 <input
                   type="password"
                   className="input"
-                  placeholder="  Password"
-                  onChange={(e) => setForm({ ...form, password: e.target.value })}
+                  placeholder="  New Password"
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
+                />
+                <input
+                  type="password"
+                  className="input"
+                  placeholder="  Confrim New Password"
+                  onChange={(e) =>
+                    setForm({ ...form, confirmPassword: e.target.value })
+                  }
                 />
               </div>
               <button type="submit" className="button">

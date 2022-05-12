@@ -281,3 +281,41 @@
     top: 0px;
     right: 15px;
 }
+
+@media screen and (max-width: 576px) {
+    .hanifMyBooking .side-content {
+        display: none;
+    }
+
+    .hanifMyBooking .card h3 {
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+
+    .hanifMyBooking .header-booking {
+        display: flex !important;
+    }
+
+    .hanifMyBooking .my-booking {
+        color: rebeccapurple;
+        font-size: 18px !important;
+    }
+
+    .hanifMyBooking .order-history {
+        background-color: none !important;
+        margin-top: -15px;
+        font-size: 18px !important;
+    }
+
+    .hanifMyBooking .label-viewDetail {
+        display: none;
+    }
+    .hanifMyBooking .boxButton {
+        text-align: center;
+    }
+
+    .hanifMyBooking .pay-ticket {
+        margin-top: 10px;
+        width: 95%;
+    }
+}
