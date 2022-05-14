@@ -70,9 +70,26 @@ export default function MyBooking() {
                                     <div>Loading</div>
                                 ) : (
                                     <div className="d-flex flex-column" >
-                                        <img width={'200px'} height={'200px'} className="card-img-top"
-                                            src={`${process.env.REACT_APP_API_URL}/${detailUser.data.photo}`}
-                                            alt="CardImage" />
+                                        {
+                                            !detailUser.data.photo &&
+                                            (
+                                                <>
+                                                    <img width={'200px'} height={'200px'} className="card-img-top"
+                                                        src={`${process.env.REACT_APP_API_URL}/profile.jpg`}
+                                                        alt="Card image cap" />
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            detailUser.data.photo &&
+                                            (
+                                                <>
+                                                    <img width={'200px'} height={'200px'} className="card-img-top"
+                                                        src={`${process.env.REACT_APP_API_URL}/${detailUser.data.photo}`}
+                                                        alt="Card image cap" />
+                                                </>
+                                            )
+                                        }
                                         <div className="detail-profile">
                                             {<h4>{detailUser.data.name}</h4>}
                                             {<p>{detailUser.data.address}</p>}
