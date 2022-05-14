@@ -9,6 +9,7 @@ const initialState = {
   isError: false,
   data: [],
   error: null,
+  pagination: null,
 };
 
 const lietProductReducer = (state = initialState, action) => {
@@ -21,6 +22,7 @@ const lietProductReducer = (state = initialState, action) => {
         isLoading: false,
         isError: false,
         data: action.payload.data,
+        pagination: action.payload.pagination,
       };
     case GET_PRODUCT_FAILED:
       return {

@@ -9,6 +9,7 @@ import Filter from "../components/Search/Filter";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Product from "../components/Search/Product";
+import Pagination from "../components/Search/Pagination";
 
 export default function SearchFlight() {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ export default function SearchFlight() {
   const [destinationFiltered, setDestinationFiltered] = useState("");
   const [typeFiltered, setTypeFiltered] = useState("");
   const [stockFiltered, setStockFiltered] = useState("");
+  const [sortFiltered, setSortFiltered] = useState("");
+  const [limitFiltered, setLimitFiltered] = useState('');
 
   const [showMobileFilter, setShowMobileFilter] = useState(false);
 
@@ -83,11 +86,27 @@ export default function SearchFlight() {
       url += `&stockFiltered=${queryParams.get("stock")}`;
     }
 
+    setSortFiltered("");
+    if (queryParams.get("sort")) {
+      setSortFiltered(queryParams.get("sort"));
+      url += `&sortFiltered=${queryParams.get("sort")}`;
+    }
+
+    setLimitFiltered("");
+    if (queryParams.get("limit")) {
+      setLimitFiltered(queryParams.get("limit"));
+      url += `&limit=${queryParams.get("limit")}`;
+    }
+
+    if (queryParams.get('page')) {
+      url += `&page=${queryParams.get('page')}`;
+    }
+
     dispatch(getListProduct(url, navigate));
     dispatch(getListAirline(navigate));
   }, [dispatch, navigate, queryParams]);
 
-  const applyFilter = () => {
+  const applyFilter = (page = "") => {
     let url = "/search?";
     if (transitFiltered || transitFiltered === 0) {
       url += `&transit=${transitFiltered}`;
@@ -112,6 +131,15 @@ export default function SearchFlight() {
     }
     if (stockFiltered) {
       url += `&stock=${stockFiltered}`;
+    }
+    if (sortFiltered) {
+      url += `&sort=${sortFiltered}`;
+    }
+    if (limitFiltered) {
+      url += `&limit=${limitFiltered}`;
+    }
+    if (page) {
+      url += `&page=${page}`;
     }
     return navigate(url);
   };
@@ -160,7 +188,19 @@ export default function SearchFlight() {
                 />
               </div>
               <div className="col-12 col-md-12 col-lg-9">
-                <Product listProduct={listProduct} />
+                <Product
+                  listProduct={listProduct}
+                  setSortFiltered={setSortFiltered}
+                  sortFiltered={sortFiltered}
+                  setLimitFiltered={setLimitFiltered}
+                  limitFiltered={limitFiltered}
+                />
+                {!listProduct.isLoading && (
+                  <Pagination
+                    pagination={listProduct.pagination}
+                    applyFilter={applyFilter}
+                  />
+                )}
               </div>
             </div>
           </main>
