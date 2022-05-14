@@ -26,8 +26,8 @@ export default function Profile() {
     const [city, setCity] = useState(detailUser.data.city)
     const [address, setAddress] = useState(detailUser.data.address)
     const [postalCode, setPostalCode] = useState(detailUser.data.postal_code)
-    // const [erros, setErrors] = useState([])
-    // const [isLoading, setIsLoading] = useState(false)
+    const [errors, setErrors] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
 
     // photo
@@ -39,7 +39,7 @@ export default function Profile() {
     }, [dispatch, navigate])
 
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
 
         const body = {
@@ -51,31 +51,45 @@ export default function Profile() {
             postalCode: postalCode
         }
 
-        updateUser(body)
-            .then((result) => {
-                alert(result.message)
-                setPhoto("")
-                dispatch(getDetailUser(localStorage.getItem("id"), navigate))
-            })
-            .catch((err) => {
-                alert(err.message)
-            })
+        setErrors([]);
+        setIsLoading(true)
+
+        const updateUserDetail = await updateUser(body, setErrors)
+
+        if (updateUserDetail) {
+            alert("Edit User Success")
+            setPhoto("")
+            dispatch(getDetailUser(localStorage.getItem("id"), navigate))
+        }
+
+        setIsLoading(false);
     }
 
-    const handleChangeImage = () => {
+    const handleChangeImage = async () => {
         const formData = new FormData();
         formData.append("photo", photo)
 
-        updatePhoto(formData)
-            .then((result) => {
-                alert(result.message)
-                setIsChangePhoto(false)
-                dispatch(getDetailUser(localStorage.getItem("id"), navigate))
+        setErrors([]);
+        setIsLoading(true)
 
-            })
-            .catch((err) => {
-                alert(err)
-            })
+        const updatePhotoUser = await updatePhoto(formData, setErrors)
+
+        if (updatePhotoUser) {
+            alert('Update Photo User success')
+            setIsChangePhoto(false)
+            dispatch(getDetailUser(localStorage.getItem("id"), navigate))
+        }
+
+        setIsLoading(false);
+        // .then((result) => {
+        //     alert(result.message)
+        //     setIsChangePhoto(false)
+        //     dispatch(getDetailUser(localStorage.getItem("id"), navigate))
+
+        // })
+        // .catch((err) => {
+        //     alert(err)
+        // })
 
     }
 
@@ -123,7 +137,26 @@ export default function Profile() {
                                                 setIsChangePhoto(true)
                                             }} />
                                             {
-                                                isChangePhoto && <button onClick={handleChangeImage} type="submit" >Save</button>
+                                                isLoading ?
+                                                    (
+                                                        <button
+                                                            className="btn btn-success btn-lg ms-2"
+                                                            type="button"
+                                                            disabled
+                                                        >
+                                                            <span
+                                                                className="spinner-border spinner-border-sm"
+                                                                role="status"
+                                                                aria-hidden="true"
+                                                            ></span>
+                                                            {" "}
+                                                            Loading...
+                                                        </button>
+                                                    ) :
+                                                    (
+                                                        isChangePhoto && <button onClick={handleChangeImage} type="submit" >Save</button>
+                                                    )
+
                                             }
                                             <div className="detail-profile">
                                                 {<h4>{detailUser.data.name}</h4>}
@@ -170,6 +203,15 @@ export default function Profile() {
                             <div className="card w-100">
                                 <div className="row">
                                     <div className="col-12">
+                                        {errors.length > 0 && (
+                                            <div className="alert alert-danger mx-0">
+                                                <ul className="m-0">
+                                                    {errors.map((error, index) => (
+                                                        <li key={index}>{error.msg}</li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
                                         <h3>PROFILE</h3>
                                         <div className="header-booking d-flex">
                                             <label className="my-booking">Profile</label>
@@ -203,8 +245,28 @@ export default function Profile() {
                                                     <input onChange={(e) => setAddress(e.target.value)} value={address} type="text" />
                                                     <label>Post Code</label>
                                                     <input onChange={(e) => setPostalCode(e.target.value)} value={postalCode} type="text" />
+                                                    {
+                                                        isLoading ?
+                                                            (
+                                                                <button
+                                                                    className="btn btn-success btn-lg ms-2"
+                                                                    type="button"
+                                                                    disabled
+                                                                >
+                                                                    <span
+                                                                        className="spinner-border spinner-border-sm"
+                                                                        role="status"
+                                                                        aria-hidden="true"
+                                                                    ></span>
+                                                                    {" "}
+                                                                    Loading...
+                                                                </button>
+                                                            ) :
+                                                            (
+                                                                <button type="submit">Save</button>
+                                                            )
+                                                    }
 
-                                                    <button type="submit">Save</button>
                                                 </div>
                                             </form>
                                         </div>
