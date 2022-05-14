@@ -81,16 +81,6 @@ export default function Profile() {
         }
 
         setIsLoading(false);
-        // .then((result) => {
-        //     alert(result.message)
-        //     setIsChangePhoto(false)
-        //     dispatch(getDetailUser(localStorage.getItem("id"), navigate))
-
-        // })
-        // .catch((err) => {
-        //     alert(err)
-        // })
-
     }
 
     const logout = () => {
