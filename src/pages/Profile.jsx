@@ -4,7 +4,7 @@ import '../assets/styles/profile.css'
 import rightArrow from '../assets/icons/right-arrow.svg'
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailUser, updateUser, updatePhoto } from '../redux/actions/user'
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import iconProfile from '../assets/icons/icon-profile.svg'
@@ -21,13 +21,13 @@ export default function Profile() {
     })
 
     const [name, setName] = useState(detailUser.data.name)
-    const [email, setEmail] = useState(detailUser.data.email)
+    const [email] = useState(detailUser.data.email)
     const [phone, setPhone] = useState(detailUser.data.phone)
     const [city, setCity] = useState(detailUser.data.city)
     const [address, setAddress] = useState(detailUser.data.address)
     const [postalCode, setPostalCode] = useState(detailUser.data.postal_code)
-    const [erros, setErrors] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
+    // const [erros, setErrors] = useState([])
+    // const [isLoading, setIsLoading] = useState(false)
 
 
     // photo
@@ -36,7 +36,7 @@ export default function Profile() {
 
     useEffect(() => {
         dispatch(getDetailUser(localStorage.getItem("id"), navigate))
-    }, [])
+    }, [dispatch, navigate])
 
 
     const onSubmit = (e) => {
