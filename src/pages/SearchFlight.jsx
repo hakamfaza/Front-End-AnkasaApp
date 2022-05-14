@@ -195,12 +195,12 @@ export default function SearchFlight() {
                   setLimitFiltered={setLimitFiltered}
                   limitFiltered={limitFiltered}
                 />
-                {!listProduct.isLoading && (
+                {/* {!listProduct.isLoading && (
                   <Pagination
                     pagination={listProduct.pagination}
                     applyFilter={applyFilter}
                   />
-                )}
+                )} */}
               </div>
             </div>
           </main>
