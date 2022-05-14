@@ -9,7 +9,7 @@ import Filter from "../components/Search/Filter";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Product from "../components/Search/Product";
-import Pagination from "../components/Search/Pagination";
+// import Pagination from "../components/Search/Pagination";
 
 export default function SearchFlight() {
   const dispatch = useDispatch();
