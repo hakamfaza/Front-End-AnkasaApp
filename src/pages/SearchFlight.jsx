@@ -195,7 +195,7 @@ export default function SearchFlight() {
                   setLimitFiltered={setLimitFiltered}
                   limitFiltered={limitFiltered}
                 />
-                {!listProduct.data.length && (
+                {listProduct.data.length && (
                   <Pagination
                     pagination={listProduct.pagination}
                     applyFilter={applyFilter}
