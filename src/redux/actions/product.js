@@ -74,7 +74,7 @@ export const getDetailProduct = (id, navigate) => async (dispatch) => {
   }
 };
 
-export const postTransactions = async (id, data) => {
+export const postTransactions = async (id, data, setErrors) => {
   try {
     const token = localStorage.getItem("token");
     console.log(data);
@@ -87,16 +87,18 @@ export const postTransactions = async (id, data) => {
       }
     );
 
-    return "success";
+    return true;
   } catch (error) {
     if (error.response) {
       if (Array.isArray(error.response.data.error)) {
-        return error.response.data.error;
+        setErrors(error.response.data.error);
       } else {
-        return error.response.data.error;
+        setErrors([{ msg: error.response.data.error }]);
       }
     } else {
-      return error.message;
+      setErrors([{ msg: error.message }]);
     }
+
+    return false;
   }
 };

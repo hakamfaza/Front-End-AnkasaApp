@@ -1,5 +1,5 @@
 import "../assets/styles/ticket-detail.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDetailProduct, postTransactions } from "../redux/actions/product";
@@ -13,10 +13,16 @@ import { SET_PASSENGER_DATA } from "../redux/actions/types";
 export default function TicketDetail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const urlParams = useParams();
   const { detailProduct, detailUser, passenger } = useSelector(
     (state) => state
   );
-  const urlParams = useParams();
+  const [form, setForm] = useState({
+    passenger_name: "",
+    passenger_phone: "",
+  });
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     document.title = `${process.env.REACT_APP_APP_NAME} - Flight Detail`;
@@ -28,20 +34,35 @@ export default function TicketDetail() {
     dispatch(getDetailUser(localStorage.getItem("id"), navigate));
   }, [dispatch, navigate, urlParams.id]);
 
-  const buyTicket = async () => {
+  const sameAsCP = () => {
+    setForm({
+      passenger_name: detailUser.data.name,
+      passenger_phone: detailUser.data.phone,
+    });
+  };
+
+  const bookingTicket = async (direct = false) => {
     if (parseInt(passenger.adult)) {
       const adult = parseInt(passenger.adult);
       const child = passenger.child === "" ? 0 : parseInt(passenger.child);
 
-      const res = await postTransactions(urlParams.id, {
-        totalOrder: adult + child,
-        airline_id: detailProduct.data.airline_id,
-      });
-      if (res === "success") {
+      setIsLoading(true);
+      const transactionStatus = await postTransactions(
+        urlParams.id,
+        {
+          totalOrder: adult + child,
+          airline_id: detailProduct.data.airline_id,
+          is_paid: direct,
+          ...form,
+        },
+        setErrors
+      );
+
+      if (transactionStatus) {
         navigate("/mybooking");
-      } else {
-        alert(res);
       }
+
+      setIsLoading(false);
     } else {
       alert("Harus ada passenger adult");
     }
@@ -124,11 +145,41 @@ export default function TicketDetail() {
                 </div>
                 <br />
                 <br />
-                <h5 className="fw-bold">Passenger Detail</h5>
+                <h5 className="fw-bold">Passenger Details</h5>
+                {errors.length > 0 && (
+                  <div className="alert alert-danger mx-0">
+                    <ul className="m-0">
+                      {errors.map((error, index) => (
+                        <li key={index}>{error.msg}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 <div
                   className="bg-white p-5 mt-4"
                   style={{ borderRadius: "10px" }}
                 >
+                  <div className="alert alert-info mb-4">
+                    <div className="d-flex justify-content-between">
+                      <p>
+                        Passenger:{" "}
+                        {parseInt(passenger.adult) + parseInt(passenger.child)}
+                      </p>
+                      <div className="d-flex">
+                        <p>Same as contact person</p>
+                        <div
+                          className="form-check form-switch ms-4"
+                          style={{ transform: "scale(1.5)" }}
+                        >
+                          <input
+                            className="form-check-input"
+                            onChange={sameAsCP}
+                            type="checkbox"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <form>
                     <div className="mb-3">
                       <label htmlFor="name" className="form-label">
@@ -138,22 +189,13 @@ export default function TicketDetail() {
                         type="text"
                         placeholder="Full Name"
                         className="form-control input-hd"
-                        id="name"
-                        readOnly
-                        value={detailUser.data.name}
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="email" className="form-label">
-                        Email
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Email"
-                        className="form-control input-hd"
-                        id="email"
-                        readOnly
-                        value={detailUser.data.email}
+                        value={form.passenger_name}
+                        onChange={(e) =>
+                          setForm({
+                            ...form,
+                            passenger_name: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <div className="mb-3">
@@ -164,9 +206,13 @@ export default function TicketDetail() {
                         type="text"
                         placeholder="Phone Number"
                         className="form-control input-hd"
-                        id="phone"
-                        readOnly
-                        value={detailUser.data.phone}
+                        value={form.passenger_phone}
+                        onChange={(e) =>
+                          setForm({
+                            ...form,
+                            passenger_phone: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <div className="row">
@@ -226,11 +272,33 @@ export default function TicketDetail() {
                 <br />
                 <div className="d-flex justify-content-center">
                   <button
-                    onClick={() => buyTicket()}
-                    className="btn btn-primary btn-lg"
+                    onClick={() => bookingTicket()}
+                    className="btn btn-primary btn-lg me-2"
                   >
-                    <b>Proceed To Payment</b>
+                    <b>Booking</b>
                   </button>
+                  {isLoading ? (
+                    <button
+                      className="btn btn-success btn-lg ms-2"
+                      type="button"
+                      disabled
+                    >
+                      <span
+                        className="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                      {" "}
+                      Loading...
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => bookingTicket(true)}
+                      className="btn btn-success btn-lg ms-2"
+                    >
+                      <b>Direct Buy</b>
+                    </button>
+                  )}
                 </div>
                 <br />
               </div>
@@ -298,13 +366,18 @@ export default function TicketDetail() {
                       <h5>Total Payment</h5>
                       <div className="d-flex">
                         <h5>
-                          Rp.{" "}
                           <span className="text-primary">
-                            {passenger.adult
-                              ? detailProduct.data.price *
-                                (parseInt(passenger.adult) +
-                                  parseInt(passenger.child))
-                              : detailProduct.data.price}
+                            {new Intl.NumberFormat("id-ID", {
+                              style: "currency",
+                              currency: "IDR",
+                              minimumFractionDigits: 0,
+                            }).format(
+                              passenger.adult
+                                ? detailProduct.data.price *
+                                    (parseInt(passenger.adult) +
+                                      parseInt(passenger.child))
+                                : detailProduct.data.price
+                            )}
                           </span>
                         </h5>
                       </div>
@@ -401,77 +474,154 @@ export default function TicketDetail() {
                   <hr />
                   <strong>{detailProduct.data.name}</strong>
                 </div>
-                <div className="row mt-3">
-                  <div className="col-6">
-                    <div className="mb-3 me-1">
-                      <label htmlFor="phone" className="form-label">
-                        Adult
-                      </label>
-                      <input
-                        type="number"
-                        placeholder="Adult Passenger"
-                        className="form-control input-hd"
-                        id="adult"
-                        min={1}
-                        max={detailProduct.data.stock - passenger.child}
-                        onChange={(e) =>
-                          dispatch({
-                            type: SET_PASSENGER_DATA,
-                            payload: {
-                              child: passenger.child,
-                              adult: e.target.value,
-                            },
-                          })
-                        }
-                        value={passenger.adult}
-                      />
+                <div
+                  className="bg-white mt-4 p-4"
+                  style={{ borderRadius: "10px" }}
+                >
+                  <h2>Passenger Details</h2>
+                  {errors.length > 0 && (
+                    <div className="alert alert-danger mx-0">
+                      <ul className="m-0">
+                        {errors.map((error, index) => (
+                          <li key={index}>{error.msg}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  <div className="alert alert-info mb-4 mt-3">
+                    <div className="d-flex">
+                      <p>Same as contact person</p>
+                      <div
+                        className="form-check form-switch ms-4"
+                        style={{ transform: "scale(1.5)" }}
+                      >
+                        <input
+                          className="form-check-input"
+                          onChange={sameAsCP}
+                          type="checkbox"
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div className="col-6">
-                    <div className="mb-3 ms-1">
-                      <label htmlFor="phone" className="form-label">
-                        Child
+                  <form>
+                    <div className="mb-3">
+                      <label htmlFor="name" className="form-label">
+                        Full Name
                       </label>
                       <input
-                        type="number"
-                        placeholder="Child Passenger"
+                        type="text"
+                        placeholder="Full Name"
                         className="form-control input-hd"
-                        id="child"
-                        min={0}
-                        max={detailProduct.data.stock - passenger.adult}
+                        value={form.passenger_name}
                         onChange={(e) =>
-                          dispatch({
-                            type: SET_PASSENGER_DATA,
-                            payload: {
-                              adult: passenger.adult,
-                              child: e.target.value,
-                            },
+                          setForm({
+                            ...form,
+                            passenger_name: e.target.value,
                           })
                         }
-                        value={passenger.child}
                       />
                     </div>
-                  </div>
+                    <div className="mb-3">
+                      <label htmlFor="phone" className="form-label">
+                        Phone Number
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Phone Number"
+                        className="form-control input-hd"
+                        value={form.passenger_phone}
+                        onChange={(e) =>
+                          setForm({
+                            ...form,
+                            passenger_phone: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+                    <div className="row">
+                      <div className="col-6">
+                        <div className="mb-3 me-1">
+                          <label htmlFor="phone" className="form-label">
+                            Adult
+                          </label>
+                          <input
+                            type="number"
+                            placeholder="Adult Passenger"
+                            className="form-control input-hd"
+                            id="adult"
+                            min={1}
+                            max={detailProduct.data.stock - passenger.child}
+                            onChange={(e) =>
+                              dispatch({
+                                type: SET_PASSENGER_DATA,
+                                payload: {
+                                  child: passenger.child,
+                                  adult: e.target.value,
+                                },
+                              })
+                            }
+                            value={passenger.adult}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-6">
+                        <div className="mb-3 ms-1">
+                          <label htmlFor="phone" className="form-label">
+                            Child
+                          </label>
+                          <input
+                            type="number"
+                            placeholder="Child Passenger"
+                            className="form-control input-hd"
+                            id="child"
+                            min={0}
+                            max={detailProduct.data.stock - passenger.adult}
+                            onChange={(e) =>
+                              dispatch({
+                                type: SET_PASSENGER_DATA,
+                                payload: {
+                                  adult: passenger.adult,
+                                  child: e.target.value,
+                                },
+                              })
+                            }
+                            value={passenger.child}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </div>
                 <div className="d-flex justify-content-between mt-4">
                   <p>Total you'll pay</p>
                   <h3>
-                    Rp.{" "}
-                    <span className="text-primary">
-                      {passenger.adult
-                        ? detailProduct.data.price *
-                          (parseInt(passenger.adult) +
-                            parseInt(passenger.child))
-                        : detailProduct.data.price}
+                    <span className="text-primary mt-3">
+                      {new Intl.NumberFormat("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                        minimumFractionDigits: 0,
+                      }).format(
+                        passenger.adult
+                          ? detailProduct.data.price *
+                              (parseInt(passenger.adult) +
+                                parseInt(passenger.child))
+                          : detailProduct.data.price
+                      )}
                     </span>
                   </h3>
                 </div>
                 <div className="d-flex justify-content-center mt-2">
                   <button
-                    onClick={() => buyTicket()}
-                    className="btn btn-primary btn-lg"
+                    onClick={() => bookingTicket()}
+                    className="btn btn-primary btn-lg me-2"
                   >
-                    <b>Proceed To Payment</b>
+                    <b>Booking</b>
+                  </button>
+                  <button
+                    onClick={() => bookingTicket(true)}
+                    className="btn btn-success btn-lg ms-2"
+                  >
+                    <b>Direct Buy</b>
                   </button>
                 </div>
               </div>
