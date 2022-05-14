@@ -26,6 +26,9 @@ export default function Profile() {
     const [city, setCity] = useState(detailUser.data.city)
     const [address, setAddress] = useState(detailUser.data.address)
     const [postalCode, setPostalCode] = useState(detailUser.data.postal_code)
+    const [erros, setErrors] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+
 
     // photo
     const [photo, setPhoto] = useState("")
