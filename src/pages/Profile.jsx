@@ -11,6 +11,7 @@ import iconProfile from '../assets/icons/icon-profile.svg'
 import iconMyReview from '../assets/icons/icon-myPriview.svg'
 import iconSetting from '../assets/icons/icon-setting.svg'
 import iconLogout from '../assets/icons/icon-logout.svg'
+import Swal from 'sweetalert2'
 
 export default function Profile() {
     const dispatch = useDispatch()
@@ -57,7 +58,11 @@ export default function Profile() {
         const updateUserDetail = await updateUser(body, setErrors)
 
         if (updateUserDetail) {
-            alert("Edit User Success")
+            Swal.fire({
+                title: 'Success',
+                text: 'Edit User Success',
+                icon: 'success',
+            })
             setPhoto("")
             dispatch(getDetailUser(localStorage.getItem("id"), navigate))
         }
@@ -75,7 +80,11 @@ export default function Profile() {
         const updatePhotoUser = await updatePhoto(formData, setErrors)
 
         if (updatePhotoUser) {
-            alert('Update Photo User success')
+            Swal.fire({
+                title: 'Success',
+                text: 'Update Photo User success',
+                icon: 'success',
+            })
             setIsChangePhoto(false)
             dispatch(getDetailUser(localStorage.getItem("id"), navigate))
         }

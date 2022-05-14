@@ -13,6 +13,7 @@ import iconSetting from '../assets/icons/icon-setting.svg'
 import iconLogout from '../assets/icons/icon-logout.svg'
 import { getMyBooking } from '../redux/actions/transaction'
 import { payTicket, deleteTicket } from '../redux/actions/transaction'
+import Swal from 'sweetalert2'
 
 export default function MyBooking() {
 
@@ -36,7 +37,11 @@ export default function MyBooking() {
     const processTicket = (id) => {
         payTicket(id)
             .then((result) => {
-                alert('ticket has been pay')
+                Swal.fire({
+                    title: 'Success',
+                    text: 'ticket has been pay',
+                    icon: 'success',
+                })
                 dispatch(getMyBooking(navigate))
             })
             .catch((err) => {
@@ -44,14 +49,29 @@ export default function MyBooking() {
             })
     }
     const cancelTicket = (id) => {
-        deleteTicket(id, localStorage.getItem("id"))
-            .then((result) => {
-                alert('ticket has been delete')
-                dispatch(getMyBooking(navigate))
-            })
-            .catch((err) => {
-                alert(err)
-            })
+        Swal.fire({
+            title: "Are you sure to cancel this ticket?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteTicket(id, localStorage.getItem("id"))
+                    .then((response) => {
+                        Swal.fire({
+                            title: 'Ticket successfully canceled',
+                            icon: "success"
+                        })
+                        dispatch(getMyBooking(navigate))
+                    })
+                    .catch((err) => {
+                        Swal.fire({
+                            title: 'Cancel ticket failed',
+                            icon: "error"
+                        })
+                    })
+            }
+        })
     }
 
     const logout = () => {
