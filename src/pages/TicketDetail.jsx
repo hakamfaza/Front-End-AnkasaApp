@@ -271,15 +271,9 @@ export default function TicketDetail() {
                 </div>
                 <br />
                 <div className="d-flex justify-content-center">
-                  <button
-                    onClick={() => bookingTicket()}
-                    className="btn btn-primary btn-lg me-2"
-                  >
-                    <b>Booking</b>
-                  </button>
                   {isLoading ? (
                     <button
-                      className="btn btn-success btn-lg ms-2"
+                      className="btn btn-success btn-lg mx-2"
                       type="button"
                       disabled
                     >
@@ -287,17 +281,24 @@ export default function TicketDetail() {
                         className="spinner-border spinner-border-sm"
                         role="status"
                         aria-hidden="true"
-                      ></span>
-                      {" "}
+                      ></span>{" "}
                       Loading...
                     </button>
                   ) : (
-                    <button
-                      onClick={() => bookingTicket(true)}
-                      className="btn btn-success btn-lg ms-2"
-                    >
-                      <b>Direct Buy</b>
-                    </button>
+                    <>
+                      <button
+                        onClick={() => bookingTicket()}
+                        className="btn btn-primary btn-lg me-2"
+                      >
+                        <b>Booking</b>
+                      </button>
+                      <button
+                        onClick={() => bookingTicket(true)}
+                        className="btn btn-success btn-lg ms-2"
+                      >
+                        <b>Direct Buy</b>
+                      </button>
+                    </>
                   )}
                 </div>
                 <br />
@@ -611,18 +612,35 @@ export default function TicketDetail() {
                   </h3>
                 </div>
                 <div className="d-flex justify-content-center mt-2">
-                  <button
-                    onClick={() => bookingTicket()}
-                    className="btn btn-primary btn-lg me-2"
-                  >
-                    <b>Booking</b>
-                  </button>
-                  <button
-                    onClick={() => bookingTicket(true)}
-                    className="btn btn-success btn-lg ms-2"
-                  >
-                    <b>Direct Buy</b>
-                  </button>
+                  {isLoading ? (
+                    <button
+                      className="btn btn-success btn-lg mx-2"
+                      type="button"
+                      disabled
+                    >
+                      <span
+                        className="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>{" "}
+                      Loading...
+                    </button>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => bookingTicket()}
+                        className="btn btn-primary btn-lg me-2"
+                      >
+                        <b>Booking</b>
+                      </button>
+                      <button
+                        onClick={() => bookingTicket(true)}
+                        className="btn btn-success btn-lg ms-2"
+                      >
+                        <b>Direct Buy</b>
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
