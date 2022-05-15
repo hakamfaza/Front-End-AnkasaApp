@@ -43,45 +43,58 @@ export const getDetailUser = (id, navigate) => async (dispatch) => {
 };
 
 
-export const updateUser = (body) => {
-  const token = localStorage.getItem("token")
-  const id = localStorage.getItem("id")
+export const updateUser = async (body, setErrors) => {
+  try {
+    const token = localStorage.getItem("token")
+    const id = localStorage.getItem("id")
 
-  // console.log(body)
-
-  return new Promise((resolve, reject) => {
-    axios.put(`${process.env.REACT_APP_API_URL}/user/${id}`, body, {
+    await axios.put(`${process.env.REACT_APP_API_URL}/user/${id}`, body, {
       headers: {
         token: token
       }
     })
-      .then((response) => {
-        resolve(response.data)
-      })
-      .catch((err) => {
-        reject(err)
-      })
-  })
+
+    return true;
+
+  } catch (error) {
+    if (error.response) {
+      if (Array.isArray(error.response.data.error)) {
+        setErrors(error.response.data.error);
+      } else {
+        setErrors([{ msg: error.response.data.error }]);
+      }
+    } else {
+      setErrors([{ msg: error.message }]);
+    }
+
+    return false;
+  }
 };
 
-export const updatePhoto = (body) => {
-  const token = localStorage.getItem("token")
-  const id = localStorage.getItem("id")
+export const updatePhoto = async (body, setErrors) => {
+  try {
+    const token = localStorage.getItem("token")
+    const id = localStorage.getItem("id")
 
-  // console.log(body)
-
-  return new Promise((resolve, reject) => {
-    axios.put(`${process.env.REACT_APP_API_URL}/user/${id}/photo`, body, {
+    await axios.put(`${process.env.REACT_APP_API_URL}/user/${id}/photo`, body, {
       headers: {
         token: token,
         "Content-Type": "multipart/form-data"
       }
     })
-      .then((response) => {
-        resolve(response.data)
-      })
-      .catch((err) => {
-        reject(err)
-      })
-  })
+
+    return true
+  } catch (error) {
+    if (error.response) {
+      if (Array.isArray(error.response.data.error)) {
+        setErrors(error.response.data.error);
+      } else {
+        setErrors([{ msg: error.response.data.error }]);
+      }
+    } else {
+      setErrors([{ msg: error.message }]);
+    }
+
+    return false;
+  }
 };

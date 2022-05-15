@@ -16,7 +16,9 @@ function App() {
   });
   const [isOpen, setIsOpen] = React.useState(false);
   useEffect(() => {
-    dispatch(getDetailUser(localStorage.getItem("id"), navigate));
+    if (localStorage.getItem("token")) {
+      dispatch(getDetailUser(localStorage.getItem("id"), navigate));
+    }
   }, [dispatch, navigate]);
 
   useEffect(() => {
@@ -42,10 +44,10 @@ function App() {
     >
       <Navbar color="light" light expand="md">
         <Link to="/" className="navbar-brand">
-            <div className="form-title">
-              <div className="icon"></div>
-              <div className="text">Ankasa</div>
-            </div>
+          <div className="form-title">
+            <div className="icon"></div>
+            <div className="text">Ankasa</div>
+          </div>
         </Link>
         <NavbarToggler
           onClick={() => {

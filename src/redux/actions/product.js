@@ -8,7 +8,7 @@ import {
   GET_DETAIL_PRODUCT_FAILED,
 } from "./types";
 
-export const getListProduct = (url, navigate) => async (dispatch) => {
+export const getListProduct = (url) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
 
@@ -27,11 +27,6 @@ export const getListProduct = (url, navigate) => async (dispatch) => {
     });
   } catch (error) {
     if (error.response) {
-      if (parseInt(error.response.data.code, 10) === 401) {
-        localStorage.clear();
-        return navigate("/");
-      }
-
       error.message = error.response.data.error;
     }
 
@@ -79,7 +74,7 @@ export const getDetailProduct = (id, navigate) => async (dispatch) => {
   }
 };
 
-export const postTransactions = async (id, data) => {
+export const postTransactions = async (id, data, setErrors) => {
   try {
     const token = localStorage.getItem("token");
     console.log(data);
@@ -92,16 +87,18 @@ export const postTransactions = async (id, data) => {
       }
     );
 
-    return "success";
+    return true;
   } catch (error) {
     if (error.response) {
       if (Array.isArray(error.response.data.error)) {
-        return error.response.data.error;
+        setErrors(error.response.data.error);
       } else {
-        return error.response.data.error;
+        setErrors([{ msg: error.response.data.error }]);
       }
     } else {
-      return error.message;
+      setErrors([{ msg: error.message }]);
     }
+
+    return false;
   }
 };

@@ -4,13 +4,14 @@ import '../assets/styles/profile.css'
 import rightArrow from '../assets/icons/right-arrow.svg'
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailUser, updateUser, updatePhoto } from '../redux/actions/user'
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import iconProfile from '../assets/icons/icon-profile.svg'
 import iconMyReview from '../assets/icons/icon-myPriview.svg'
 import iconSetting from '../assets/icons/icon-setting.svg'
 import iconLogout from '../assets/icons/icon-logout.svg'
+import Swal from 'sweetalert2'
 
 export default function Profile() {
     const dispatch = useDispatch()
@@ -21,11 +22,14 @@ export default function Profile() {
     })
 
     const [name, setName] = useState(detailUser.data.name)
-    const [email, setEmail] = useState(detailUser.data.email)
+    const [email] = useState(detailUser.data.email)
     const [phone, setPhone] = useState(detailUser.data.phone)
     const [city, setCity] = useState(detailUser.data.city)
     const [address, setAddress] = useState(detailUser.data.address)
     const [postalCode, setPostalCode] = useState(detailUser.data.postal_code)
+    const [errors, setErrors] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+
 
     // photo
     const [photo, setPhoto] = useState("")
@@ -33,10 +37,10 @@ export default function Profile() {
 
     useEffect(() => {
         dispatch(getDetailUser(localStorage.getItem("id"), navigate))
-    }, [])
+    }, [dispatch, navigate])
 
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
 
         const body = {
@@ -48,32 +52,44 @@ export default function Profile() {
             postalCode: postalCode
         }
 
-        updateUser(body)
-            .then((result) => {
-                alert(result.message)
-                setPhoto("")
-                dispatch(getDetailUser(localStorage.getItem("id"), navigate))
+        setErrors([]);
+        setIsLoading(true)
+
+        const updateUserDetail = await updateUser(body, setErrors)
+
+        if (updateUserDetail) {
+            Swal.fire({
+                title: 'Success',
+                text: 'Edit User Success',
+                icon: 'success',
             })
-            .catch((err) => {
-                alert(err.message)
-            })
+            setPhoto("")
+            dispatch(getDetailUser(localStorage.getItem("id"), navigate))
+        }
+
+        setIsLoading(false);
     }
 
-    const handleChangeImage = () => {
+    const handleChangeImage = async () => {
         const formData = new FormData();
         formData.append("photo", photo)
 
-        updatePhoto(formData)
-            .then((result) => {
-                alert(result.message)
-                setIsChangePhoto(false)
-                dispatch(getDetailUser(localStorage.getItem("id"), navigate))
+        setErrors([]);
+        setIsLoading(true)
 
-            })
-            .catch((err) => {
-                alert(err)
-            })
+        const updatePhotoUser = await updatePhoto(formData, setErrors)
 
+        if (updatePhotoUser) {
+            Swal.fire({
+                title: 'Success',
+                text: 'Update Photo User success',
+                icon: 'success',
+            })
+            setIsChangePhoto(false)
+            dispatch(getDetailUser(localStorage.getItem("id"), navigate))
+        }
+
+        setIsLoading(false);
     }
 
     const logout = () => {
@@ -120,7 +136,26 @@ export default function Profile() {
                                                 setIsChangePhoto(true)
                                             }} />
                                             {
-                                                isChangePhoto && <button onClick={handleChangeImage} type="submit" >Save</button>
+                                                isLoading ?
+                                                    (
+                                                        <button
+                                                            className="btn btn-success btn-lg ms-2"
+                                                            type="button"
+                                                            disabled
+                                                        >
+                                                            <span
+                                                                className="spinner-border spinner-border-sm"
+                                                                role="status"
+                                                                aria-hidden="true"
+                                                            ></span>
+                                                            {" "}
+                                                            Loading...
+                                                        </button>
+                                                    ) :
+                                                    (
+                                                        isChangePhoto && <button onClick={handleChangeImage} type="submit" >Save</button>
+                                                    )
+
                                             }
                                             <div className="detail-profile">
                                                 {<h4>{detailUser.data.name}</h4>}
@@ -167,6 +202,15 @@ export default function Profile() {
                             <div className="card w-100">
                                 <div className="row">
                                     <div className="col-12">
+                                        {errors.length > 0 && (
+                                            <div className="alert alert-danger mx-0">
+                                                <ul className="m-0">
+                                                    {errors.map((error, index) => (
+                                                        <li key={index}>{error.msg}</li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
                                         <h3>PROFILE</h3>
                                         <div className="header-booking d-flex">
                                             <label className="my-booking">Profile</label>
@@ -200,8 +244,28 @@ export default function Profile() {
                                                     <input onChange={(e) => setAddress(e.target.value)} value={address} type="text" />
                                                     <label>Post Code</label>
                                                     <input onChange={(e) => setPostalCode(e.target.value)} value={postalCode} type="text" />
+                                                    {
+                                                        isLoading ?
+                                                            (
+                                                                <button
+                                                                    className="btn btn-success btn-lg ms-2"
+                                                                    type="button"
+                                                                    disabled
+                                                                >
+                                                                    <span
+                                                                        className="spinner-border spinner-border-sm"
+                                                                        role="status"
+                                                                        aria-hidden="true"
+                                                                    ></span>
+                                                                    {" "}
+                                                                    Loading...
+                                                                </button>
+                                                            ) :
+                                                            (
+                                                                <button type="submit">Save</button>
+                                                            )
+                                                    }
 
-                                                    <button type="submit">Save</button>
                                                 </div>
                                             </form>
                                         </div>
