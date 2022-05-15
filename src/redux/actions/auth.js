@@ -19,7 +19,7 @@ export const login = async (data) => {
 
 export const register = async (data) => {
   try {
-    const res = await axios.post(
+    await axios.post(
       `${process.env.REACT_APP_API_URL}/auth/register`,
       data
     );
@@ -33,7 +33,7 @@ export const register = async (data) => {
 };
 export const forgot = async (data) => {
   try {
-    const res = await axios.put(
+    await axios.put(
       `${process.env.REACT_APP_API_URL}/auth/forgot`,
       data
     );
@@ -48,7 +48,7 @@ export const forgot = async (data) => {
 
 export const reset = async (token, data) => {
   try {
-    const res = await axios.put(
+    await axios.put(
       `${process.env.REACT_APP_API_URL}/auth/reset/${token}`,
       data
     );

@@ -2,7 +2,13 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-export default function Product({ listProduct }) {
+export default function Product({
+  listProduct,
+  setSortFiltered,
+  sortFiltered,
+  setLimitFiltered,
+  limitFiltered,
+}) {
   function timeConvert(num) {
     const sec = parseInt(num / 1000, 10);
     let hours = Math.floor(sec / 3600); // get hours
@@ -22,33 +28,40 @@ export default function Product({ listProduct }) {
           </small>
         </h5>
         <div>
-          <p className="d-inline me-2">
-            <b>Sort By</b>
-          </p>
-          <svg
-            width="17"
-            height="17"
-            viewBox="0 0 17 17"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12.3097 16.6888L9.43312 13.8123C9.22563 13.6048 9.1219 13.3329 9.1219 13.0609C9.1219 12.789 9.22563 12.5171 9.43312 12.3096C9.84806 11.8947 10.5208 11.8947 10.9357 12.3096L11.9985 13.3724L11.9985 2.23291C11.9985 1.64611 12.4742 1.17041 13.061 1.17041C13.6478 1.17041 14.1235 1.64611 14.1235 2.23291L14.1235 13.3724L15.1862 12.3096C15.6011 11.8947 16.2739 11.8947 16.6888 12.3096C17.1037 12.7246 17.1037 13.3973 16.6888 13.8123L13.8122 16.6888C13.3973 17.1037 12.7246 17.1037 12.3097 16.6888ZM5.00156 14.186L5.00156 3.62761L6.06429 4.69037C6.47923 5.10528 7.15196 5.10528 7.5669 4.69037C7.98184 4.2754 7.98184 3.6027 7.5669 3.18773L4.69035 0.311179C4.27541 -0.103727 3.60268 -0.103727 3.18774 0.311179L0.31119 3.18773C0.103704 3.39522 -2.30485e-05 3.66712 -2.30604e-05 3.93905C-2.30723e-05 4.21099 0.103704 4.48289 0.311189 4.69037C0.726129 5.10528 1.39886 5.10528 1.8138 4.69037L2.87653 3.62761L2.87653 14.186C2.87653 14.7728 3.35223 15.2485 3.93903 15.2485C4.52583 15.2485 5.00156 14.7728 5.00156 14.186Z"
-              fill="black"
+          <div className="d-flex">
+            <select
+              className="form-select me-1"
+              onChange={(e) => setSortFiltered(e.target.value)}
+              value={sortFiltered}
+            >
+              <option>Sort By</option>
+              <option value="price">Price</option>
+              <option value="origin">Origin</option>
+              <option value="destination">Destination</option>
+              <option value="transit">Transit</option>
+              <option value="stock">Stock</option>
+              <option value="airline">Airline</option>
+            </select>
+            <input
+              type="number"
+              className="form-control ms-1"
+              placeholder="Limit"
+              onChange={(e) => setLimitFiltered(e.target.value)}
+              value={limitFiltered}
             />
-          </svg>
+          </div>
         </div>
       </div>
       {/* desktop */}
       <div>
         {listProduct.isLoading ? (
-          <div className="product-item d-none d-md-block my-4">
+          <div className="product-item d-none d-md-block my-3">
             <h1>Loading...</h1>
           </div>
         ) : (
           <>
             {!listProduct.data.length ? (
-              <div className="product-item d-none d-md-block my-4">
+              <div className="product-item d-none d-md-block my-3">
                 <h1>No Ticket Found</h1>
               </div>
             ) : (
@@ -56,7 +69,7 @@ export default function Product({ listProduct }) {
                 {listProduct.data.map((product) => (
                   <div
                     key={product.id}
-                    className="product-item d-none d-md-block my-4"
+                    className="product-item d-none d-md-block my-3"
                   >
                     <img
                       src={`${process.env.REACT_APP_API_URL}/${
@@ -117,11 +130,19 @@ export default function Product({ listProduct }) {
                           )}
                         </p>
                         <p className="text-center">
-                          <small>{product.transit_total} Transit</small>
+                          <small>{product.transit_total} Transit</small> |{" "}
+                          <small>{product.stock} Stock</small>
                         </p>
                       </div>
                       <div className="ms-5 text-primary">
-                        <p>Rp. {product.price}/pax</p>
+                        <p>
+                          {new Intl.NumberFormat("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                            minimumFractionDigits: 0,
+                          }).format(product.price)}
+                          /pax
+                        </p>
                       </div>
                       <div className="ms-auto">
                         <Link
@@ -244,7 +265,12 @@ export default function Product({ listProduct }) {
                         <div className="d-flex justify-content-between mt-3">
                           <p>{product.name}</p>
                           <p className="text-primary">
-                            Rp. {product.price}/pax
+                            {new Intl.NumberFormat("id-ID", {
+                              style: "currency",
+                              currency: "IDR",
+                              minimumFractionDigits: 0,
+                            }).format(product.price)}
+                            /pax
                           </p>
                         </div>
                       </div>

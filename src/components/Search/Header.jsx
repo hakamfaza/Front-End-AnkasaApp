@@ -99,7 +99,9 @@ export default function Header({
               </svg>
               <small className="mx-1">
                 {passenger.adult
-                  ? `${parseInt(passenger.adult) + parseInt(passenger.child)} Passenger`
+                  ? `${
+                      parseInt(passenger.adult) + parseInt(passenger.child)
+                    } Passenger`
                   : "All Stock"}
               </small>
             </div>
@@ -107,7 +109,7 @@ export default function Header({
         </div>
         <div className="left">
           <button className="btn btn-transparent text-white">
-            <b onClick={applyFilter}>Change Search</b>
+            <b onClick={() => applyFilter()}>Change Search</b>
           </button>
         </div>
       </div>
@@ -171,7 +173,7 @@ export default function Header({
         </div>
         <div className="d-flex justify-content-center">
           <button className="btn btn-transparent text-white">
-            <b onClick={applyFilter}>Change Search</b>
+            <b onClick={() => applyFilter()}>Change Search</b>
           </button>
         </div>
       </div>
