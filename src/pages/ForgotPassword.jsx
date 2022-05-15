@@ -33,9 +33,9 @@ export default function ForgotPassword() {
       });
     }
     Swal.fire({
-      title: "Success",
+      title: "Oops...",
       text: "password and confirm password are different",
-      icon: "success",
+      icon: "error",
     });
     setIsLoading(false);
   };

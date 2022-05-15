@@ -16,14 +16,26 @@ export default function Reset() {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    forgot(form,setErrors).then((res) => {
-      if (res === true) {
-        Swal.fire({
-          title: "Success",
-          text: "you success to reset password, now check your email to reset your password",
-          icon: "success",
+    Swal.fire({
+      title: "Are you sure?",
+      text: `that ${form.email} is your account?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: `yes, that's right!`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        forgot(form, setErrors).then((res) => {
+          if (res === true) {
+            Swal.fire({
+              title: "Success",
+              text: "you success to reset password, now check your email to reset your password",
+              icon: "success",
+            });
+            return navigate("/login");
+          }
         });
-        return navigate("/login");
       }
     });
     setIsLoading(false);
