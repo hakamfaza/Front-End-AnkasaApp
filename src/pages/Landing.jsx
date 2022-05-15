@@ -38,6 +38,8 @@ export default function Landing() {
 
   useEffect(() => {
     dispatch(getDestination());
+    document.title = `${process.env.REACT_APP_APP_NAME} | Explore`
+    window.scrollTo(0, 0)
   }, [dispatch]);
 
   useEffect(() => {
