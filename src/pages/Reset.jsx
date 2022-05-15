@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Background from "../components/Background";
 import "../assets/styles/ian.css";
@@ -12,6 +12,10 @@ export default function Reset() {
   const [form, setForm] = useState({
     email: "",
   });
+  useEffect(() => {
+    document.title = `${process.env.REACT_APP_APP_NAME} - Forgot Password`;
+    window.scrollTo(0, 0);
+  }, []);
   const onSubmitted = (e) => {
     e.preventDefault();
     setErrors([]);

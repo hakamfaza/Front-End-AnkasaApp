@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Background from "../components/Background";
 import "../assets/styles/ian.css";
@@ -15,6 +15,10 @@ export default function ForgotPassword() {
     password: "",
     confirmPassword: "",
   });
+  useEffect(() => {
+    document.title = `${process.env.REACT_APP_APP_NAME} - Reset Password`;
+    window.scrollTo(0, 0);
+  }, []);
   const { token } = useParams();
   const onSubmitted = (e) => {
     e.preventDefault();
