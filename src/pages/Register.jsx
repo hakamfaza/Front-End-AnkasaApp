@@ -3,9 +3,13 @@ import { useNavigate } from "react-router-dom";
 import Background from "../components/Background";
 import "../assets/styles/ian.css";
 import { register } from "../redux/actions/auth";
+import Swal from "sweetalert2";
 
 export default function Register() {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -13,11 +17,19 @@ export default function Register() {
   });
   const onSubmitted = (e) => {
     e.preventDefault();
-    register(form).then((res) => {
+    setErrors([]);
+    setIsLoading(true);
+    register(form, setErrors).then((res) => {
       if (res === true) {
+        Swal.fire({
+          title: "Success",
+          text: "you success to register, now check your email to acctivate your account",
+          icon: "success",
+        });
         return navigate("/");
       }
     });
+    setIsLoading(false);
   };
   return (
     <>
@@ -30,33 +42,65 @@ export default function Register() {
               <div className="text">Ankasa</div>
             </div>
             <form onSubmit={(e) => onSubmitted(e)}>
-            <div className="form-input">
-              <h1>Register</h1>
-              <input
-                type="text"
-                className="input"
-                placeholder="  Full Name"
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-              />
-              <input
-                type="email"
-                className="input"
-                placeholder="  Email"
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-              />
-              <input
-                type="password"
-                className="input"
-                placeholder="  Password"
-                onChange={(e) => setForm({ ...form, password: e.target.value })}
-              />
-            </div>
-            <button
-              type="submit"
-              className="button"
-            >
-              Sign Up
-            </button>
+              <div className="form-input">
+                <h1>Register</h1>
+                <input
+                  type="text"
+                  className="input"
+                  placeholder="  Full Name"
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
+                <input
+                  type="email"
+                  className="input"
+                  placeholder="  Email"
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                />
+                <div className="form-password">
+                  <input
+                    type={`${showPassword ? "text" : "password"}`}
+                    className="input"
+                    placeholder="  Password"
+                    onChange={(e) =>
+                      setForm({ ...form, password: e.target.value })
+                    }
+                  />
+                  <button
+                    type="button"
+                    className="password"
+                    onClick={() => {
+                      setShowPassword(!showPassword);
+                    }}
+                  ></button>
+                </div>
+              </div>
+              {errors.length > 0 && (
+                <div className="alert alert-danger mx-0">
+                  <ul className="m-0">
+                    {errors.map((error, index) => (
+                      <li key={index}>{error.msg}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {isLoading ? (
+                <button
+                  className="btn btn-success btn-lg ms-2"
+                  type="button"
+                  disabled
+                >
+                  <span
+                    className="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>{" "}
+                  Loading...
+                </button>
+              ) : (
+                <button type="submit" className="button">
+                  Sign Up
+                </button>
+              )}
             </form>
             <label className="check">
               <input type="checkbox" className="checkbox" />

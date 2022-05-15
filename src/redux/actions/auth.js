@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const login = async (data) => {
+export const login = async (data, setErrors) => {
   try {
     const res = await axios.post(
       `${process.env.REACT_APP_API_URL}/auth/login`,
@@ -9,51 +9,83 @@ export const login = async (data) => {
 
     localStorage.setItem("token", res.data.token.jwt);
     localStorage.setItem("id", res.data.token.id);
-    alert("login success");
     return true;
   } catch (error) {
-    alert(error.response.data.message + "\n" + error.response.data.error);
+    if (error.response) {
+      if (Array.isArray(error.response.data.error)) {
+        setErrors(error.response.data.error);
+      } else {
+        setErrors([{ msg: error.response.data.error }]);
+      }
+    } else {
+      setErrors([{ msg: error.message }]);
+    }
+
     return false;
   }
 };
 
-export const register = async (data) => {
+export const register = async (data,setErrors) => {
   try {
     await axios.post(
       `${process.env.REACT_APP_API_URL}/auth/register`,
       data
     );
-    alert(
-      "you success to register, now check your email to acctivate your account"
-    );
     return true;
   } catch (error) {
-    alert(error.response.data.message + "\n" + error.response.data.error);
+    if (error.response) {
+      if (Array.isArray(error.response.data.error)) {
+        setErrors(error.response.data.error);
+      } else {
+        setErrors([{ msg: error.response.data.error }]);
+      }
+    } else {
+      setErrors([{ msg: error.message }]);
+    }
+
+    return false;
   }
 };
-export const forgot = async (data) => {
+export const forgot = async (data,setErrors) => {
   try {
     await axios.put(
       `${process.env.REACT_APP_API_URL}/auth/forgot`,
       data
     );
-    alert(
-      "you success to reset password, now check your email to reset your password"
-    );
     return true;
   } catch (error) {
-    alert(error.response.data.message + "\n" + error.response.data.error);
+    if (error.response) {
+      if (Array.isArray(error.response.data.error)) {
+        setErrors(error.response.data.error);
+      } else {
+        setErrors([{ msg: error.response.data.error }]);
+      }
+    } else {
+      setErrors([{ msg: error.message }]);
+    }
+
+    return false;
   }
 };
 
-export const reset = async (token, data) => {
+export const reset = async (token, data, setErrors) => {
   try {
     await axios.put(
       `${process.env.REACT_APP_API_URL}/auth/reset/${token}`,
       data
     );
-    return alert("you success to reset password, now you can login");
+    return true
   } catch (error) {
-    alert(error.response.data.message + "\n" + error.response.data.error);
+    if (error.response) {
+      if (Array.isArray(error.response.data.error)) {
+        setErrors(error.response.data.error);
+      } else {
+        setErrors([{ msg: error.response.data.error }]);
+      }
+    } else {
+      setErrors([{ msg: error.message }]);
+    }
+
+    return false;
   }
 };
