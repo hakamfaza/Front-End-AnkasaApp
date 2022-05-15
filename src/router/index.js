@@ -70,9 +70,9 @@ export default function router() {
         <Route
           path="/detail/:id"
           element={
-            <PublicRoute>
+            <PrivateRoute>
               <BookingDetail />
-            </PublicRoute>
+            </PrivateRoute>
           }
         />
         <Route
