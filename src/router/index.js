@@ -68,11 +68,11 @@ export default function router() {
         </Route>
         <Route path="*" element={<NotFound />} />
         <Route
-          path="/details"
+          path="/detail/:id"
           element={
-            <PrivateRoute>
+            <PublicRoute>
               <BookingDetail />
-            </PrivateRoute>
+            </PublicRoute>
           }
         />
         <Route
