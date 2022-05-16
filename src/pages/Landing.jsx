@@ -211,7 +211,14 @@ export default function Landing() {
               destination.data.map((item, index) => (
               <div key={index} >
               <Slide left>           
-                <Card alt={item.place} destination={item.place} country={item.country} src={`${process.env.REACT_APP_API_URL}/${item.image}`} totalAirlines={item.total_airline} price={item.price} />
+                    <Card alt={item.place} destination={item.place} country={item.country} src={`${process.env.REACT_APP_API_URL}/${item.image}`} totalAirlines={item.total_airline} price={
+                      new Intl.NumberFormat("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                        minimumFractionDigits: 0,
+                      }).format(
+                        item.price
+                      )} />
               </Slide>
               </div>
             ))
