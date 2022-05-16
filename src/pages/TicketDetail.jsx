@@ -9,6 +9,7 @@ import { AiFillStar } from "react-icons/ai";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { SET_PASSENGER_DATA } from "../redux/actions/types";
+import Swal from 'sweetalert2';
 
 export default function TicketDetail() {
   const dispatch = useDispatch();
@@ -64,7 +65,11 @@ export default function TicketDetail() {
 
       setIsLoading(false);
     } else {
-      alert("Harus ada passenger adult");
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed',
+        text: 'There must be an adult passenger',
+      })
     }
   };
 
