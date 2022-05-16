@@ -73,7 +73,7 @@ export default function Product({
                   >
                     <img
                       src={`${process.env.REACT_APP_API_URL}/${
-                        listProduct.data.photo || "ticket.jpg"
+                        product.photo || "ticket.jpg"
                       }`}
                       height={"80px"}
                       alt=""
