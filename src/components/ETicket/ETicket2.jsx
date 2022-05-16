@@ -48,9 +48,26 @@ const ETicket = () => {
             <Col xs="2" className="border">
               <Row className="py-2">
                 <Col className="text-center">
-                  <img src={`process.env.REACT_APP_API_URL}/${detailBooking.data.photo || "ticket.jpg"}`} alt='airline'
-                    width='186' height='100'
-                  />
+                  {
+                      !detailBooking.data.photo && (
+                      <>
+                        <img src={`${process.env.REACT_APP_API_URL}/ticket.jpg`} alt='airline'
+                         width='186' height='100'/>
+                      </>
+                     )
+
+                    
+                  }
+                  {
+                     detailBooking.data.photo && (
+                      <>
+                        <img src={`${process.env.REACT_APP_API_URL}/${detailBooking.data.photo}`} alt='airline'
+                        width='186' height='100'/>
+                      </>
+                       
+                    )
+                  }
+                 
                 </Col>
               </Row>
               <Row className="py-2">
@@ -85,7 +102,7 @@ const ETicket = () => {
                     </Row>
                     <Row className="text-start">
                       <Col className="ticket-data" xs="6">
-                        {detailUser.data.name}
+                        {detailBooking.data.passenger_name}
                       </Col>
                       <Col className="ticket-data" xs="6">
                         {detailBooking.data.type}

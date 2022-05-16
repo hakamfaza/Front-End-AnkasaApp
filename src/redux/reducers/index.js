@@ -7,6 +7,7 @@ import destinationReducer from './destination';
 import oldDestinationReducer from "./oldDestination";
 import passengerReducer from './passengerData';
 import listMyBookingReducer from "./transaction";
+import detailMyBookingReducer from "./detailBooking"
 
 const rootReducers = combineReducers({
   listProduct: listProductReducer,
@@ -16,7 +17,8 @@ const rootReducers = combineReducers({
   destination: destinationReducer,
   oldDestination: oldDestinationReducer,
   passenger: passengerReducer,
-  myBooking: listMyBookingReducer
+  myBooking: listMyBookingReducer,
+  detailBooking: detailMyBookingReducer
 });
 
 export default rootReducers;
