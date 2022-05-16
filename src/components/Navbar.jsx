@@ -81,9 +81,9 @@ function App() {
                 login
               </Link>
             ) : detailUser.isLoading === true ? (
-              <h1>Loading</h1>
+              <h5>Loading</h5>
             ) : detailUser.isError === true ? (
-              <h1>Error</h1>
+              <h5>Error</h5>
             ) : (
               <>
                 <div className="icon-message"></div>
