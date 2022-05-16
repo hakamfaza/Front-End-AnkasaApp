@@ -35,12 +35,14 @@ export default function ForgotPassword() {
           return navigate("/");
         }
       });
+    } else {
+      Swal.fire({
+        title: "Oops...",
+        text: "password and confirm password are different",
+        icon: "error",
+      });
     }
-    Swal.fire({
-      title: "Oops...",
-      text: "password and confirm password are different",
-      icon: "error",
-    });
+
     setIsLoading(false);
   };
   return (
@@ -79,7 +81,7 @@ export default function ForgotPassword() {
                     className="input"
                     placeholder="  Confirm New Password"
                     onChange={(e) =>
-                      setForm({ ...form, password: e.target.value })
+                      setForm({ ...form, confirmPassword: e.target.value })
                     }
                   />
                   <button
@@ -92,7 +94,10 @@ export default function ForgotPassword() {
                 </div>
               </div>
               {errors.length > 0 && (
-                <div className="alert alert-danger mx-0" style={{maxWidth: '350px',marginLeft: '10px'}}>
+                <div
+                  className="alert alert-danger mx-0"
+                  style={{ maxWidth: "350px", marginLeft: "10px" }}
+                >
                   <ul className="m-0">
                     {errors.map((error, index) => (
                       <li key={index}>{error.msg}</li>

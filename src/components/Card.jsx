@@ -27,7 +27,7 @@ export default function Card(params) {
           <p>
             From
             {' '}
-            ${params.price}
+            {params.price}
           </p>
           <div className="circle">
             <img src={previous} alt="" className="iPrevious" />
