@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { getDetailUser } from "../../redux/actions/user";
+import { getBookingDetails } from "../../redux/actions/transaction";
 import { Row, Col, Card, CardTitle } from 'reactstrap';
 import style from '../../assets/styles/booking-detail';
 import '../../assets/styles/booking-detail.css';
 
 import vector from '../../assets/images/Vector1.svg';
-import airlinesLogo from '../../assets/images/garuda-indonesia-logo-BD82882F07-seeklogo3.svg';
 import barcode from '../../assets/images/Group923.svg';
 
 const ETicket = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const urlParams = useParams();
+    const { detailBooking, detailUser } = useSelector(
+      (state) => state
+    );
+
+    useEffect(() => {
+      document.title = `${process.env.REACT_APP_APP_NAME} - Booking Detail`;
+      window.scrollTo(0, 0);
+    }, []);
+  
+    useEffect(() => {
+      dispatch(getBookingDetails(urlParams.id, navigate));
+      dispatch(getDetailUser(localStorage.getItem("id"), navigate));
+    }, [dispatch, navigate, urlParams.id]);
+
     return (
       <div>
         <Card body style={style.card}>
@@ -27,14 +48,14 @@ const ETicket = () => {
             <Col xs="2" className="border">
               <Row className="py-2">
                 <Col className="text-center">
-                  <img src={airlinesLogo} alt='airline'
+                  <img src={`process.env.REACT_APP_API_URL}/${detailBooking.data.photo || "ticket.jpg"}`} alt='airline'
                     width='186' height='100'
                   />
                 </Col>
               </Row>
               <Row className="py-2">
                 <Col tag="h3" className="text-center" style={style.origin}>
-                  <b>IDN</b>
+                  <b>{detailBooking.data.origin}</b>
                 </Col>
               </Row>
               <Row className="py-2">
@@ -44,7 +65,7 @@ const ETicket = () => {
               </Row>
               <Row className="py-2">
                 <Col tag="h3" className="text-center" style={style.origin}>
-                  <b>JPN</b>
+                  <b>{detailBooking.data.destination}</b>
                 </Col>
               </Row>
             </Col>
@@ -64,10 +85,10 @@ const ETicket = () => {
                     </Row>
                     <Row className="text-start">
                       <Col className="ticket-data" xs="6">
-                        Mike Kowalski
+                        {detailUser.data.name}
                       </Col>
                       <Col className="ticket-data" xs="6">
-                        Economy
+                        {detailBooking.data.type}
                       </Col>
                     </Row>
                   </div>
@@ -82,10 +103,10 @@ const ETicket = () => {
                     </Row>
                     <Row className="text-start">
                       <Col className="ticket-data" xs="6">
-                        20 July 2020
+                        {moment(detailBooking.data.flight_date).format("ll")}
                       </Col>
                       <Col className="ticket-data" xs="6">
-                        12:33
+                        {moment(detailBooking.data.flight_date).format("LT")}
                       </Col>
                     </Row>
                   </div>
@@ -100,10 +121,10 @@ const ETicket = () => {
                     </Row>
                     <Row className="text-start">
                       <Col className="ticket-data" xs="6">
-                        AB-221
+                        {detailBooking.data.code}
                       </Col>
                       <Col className="ticket-data" xs="6">
-                        A
+                        {detailBooking.data.terminal}
                       </Col>
                     </Row>
                   </div>
@@ -118,7 +139,7 @@ const ETicket = () => {
                     </Row>
                     <Row className="text-start">
                       <Col className="ticket-data" xs="6">
-                        221
+                        {detailBooking.data.gate}
                       </Col>
                       <Col className="ticket-data" xs="6">
                         21 B
