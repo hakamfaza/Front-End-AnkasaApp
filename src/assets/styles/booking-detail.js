@@ -14,6 +14,9 @@ const style = {
     },
     barcode1: {
       margin: '20px 50px'
+    },
+    footerBackground: {
+      background: '#FFFFFF'
     }
 }
 
