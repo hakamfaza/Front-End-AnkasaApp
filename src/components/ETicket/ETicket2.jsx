@@ -15,7 +15,7 @@ const ETicket = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const urlParams = useParams();
-    const { detailBooking, detailUser } = useSelector(
+    const { detailBooking } = useSelector(
       (state) => state
     );
 
