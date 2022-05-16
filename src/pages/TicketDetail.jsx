@@ -168,7 +168,7 @@ export default function TicketDetail() {
                     <div className="d-flex justify-content-between">
                       <p>
                         Passenger:{" "}
-                        {typeof passenger.adult === "string"
+                        {passenger.adult === ""
                           ? 0
                           : parseInt(passenger.adult) +
                             parseInt(passenger.child)}
