@@ -53,7 +53,7 @@ body{
     align-items: center;
     width: 350px;
     margin-top: 30px;
-    margin-bottom: 150px;
+    margin-bottom: 90px;
 }
 .ian .background .jumbotron .form-title .icon{
     background-image: url("../icons/icon.svg");
@@ -96,6 +96,25 @@ body{
     background-color: #2395FF;
     margin-right: 10px;
     outline: #2395FF;
+}
+.ian .background .jumbotron .form-password{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ian .background .jumbotron .password{
+    background-image: url('../icons/pass.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: white;
+    margin-left: -35px;
+    width: 35px;
+    height: 35px;
+    border: none;
+}
+.ian .background .jumbotron .password:focus{
+    outline-style: none;
 }
 .ian .background .jumbotron .button{
     width: 350px;
