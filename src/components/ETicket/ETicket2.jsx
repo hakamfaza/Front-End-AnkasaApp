@@ -2,21 +2,20 @@ import React, { useEffect } from "react";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getDetailProduct } from "../redux/actions/product";
-import { getDetailUser } from "../redux/actions/user";
+import { getDetailUser } from "../../redux/actions/user";
+import { getBookingDetails } from "../../redux/actions/transaction";
 import { Row, Col, Card, CardTitle } from 'reactstrap';
 import style from '../../assets/styles/booking-detail';
 import '../../assets/styles/booking-detail.css';
 
 import vector from '../../assets/images/Vector1.svg';
-import airlinesLogo from '../../assets/images/garuda-indonesia-logo-BD82882F07-seeklogo3.svg';
 import barcode from '../../assets/images/Group923.svg';
 
 const ETicket = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const urlParams = useParams();
-    const { detailProduct, detailUser } = useSelector(
+    const { detailBooking, detailUser } = useSelector(
       (state) => state
     );
 
@@ -26,7 +25,7 @@ const ETicket = () => {
     }, []);
   
     useEffect(() => {
-      dispatch(getDetailProduct(urlParams.id, navigate));
+      dispatch(getBookingDetails(urlParams.id, navigate));
       dispatch(getDetailUser(localStorage.getItem("id"), navigate));
     }, [dispatch, navigate, urlParams.id]);
 
@@ -49,14 +48,14 @@ const ETicket = () => {
             <Col xs="2" className="border">
               <Row className="py-2">
                 <Col className="text-center">
-                  <img src={airlinesLogo} alt='airline'
+                  <img src={`process.env.REACT_APP_API_URL}/${detailBooking.data.photo || "ticket.jpg"}`} alt='airline'
                     width='186' height='100'
                   />
                 </Col>
               </Row>
               <Row className="py-2">
                 <Col tag="h3" className="text-center" style={style.origin}>
-                  <b>{detailProduct.data.origin}</b>
+                  <b>{detailBooking.data.origin}</b>
                 </Col>
               </Row>
               <Row className="py-2">
@@ -66,7 +65,7 @@ const ETicket = () => {
               </Row>
               <Row className="py-2">
                 <Col tag="h3" className="text-center" style={style.origin}>
-                  <b>{detailProduct.data.destination}</b>
+                  <b>{detailBooking.data.destination}</b>
                 </Col>
               </Row>
             </Col>
@@ -89,7 +88,7 @@ const ETicket = () => {
                         {detailUser.data.name}
                       </Col>
                       <Col className="ticket-data" xs="6">
-                        {detailProduct.data.type}
+                        {detailBooking.data.type}
                       </Col>
                     </Row>
                   </div>
@@ -104,10 +103,10 @@ const ETicket = () => {
                     </Row>
                     <Row className="text-start">
                       <Col className="ticket-data" xs="6">
-                        {moment(detailProduct.data.flight_date).format("ll")}
+                        {moment(detailBooking.data.flight_date).format("ll")}
                       </Col>
                       <Col className="ticket-data" xs="6">
-                        {moment(detailProduct.data.flight_date).format("LT")}
+                        {moment(detailBooking.data.flight_date).format("LT")}
                       </Col>
                     </Row>
                   </div>
@@ -122,10 +121,10 @@ const ETicket = () => {
                     </Row>
                     <Row className="text-start">
                       <Col className="ticket-data" xs="6">
-                        {detailProduct.data.code}
+                        {detailBooking.data.code}
                       </Col>
                       <Col className="ticket-data" xs="6">
-                        {detailProduct.data.terminal}
+                        {detailBooking.data.terminal}
                       </Col>
                     </Row>
                   </div>
@@ -140,7 +139,7 @@ const ETicket = () => {
                     </Row>
                     <Row className="text-start">
                       <Col className="ticket-data" xs="6">
-                        {detailProduct.data.gate}
+                        {detailBooking.data.gate}
                       </Col>
                       <Col className="ticket-data" xs="6">
                         21 B
