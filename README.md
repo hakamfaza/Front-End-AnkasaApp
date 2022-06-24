@@ -109,6 +109,23 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Screenshot
+### Landing Page
+[![ankasa.png](https://i.postimg.cc/1RcWZg1L/ankasa.png)](https://postimg.cc/Hjn0wkx2)
+
+### Profile
+[![ankasa-2.png](https://i.postimg.cc/13g2P9Hw/ankasa-2.png)](https://postimg.cc/3kTnFQzx)
+
+### Search Ticket
+[![anakas-3.png](https://i.postimg.cc/nznDKhSD/anakas-3.png)](https://postimg.cc/xkF8nn2f)
+
+### Detail Ticket
+[![ankasa-3.png](https://i.postimg.cc/XqpXxGfp/ankasa-3.png)](https://postimg.cc/GTncmpSC)
+
+### Passenger Details
+[![Screenshot-2022-06-24-000833.png](https://i.postimg.cc/6QPQq5JK/Screenshot-2022-06-24-000833.png)](https://postimg.cc/d78FSFVN)
+
+### My Booking
+[![Screenshot-2022-06-24-000928.png](https://i.postimg.cc/VkGfZLNt/Screenshot-2022-06-24-000928.png)](https://postimg.cc/CR8pz0kM)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
