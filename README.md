@@ -36,6 +36,7 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
+       <li><a href="#demo">Demo</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -64,6 +65,12 @@ This application was developed using a framework/library
 
 * [React.js](https://reactjs.org/)
 * [Bootstrap](https://getbootstrap.com)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+### Demo
+Here is a working live demo: https://ankasa-flight.netlify.app/
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -116,19 +123,19 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 [![Screenshot-2022-06-24-102724.png](https://i.postimg.cc/5NjnFbr0/Screenshot-2022-06-24-102724.png)](https://postimg.cc/YhK15KMK)
 
 ### Profile
-[![ankasa-2.png](https://i.postimg.cc/13g2P9Hw/ankasa-2.png)](https://postimg.cc/3kTnFQzx)
+[![Screenshot-2022-06-26-205426.png](https://i.postimg.cc/NFpPw1fm/Screenshot-2022-06-26-205426.png)](https://postimg.cc/Wqq7GqZ1)
 
 ### Search Ticket
 [![anakas-3.png](https://i.postimg.cc/nznDKhSD/anakas-3.png)](https://postimg.cc/xkF8nn2f)
 
 ### Detail Ticket
-[![ankasa-3.png](https://i.postimg.cc/XqpXxGfp/ankasa-3.png)](https://postimg.cc/GTncmpSC)
+[![Screenshot-2022-06-26-210202.png](https://i.postimg.cc/jSK3sw3Q/Screenshot-2022-06-26-210202.png)](https://postimg.cc/CzPs71gz)
 
 ### Passenger Details
-[![Screenshot-2022-06-24-000833.png](https://i.postimg.cc/6QPQq5JK/Screenshot-2022-06-24-000833.png)](https://postimg.cc/d78FSFVN)
+[![Screenshot-2022-06-26-205848.png](https://i.postimg.cc/x1HpQGPd/Screenshot-2022-06-26-205848.png)](https://postimg.cc/18mrcq2x)
 
 ### My Booking
-[![Screenshot-2022-06-24-000928.png](https://i.postimg.cc/VkGfZLNt/Screenshot-2022-06-24-000928.png)](https://postimg.cc/CR8pz0kM)
+[![Screenshot-2022-06-26-205543.png](https://i.postimg.cc/85BVCQBj/Screenshot-2022-06-26-205543.png)](https://postimg.cc/zbBQdQQr)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -151,7 +158,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 ## Back End
-Repository: https://github.com/Infinite-Bug/ankasa-api
+Repository: https://github.com/hakamfaza/RESTFull_API_AnkasaApp
 
 ## Our Team
 
