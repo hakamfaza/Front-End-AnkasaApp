@@ -86,10 +86,10 @@ Here is a working live demo: https://ankasa-flight.netlify.app/
 
 ### Installation
 
-1. Get a free API Key at [https://github.com/Infinite-Bug/ankasa-api](https://github.com/Infinite-Bug/ankasa-api)
+1. Get a free API Key at [https://github.com/hakamfaza/RESTFull_API_AnkasaApp](https://github.com/hakamfaza/RESTFull_API_AnkasaApp)
 2. Clone the repo
    ```sh
-   git clone https://github.com/Infinite-Bug/ankasa-client.git
+   git clone https://github.com/hakamfaza/Front-End-AnkasaApp.git
    ```
 3. Install NPM packages
    ```sh
