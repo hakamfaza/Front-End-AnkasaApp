@@ -120,10 +120,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 [![ankasa.png](https://i.postimg.cc/1RcWZg1L/ankasa.png)](https://postimg.cc/Hjn0wkx2)
 
 ## Register
-[![Screenshot-2022-06-26-213604.png](https://i.postimg.cc/QxrVdhQJ/Screenshot-2022-06-26-213604.png)](https://postimg.cc/hhpKCF3X)
+[![Fire-Shot-Capture-018-Ankasa-Register-ankasa-flight-netlify-app.png](https://i.postimg.cc/PrMHBL2q/Fire-Shot-Capture-018-Ankasa-Register-ankasa-flight-netlify-app.png)](https://postimg.cc/WhtxZ4RR)
 
 ## Login
-[![Screenshot-2022-06-24-102724.png](https://i.postimg.cc/5NjnFbr0/Screenshot-2022-06-24-102724.png)](https://postimg.cc/YhK15KMK)
+[![Fire-Shot-Capture-017-Ankasa-Login-ankasa-flight-netlify-app.png](https://i.postimg.cc/wjHvN8b1/Fire-Shot-Capture-017-Ankasa-Login-ankasa-flight-netlify-app.png)](https://postimg.cc/HVZdGKmm)
 
 ### Profile
 [![Screenshot-2022-06-26-205426.png](https://i.postimg.cc/NFpPw1fm/Screenshot-2022-06-26-205426.png)](https://postimg.cc/Wqq7GqZ1)
